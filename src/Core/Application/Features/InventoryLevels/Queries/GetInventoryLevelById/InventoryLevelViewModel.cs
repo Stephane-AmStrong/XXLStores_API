@@ -1,19 +1,18 @@
-﻿using System;
+﻿using Application.Features.Items.Queries.GetItemById;
+using Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Application.Features.InventoryLevels.Queries.GetInventoryLevelById
 {
-    public class InventoryLevelViewModel
+    public record InventoryLevelViewModel : AuditableBaseEntity
     {
-        public virtual Guid Id { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string UpdatedBy { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public int InStock { get; set; }
+        public int StockAfter { get; set; }
+        public DateTime UpdateAt { get; set; }
+        public Guid ItemId { get; set; }
 
-        public virtual ICollection<InventoryLevelViewModel> Events { get; set; }
+        public virtual ItemViewModel Item { get; set; }
     }
 }

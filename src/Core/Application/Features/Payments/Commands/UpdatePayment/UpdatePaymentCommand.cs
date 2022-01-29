@@ -15,44 +15,43 @@ namespace Application.Features.Payments.Commands.UpdatePayment
     public class UpdatePaymentCommand : IRequest<PaymentViewModel>
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public Guid CategoryId { get; set; }
-        public Guid ShopId { get; set; }
+        public int MoneyAmount { get; set; }
+        public DateTime? PaidAt { get; set; }
+        public Guid ShoppingCartId { get; set; }
+    }
 
+    public class UpdatePaymentCommandHandler : IRequestHandler<UpdatePaymentCommand, PaymentViewModel>
+    {
+        private readonly IRepositoryWrapper _repository;
+        private readonly IMapper _mapper;
 
-        public class UpdatePaymentCommandHandler : IRequestHandler<UpdatePaymentCommand, PaymentViewModel>
+        public UpdatePaymentCommandHandler(IRepositoryWrapper repository, IMapper mapper)
         {
-            private readonly IRepositoryWrapper _repository;
-            private readonly IMapper _mapper;
+            _repository = repository;
+            _mapper = mapper;
+        }
 
-            public UpdatePaymentCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public async Task<PaymentViewModel> Handle(UpdatePaymentCommand command, CancellationToken cancellationToken)
+        {
+            var paymentEntity = await _repository.Payment.GetByIdAsync(command.Id);
+
+            if (paymentEntity == null)
             {
-                _repository = repository;
-                _mapper = mapper;
+                throw new ApiException($"Payment Not Found.");
             }
 
-            public async Task<PaymentViewModel> Handle(UpdatePaymentCommand command, CancellationToken cancellationToken)
-            {
-                var paymentEntity = await _repository.Payment.GetByIdAsync(command.Id);
+            _mapper.Map(command, paymentEntity);
 
-                if (paymentEntity == null)
-                {
-                    throw new ApiException($"Payment Not Found.");
-                }
+            await _repository.Payment.UpdateAsync(paymentEntity);
+            await _repository.SaveAsync();
 
-                _mapper.Map(command, paymentEntity);
+            var paymentReadDto = _mapper.Map<PaymentViewModel>(paymentEntity);
 
-                await _repository.Payment.UpdateAsync(paymentEntity);
-                await _repository.SaveAsync();
+            //if (!string.IsNullOrWhiteSpace(paymentReadDto.ImgLink)) paymentReadDto.ImgLink = $"{_baseURL}{paymentReadDto.ImgLink}";
 
-                var paymentReadDto = _mapper.Map<PaymentViewModel>(paymentEntity);
-
-                //if (!string.IsNullOrWhiteSpace(paymentReadDto.ImgLink)) paymentReadDto.ImgLink = $"{_baseURL}{paymentReadDto.ImgLink}";
-
-                return paymentReadDto;
+            return paymentReadDto;
 
 
-            }
         }
     }
 }

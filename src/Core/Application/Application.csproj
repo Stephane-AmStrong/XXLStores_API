@@ -4,6 +4,12 @@
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Compile Remove="DataTransfertObjects\Account\**" />
+	  <EmbeddedResource Remove="DataTransfertObjects\Account\**" />
+	  <None Remove="DataTransfertObjects\Account\**" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="11.0.0" />
@@ -19,6 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Folder Include="Features\AppUsers\Commands\Authenticate\" />
 		<Folder Include="Mappings\" />
 	</ItemGroup>
 

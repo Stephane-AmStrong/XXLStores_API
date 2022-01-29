@@ -18,41 +18,41 @@ namespace Application.Features.Items.Commands.UpdateItem
         public string Name { get; set; }
         public Guid CategoryId { get; set; }
         public Guid ShopId { get; set; }
+    }
 
+    public class UpdateItemCommandHandler : IRequestHandler<UpdateItemCommand, ItemViewModel>
+    {
+        private readonly IRepositoryWrapper _repository;
+        private readonly IMapper _mapper;
 
-        public class UpdateItemCommandHandler : IRequestHandler<UpdateItemCommand, ItemViewModel>
+        public UpdateItemCommandHandler(IRepositoryWrapper repository, IMapper mapper)
         {
-            private readonly IRepositoryWrapper _repository;
-            private readonly IMapper _mapper;
+            _repository = repository;
+            _mapper = mapper;
+        }
 
-            public UpdateItemCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public async Task<ItemViewModel> Handle(UpdateItemCommand command, CancellationToken cancellationToken)
+        {
+            var itemEntity = await _repository.Item.GetByIdAsync(command.Id);
+
+            if (itemEntity == null)
             {
-                _repository = repository;
-                _mapper = mapper;
+                throw new ApiException($"Item Not Found.");
             }
 
-            public async Task<ItemViewModel> Handle(UpdateItemCommand command, CancellationToken cancellationToken)
-            {
-                var itemEntity = await _repository.Item.GetByIdAsync(command.Id);
+            _mapper.Map(command, itemEntity);
 
-                if (itemEntity == null)
-                {
-                    throw new ApiException($"Item Not Found.");
-                }
+            await _repository.Item.UpdateAsync(itemEntity);
+            await _repository.SaveAsync();
 
-                _mapper.Map(command, itemEntity);
+            var itemReadDto = _mapper.Map<ItemViewModel>(itemEntity);
 
-                await _repository.Item.UpdateAsync(itemEntity);
-                await _repository.SaveAsync();
+            //if (!string.IsNullOrWhiteSpace(itemReadDto.ImgLink)) itemReadDto.ImgLink = $"{_baseURL}{itemReadDto.ImgLink}";
 
-                var itemReadDto = _mapper.Map<ItemViewModel>(itemEntity);
-
-                //if (!string.IsNullOrWhiteSpace(itemReadDto.ImgLink)) itemReadDto.ImgLink = $"{_baseURL}{itemReadDto.ImgLink}";
-
-                return itemReadDto;
+            return itemReadDto;
 
 
-            }
         }
     }
+
 }

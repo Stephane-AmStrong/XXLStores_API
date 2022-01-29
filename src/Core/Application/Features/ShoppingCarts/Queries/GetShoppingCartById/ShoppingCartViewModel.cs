@@ -1,6 +1,8 @@
 ﻿using Application.Features.AppUsers.Queries.GetAppUserById;
 using Application.Features.Categories.Queries.GetCategoryById;
 using Application.Features.InventoryLevels.Queries.GetInventoryLevels;
+using Application.Features.ShoppingCartItems.Queries.GetShoppingCartItemById;
+using Application.Features.ShoppingCartItems.Queries.GetShoppingCartItems;
 using Domain.Common;
 using System;
 using System.Collections.Generic;
@@ -10,15 +12,11 @@ namespace Application.Features.ShoppingCarts.Queries.GetShoppingCartById
 {
     public record ShoppingCartViewModel : AuditableBaseEntity
     {
-        public string Name { get; set; }
-        public Guid CategoryId { get; set; }
-        public Guid ShopId { get; set; }
+        public DateTime Date { get; set; }
+        public int Total { get; set; }
+        public int DeliveryFees { get; set; }
+        public Guid CustomerId { get; set; }
 
-        public virtual InventoryLevelsViewModel[] InventoryLevels { get; set; }
-        public virtual ShoppingCartShoppingCartsViewModel[] ShoppingCartShoppingCarts { get; set; }
-
-        public virtual CategoryViewModel Category { get; set; }
-
-        public virtual ShopViewModel Shop { get; set; }
+        public virtual ICollection<ShoppingCartItemsViewModel> ShoppingCartItems { get; set; }
     }
 }

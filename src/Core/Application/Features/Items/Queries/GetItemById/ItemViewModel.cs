@@ -1,6 +1,8 @@
 ﻿using Application.Features.AppUsers.Queries.GetAppUserById;
 using Application.Features.Categories.Queries.GetCategoryById;
 using Application.Features.InventoryLevels.Queries.GetInventoryLevels;
+using Application.Features.ShoppingCartItems.Queries.GetShoppingCartItems;
+using Application.Features.Shops.Queries.GetShopById;
 using Domain.Common;
 using System;
 using System.Collections.Generic;

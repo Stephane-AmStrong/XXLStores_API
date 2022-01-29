@@ -9,8 +9,8 @@ namespace Application.Features.Payments.Queries.GetPayments
 {
     public record PaymentsViewModel : AuditableBaseEntity
     {
-        public string Name { get; set; }
-        public Guid CategoryId { get; set; }
-        public Guid ShopId { get; set; }
+        public int MoneyAmount { get; set; }
+        public DateTime? PaidAt { get; set; }
+        public Guid ShoppingCartId { get; set; }
     }
 }

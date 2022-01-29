@@ -12,9 +12,9 @@ namespace Application.Features.Payments.Commands.CreatePayment
 {
     public class CreatePaymentCommand : IRequest<PaymentViewModel>
     {
-        public string Name { get; set; }
-        public Guid CategoryId { get; set; }
-        public Guid ShopId { get; set; }
+        public int MoneyAmount { get; set; }
+        public DateTime? PaidAt { get; set; }
+        public Guid ShoppingCartId { get; set; }
     }
 
     public class CreatePaymentCommandHandler : IRequestHandler<CreatePaymentCommand, PaymentViewModel>

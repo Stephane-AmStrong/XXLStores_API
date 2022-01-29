@@ -2,39 +2,35 @@
 using AutoMapper;
 using Domain.Entities;
 using FluentValidation;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.Categories.Commands.CreateCategory
+namespace Application.Features.AppUsers.Commands.Update
 {
-    public class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCommand>
+    public class UpdateAppUserCommandValidator : AbstractValidator<UpdateAppUserCommand>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public CreateCategoryCommandValidator(IRepositoryWrapper repository, IMapper mapper)
+        public UpdateAppUserCommandValidator(IRepositoryWrapper repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
 
-            RuleFor(p => p.Name)
+            RuleFor(p => p.FirstName)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
 
-            RuleFor(p => p.Name)
+            RuleFor(p => p.LastName)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
 
-            RuleFor(p => p)
-                .MustAsync(IsUnique).WithMessage("{PropertyName} already exists.");
-        }
-
-        private async Task<bool> IsUnique(CreateCategoryCommand categoryCommand, CancellationToken cancellationToken)
-        {
-            var _event = _mapper.Map<Category>(categoryCommand);
-            return !(await _repository.Category.ExistAsync(_event));
+            RuleFor(p => p.RoleName)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull();
         }
     }
 }

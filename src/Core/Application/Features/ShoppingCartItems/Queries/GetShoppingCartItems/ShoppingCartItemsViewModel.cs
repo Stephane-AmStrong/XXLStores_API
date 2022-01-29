@@ -9,8 +9,9 @@ namespace Application.Features.ShoppingCartItems.Queries.GetShoppingCartItems
 {
     public record ShoppingCartItemsViewModel : AuditableBaseEntity
     {
-        public string Name { get; set; }
-        public Guid CategoryId { get; set; }
-        public Guid ShopId { get; set; }
+        public Guid ShoppingCartId { get; set; }
+        public int Quantity { get; set; }
+        public int Total { get; set; }
+        public Guid ItemId { get; set; }
     }
 }

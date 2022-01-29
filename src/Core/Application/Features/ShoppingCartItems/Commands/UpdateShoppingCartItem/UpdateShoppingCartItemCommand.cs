@@ -15,44 +15,44 @@ namespace Application.Features.ShoppingCartItems.Commands.UpdateShoppingCartItem
     public class UpdateShoppingCartItemCommand : IRequest<ShoppingCartItemViewModel>
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public Guid CategoryId { get; set; }
-        public Guid ShopId { get; set; }
+        public Guid ShoppingCartId { get; set; }
+        public int Quantity { get; set; }
+        public int Total { get; set; }
+        public Guid ItemId { get; set; }
+    }
 
+    public class UpdateShoppingCartItemCommandHandler : IRequestHandler<UpdateShoppingCartItemCommand, ShoppingCartItemViewModel>
+    {
+        private readonly IRepositoryWrapper _repository;
+        private readonly IMapper _mapper;
 
-        public class UpdateShoppingCartItemCommandHandler : IRequestHandler<UpdateShoppingCartItemCommand, ShoppingCartItemViewModel>
+        public UpdateShoppingCartItemCommandHandler(IRepositoryWrapper repository, IMapper mapper)
         {
-            private readonly IRepositoryWrapper _repository;
-            private readonly IMapper _mapper;
+            _repository = repository;
+            _mapper = mapper;
+        }
 
-            public UpdateShoppingCartItemCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public async Task<ShoppingCartItemViewModel> Handle(UpdateShoppingCartItemCommand command, CancellationToken cancellationToken)
+        {
+            var shoppingCartItemEntity = await _repository.ShoppingCartItem.GetByIdAsync(command.Id);
+
+            if (shoppingCartItemEntity == null)
             {
-                _repository = repository;
-                _mapper = mapper;
+                throw new ApiException($"ShoppingCartItem Not Found.");
             }
 
-            public async Task<ShoppingCartItemViewModel> Handle(UpdateShoppingCartItemCommand command, CancellationToken cancellationToken)
-            {
-                var shoppingCartItemEntity = await _repository.ShoppingCartItem.GetByIdAsync(command.Id);
+            _mapper.Map(command, shoppingCartItemEntity);
 
-                if (shoppingCartItemEntity == null)
-                {
-                    throw new ApiException($"ShoppingCartItem Not Found.");
-                }
+            await _repository.ShoppingCartItem.UpdateAsync(shoppingCartItemEntity);
+            await _repository.SaveAsync();
 
-                _mapper.Map(command, shoppingCartItemEntity);
+            var shoppingCartItemReadDto = _mapper.Map<ShoppingCartItemViewModel>(shoppingCartItemEntity);
 
-                await _repository.ShoppingCartItem.UpdateAsync(shoppingCartItemEntity);
-                await _repository.SaveAsync();
+            //if (!string.IsNullOrWhiteSpace(shoppingCartItemReadDto.ImgLink)) shoppingCartItemReadDto.ImgLink = $"{_baseURL}{shoppingCartItemReadDto.ImgLink}";
 
-                var shoppingCartItemReadDto = _mapper.Map<ShoppingCartItemViewModel>(shoppingCartItemEntity);
-
-                //if (!string.IsNullOrWhiteSpace(shoppingCartItemReadDto.ImgLink)) shoppingCartItemReadDto.ImgLink = $"{_baseURL}{shoppingCartItemReadDto.ImgLink}";
-
-                return shoppingCartItemReadDto;
+            return shoppingCartItemReadDto;
 
 
-            }
         }
     }
 }

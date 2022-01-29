@@ -12,8 +12,10 @@ namespace Application.Features.InventoryLevels.Commands.CreateInventoryLevel
 {
     public class CreateInventoryLevelCommand : IRequest<InventoryLevelViewModel>
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public int InStock { get; set; }
+        public int StockAfter { get; set; }
+        public DateTime UpdateAt { get; set; }
+        public Guid ItemId { get; set; }
     }
 
     public class CreateInventoryLevelCommandHandler : IRequestHandler<CreateInventoryLevelCommand, InventoryLevelViewModel>

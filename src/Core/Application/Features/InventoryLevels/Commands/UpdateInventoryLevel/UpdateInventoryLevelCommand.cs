@@ -14,44 +14,46 @@ namespace Application.Features.InventoryLevels.Commands.UpdateInventoryLevel
 {
     public class UpdateInventoryLevelCommand : IRequest<InventoryLevelViewModel>
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public virtual Guid Id { get; set; }
+        public int InStock { get; set; }
+        public int StockAfter { get; set; }
+        public DateTime UpdateAt { get; set; }
+        public Guid ItemId { get; set; }
+    }
 
+    public class UpdateInventoryLevelCommandHandler : IRequestHandler<UpdateInventoryLevelCommand, InventoryLevelViewModel>
+    {
+        private readonly IRepositoryWrapper _repository;
+        private readonly IMapper _mapper;
 
-        public class UpdateInventoryLevelCommandHandler : IRequestHandler<UpdateInventoryLevelCommand, InventoryLevelViewModel>
+        public UpdateInventoryLevelCommandHandler(IRepositoryWrapper repository, IMapper mapper)
         {
-            private readonly IRepositoryWrapper _repository;
-            private readonly IMapper _mapper;
+            _repository = repository;
+            _mapper = mapper;
+        }
 
-            public UpdateInventoryLevelCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public async Task<InventoryLevelViewModel> Handle(UpdateInventoryLevelCommand command, CancellationToken cancellationToken)
+        {
+            var productEntity = await _repository.InventoryLevel.GetByIdAsync(command.Id);
+
+            if (productEntity == null)
             {
-                _repository = repository;
-                _mapper = mapper;
+                throw new ApiException($"InventoryLevel Not Found.");
             }
 
-            public async Task<InventoryLevelViewModel> Handle(UpdateInventoryLevelCommand command, CancellationToken cancellationToken)
-            {
-                var productEntity = await _repository.InventoryLevel.GetByIdAsync(command.Id);
+            _mapper.Map(command, productEntity);
 
-                if (productEntity == null)
-                {
-                    throw new ApiException($"InventoryLevel Not Found.");
-                }
+            await _repository.InventoryLevel.UpdateAsync(productEntity);
+            await _repository.SaveAsync();
 
-                _mapper.Map(command, productEntity);
+            var productReadDto = _mapper.Map<InventoryLevelViewModel>(productEntity);
 
-                await _repository.InventoryLevel.UpdateAsync(productEntity);
-                await _repository.SaveAsync();
+            //if (!string.IsNullOrWhiteSpace(productReadDto.ImgLink)) productReadDto.ImgLink = $"{_baseURL}{productReadDto.ImgLink}";
 
-                var productReadDto = _mapper.Map<InventoryLevelViewModel>(productEntity);
-
-                //if (!string.IsNullOrWhiteSpace(productReadDto.ImgLink)) productReadDto.ImgLink = $"{_baseURL}{productReadDto.ImgLink}";
-
-                return productReadDto;
+            return productReadDto;
 
 
-            }
         }
     }
+
 }

@@ -12,9 +12,10 @@ namespace Application.Features.ShoppingCartItems.Commands.CreateShoppingCartItem
 {
     public class CreateShoppingCartItemCommand : IRequest<ShoppingCartItemViewModel>
     {
-        public string Name { get; set; }
-        public Guid CategoryId { get; set; }
-        public Guid ShopId { get; set; }
+        public Guid ShoppingCartId { get; set; }
+        public int Quantity { get; set; }
+        public int Total { get; set; }
+        public Guid ItemId { get; set; }
     }
 
     public class CreateShoppingCartItemCommandHandler : IRequestHandler<CreateShoppingCartItemCommand, ShoppingCartItemViewModel>

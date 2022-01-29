@@ -34,7 +34,7 @@ namespace Application.Features.Categories.Commands.UpdateCategory
         private async Task<bool> IsUnique(UpdateCategoryCommand categoryCommand, CancellationToken cancellationToken)
         {
             var _event = _mapper.Map<Category>(categoryCommand);
-            return !(await _repository.Event.EventExistAsync(_event));
+            return !(await _repository.Category.ExistAsync(_event));
         }
     }
 }

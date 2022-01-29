@@ -1,11 +1,8 @@
-﻿using Application.Features.Shops.Commands.CreateShop;
-using Application.Features.Shops.Queries.GetShops;
-using Application.Parameters;
+﻿using Application.Features.Shops.Queries.GetShops;
 using Application.Wrappers;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Interfaces
