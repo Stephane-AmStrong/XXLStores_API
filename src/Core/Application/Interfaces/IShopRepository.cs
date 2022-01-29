@@ -1,4 +1,4 @@
-﻿using Application.Features.Shops.Queries.GetShops;
+﻿using Application.Features.Shops.Queries.GetPagedList;
 using Application.Wrappers;
 using Domain.Entities;
 using System;

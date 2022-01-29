@@ -1,6 +1,5 @@
-﻿using Application.Features.InventoryLevels.Queries.GetInventoryLevelById;
+﻿using Application.Features.InventoryLevels.Queries.GetById;
 using Application.Interfaces;
-using Application.Wrappers;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;

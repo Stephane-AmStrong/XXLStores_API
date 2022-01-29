@@ -3,6 +3,7 @@ using AutoMapper;
 using Domain.Entities;
 using FluentValidation;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,17 +19,18 @@ namespace Application.Features.Payments.Commands.Create
             _repository = repository;
             _mapper = mapper;
 
-            RuleFor(p => p.Name)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
-
-            RuleFor(p => p.CategoryId)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");
+            RuleFor(p => p.MoneyAmount)
+                .NotEmpty().WithMessage("{PropertyName} is required.");
             
-            RuleFor(p => p.ShopId)
+            RuleFor(p => p)
+                .MustAsync(BeSufficient).WithMessage("{PropertyName} is insufficient.");
+
+            RuleFor(p => p.PaidAt)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull()
+                .Must(BeAValidDate).WithMessage("{PropertyName} is required.");
+            
+            RuleFor(p => p.ShoppingCartId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");
@@ -37,9 +39,21 @@ namespace Application.Features.Payments.Commands.Create
                 .MustAsync(IsUnique).WithMessage("{PropertyName} already exists.");
         }
 
+        private async Task<bool> BeSufficient(CreatePaymentCommand paymentCommand, CancellationToken cancellationToken)
+        {
+            var shoppingAmount = (await _repository.ShoppingCart.GetByIdAsync(paymentCommand.ShoppingCartId)).ShoppingCartItems.Sum(x=>x.Quantity * x.UnitPrice);
+
+            return paymentCommand.MoneyAmount >= shoppingAmount;
+        }
+
         private bool BeAValidGuid(Guid id)
         {
             return !id.Equals(new Guid());
+        }
+
+        private bool BeAValidDate(DateTime? date)
+        {
+            return !date.Equals(default(DateTime)) && date < DateTime.Now;
         }
 
         private async Task<bool> IsUnique(CreatePaymentCommand paymentCommand, CancellationToken cancellationToken)

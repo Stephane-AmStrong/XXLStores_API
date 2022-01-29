@@ -1,9 +1,6 @@
 ﻿using Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Application.Features.Categories.Queries.GetCategories
+namespace Application.Features.Categories.Queries.GetPagedList
 {
     public record CategoriesViewModel : AuditableBaseEntity
     {

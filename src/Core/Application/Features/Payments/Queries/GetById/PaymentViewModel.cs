@@ -1,4 +1,4 @@
-﻿using Application.Features.ShoppingCarts.Queries.GetShoppingCartById;
+﻿using Application.Features.ShoppingCarts.Queries.GetById;
 using Domain.Common;
 using System;
 

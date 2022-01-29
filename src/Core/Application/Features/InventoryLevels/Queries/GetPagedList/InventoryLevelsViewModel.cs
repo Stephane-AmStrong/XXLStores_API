@@ -1,9 +1,7 @@
 ﻿using Domain.Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Application.Features.InventoryLevels.Queries.GetInventoryLevels
+namespace Application.Features.InventoryLevels.Queries.GetPagedList
 {
     public record InventoryLevelsViewModel : AuditableBaseEntity
     {

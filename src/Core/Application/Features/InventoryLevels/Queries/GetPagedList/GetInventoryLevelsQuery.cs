@@ -3,13 +3,10 @@ using Application.Parameters;
 using Application.Wrappers;
 using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.InventoryLevels.Queries.GetInventoryLevels
+namespace Application.Features.InventoryLevels.Queries.GetPagedList
 {
     public class GetInventoryLevelsQuery : QueryStringParameters, IRequest<PagedList<InventoryLevelsViewModel>>
     {

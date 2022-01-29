@@ -1,5 +1,5 @@
 ﻿using Application.Exceptions;
-using Application.Features.ShoppingCartItems.Queries.GetShoppingCartItemById;
+using Application.Features.ShoppingCartItems.Queries.GetById;
 using Application.Interfaces;
 using Application.Wrappers;
 using AutoMapper;

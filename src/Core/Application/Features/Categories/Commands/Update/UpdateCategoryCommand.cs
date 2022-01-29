@@ -1,12 +1,9 @@
 ﻿using Application.Exceptions;
-using Application.Features.Categories.Queries.GetCategoryById;
+using Application.Features.Categories.Queries.GetById;
 using Application.Interfaces;
-using Application.Wrappers;
 using AutoMapper;
 using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

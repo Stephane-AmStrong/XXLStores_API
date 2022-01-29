@@ -1,11 +1,8 @@
-﻿using Application.Features.Items.Commands.CreateItem;
-using Application.Features.Items.Queries.GetItems;
-using Application.Parameters;
+﻿using Application.Features.Items.Queries.GetPagedList;
 using Application.Wrappers;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Interfaces

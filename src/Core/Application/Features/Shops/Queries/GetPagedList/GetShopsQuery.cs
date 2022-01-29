@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.Shops.Queries.GetShops
+namespace Application.Features.Shops.Queries.GetPagedList
 {
     public class GetShopsQuery : QueryStringParameters, IRequest<PagedList<ShopsViewModel>>
     {

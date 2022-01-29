@@ -3,13 +3,10 @@ using Application.Parameters;
 using Application.Wrappers;
 using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.Items.Queries.GetItems
+namespace Application.Features.Items.Queries.GetPagedList
 {
     public class GetItemsQuery : QueryStringParameters, IRequest<PagedList<ItemsViewModel>>
     {

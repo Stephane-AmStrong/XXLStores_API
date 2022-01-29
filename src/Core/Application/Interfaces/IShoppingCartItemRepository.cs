@@ -1,11 +1,8 @@
-﻿using Application.Features.ShoppingCartItems.Commands.CreateShoppingCartItem;
-using Application.Features.ShoppingCartItems.Queries.GetShoppingCartItems;
-using Application.Parameters;
+﻿using Application.Features.ShoppingCartItems.Queries.GetPagedList;
 using Application.Wrappers;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Interfaces

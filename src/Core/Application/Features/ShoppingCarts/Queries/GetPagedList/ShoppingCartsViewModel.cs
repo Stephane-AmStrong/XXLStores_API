@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Application.Features.ShoppingCarts.Queries.GetShoppingCarts
+namespace Application.Features.ShoppingCarts.Queries.GetPagedList
 {
     public record ShoppingCartsViewModel : AuditableBaseEntity
     {

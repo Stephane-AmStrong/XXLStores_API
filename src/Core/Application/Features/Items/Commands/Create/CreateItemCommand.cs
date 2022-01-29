@@ -1,10 +1,9 @@
-﻿using Application.Features.Items.Queries.GetItemById;
+﻿using Application.Features.Items.Queries.GetById;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 

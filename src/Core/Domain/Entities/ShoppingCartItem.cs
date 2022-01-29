@@ -12,6 +12,7 @@ namespace Domain.Entities
     {
         public Guid ShoppingCartId { get; set; }
         public int Quantity { get; set; }
+        public int UnitPrice { get; set; }
         public int Total { get; set; }
         public Guid ItemId { get; set; }
 

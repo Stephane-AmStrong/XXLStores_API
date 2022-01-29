@@ -1,11 +1,7 @@
-﻿using Application.Features.AppUsers.Queries.GetAppUserById;
-using Application.Features.Categories.Queries.GetCategoryById;
-using Domain.Common;
+﻿using Domain.Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Application.Features.Shops.Queries.GetShops
+namespace Application.Features.Shops.Queries.GetPagedList
 {
     public record ShopsViewModel : AuditableBaseEntity
     {

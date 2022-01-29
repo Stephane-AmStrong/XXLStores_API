@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.ShoppingCarts.Queries.GetShoppingCarts
+namespace Application.Features.ShoppingCarts.Queries.GetPagedList
 {
     public class GetShoppingCartsQuery : QueryStringParameters, IRequest<PagedList<ShoppingCartsViewModel>>
     {

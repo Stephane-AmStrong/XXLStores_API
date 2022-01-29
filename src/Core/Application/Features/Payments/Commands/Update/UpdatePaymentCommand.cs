@@ -1,5 +1,5 @@
 ﻿using Application.Exceptions;
-using Application.Features.Payments.Queries.GetPaymentById;
+using Application.Features.Payments.Queries.GetById;
 using Application.Interfaces;
 using Application.Wrappers;
 using AutoMapper;

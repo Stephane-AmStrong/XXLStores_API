@@ -1,10 +1,9 @@
-﻿using Application.Features.Payments.Queries.GetPaymentById;
+﻿using Application.Features.Payments.Queries.GetById;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 

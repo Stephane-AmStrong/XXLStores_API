@@ -1,11 +1,7 @@
-﻿using Application.Features.AppUsers.Queries.GetAppUserById;
-using Application.Features.Categories.Queries.GetCategoryById;
-using Domain.Common;
+﻿using Domain.Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Application.Features.Payments.Queries.GetPayments
+namespace Application.Features.Payments.Queries.GetPagedList
 {
     public record PaymentsViewModel : AuditableBaseEntity
     {

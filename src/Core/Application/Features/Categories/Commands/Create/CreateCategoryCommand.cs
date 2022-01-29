@@ -1,10 +1,8 @@
-﻿using Application.Features.Categories.Queries.GetCategoryById;
+﻿using Application.Features.Categories.Queries.GetById;
 using Application.Interfaces;
-using Application.Wrappers;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -1,11 +1,8 @@
-﻿using Application.Features.InventoryLevels.Commands.CreateInventoryLevel;
-using Application.Features.InventoryLevels.Queries.GetInventoryLevels;
-using Application.Parameters;
+﻿using Application.Features.InventoryLevels.Queries.GetPagedList;
 using Application.Wrappers;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Interfaces

@@ -18,17 +18,12 @@ namespace Application.Features.ShoppingCartItems.Commands.Create
             _repository = repository;
             _mapper = mapper;
 
-            RuleFor(p => p.Name)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
-
-            RuleFor(p => p.CategoryId)
+            RuleFor(p => p.ShoppingCartId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");
             
-            RuleFor(p => p.ShopId)
+            RuleFor(p => p.ItemId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");

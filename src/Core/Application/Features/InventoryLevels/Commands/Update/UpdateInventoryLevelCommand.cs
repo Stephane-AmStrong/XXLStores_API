@@ -1,12 +1,9 @@
 ﻿using Application.Exceptions;
-using Application.Features.InventoryLevels.Queries.GetInventoryLevelById;
+using Application.Features.InventoryLevels.Queries.GetById;
 using Application.Interfaces;
-using Application.Wrappers;
 using AutoMapper;
 using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -47,8 +44,6 @@ namespace Application.Features.InventoryLevels.Commands.Update
             await _repository.SaveAsync();
 
             var productReadDto = _mapper.Map<InventoryLevelViewModel>(productEntity);
-
-            //if (!string.IsNullOrWhiteSpace(productReadDto.ImgLink)) productReadDto.ImgLink = $"{_baseURL}{productReadDto.ImgLink}";
 
             return productReadDto;
 

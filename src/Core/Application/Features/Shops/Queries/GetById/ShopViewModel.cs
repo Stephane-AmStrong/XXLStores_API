@@ -1,11 +1,6 @@
-﻿using Application.Features.AppUsers.Queries.GetAppUserById;
-using Application.Features.Categories.Queries.GetCategoryById;
-using Application.Features.InventoryLevels.Queries.GetInventoryLevels;
-using Application.Features.Items.Queries.GetItems;
+﻿using Application.Features.Items.Queries.GetPagedList;
 using Domain.Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Features.Shops.Queries.GetById
 {
@@ -17,6 +12,7 @@ namespace Application.Features.Shops.Queries.GetById
         public double Latitude { get; set; }
         public Guid OwnerId { get; set; }
 
+        public virtual AppUserViewModel Owner { get; set; }
         public virtual ItemsViewModel[] Items { get; set; }
     }
 }

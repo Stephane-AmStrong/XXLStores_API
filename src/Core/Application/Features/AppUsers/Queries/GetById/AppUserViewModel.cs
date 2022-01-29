@@ -1,11 +1,11 @@
-﻿using Application.Features.ShoppingCarts.Queries.GetShoppingCarts;
-using Application.Features.Shops.Queries.GetShops;
+﻿using Application.Features.ShoppingCarts.Queries.GetPagedList;
+using Application.Features.Shops.Queries.GetPagedList;
 using Domain.Entities;
 using System.Collections.Generic;
 
 namespace Application.Features.AppUsers.Queries.GetById
 {
-    public record GetAppUserViewModel
+    public record AppUserViewModel
     {
         public string Id { get; set; }
         public string ImgLink { get; set; }

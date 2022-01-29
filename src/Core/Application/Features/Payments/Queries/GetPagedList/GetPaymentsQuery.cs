@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.Payments.Queries.GetPayments
+namespace Application.Features.Payments.Queries.GetPagedList
 {
     public class GetPaymentsQuery : QueryStringParameters, IRequest<PagedList<PaymentsViewModel>>
     {
