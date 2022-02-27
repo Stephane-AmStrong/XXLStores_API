@@ -11,7 +11,7 @@ namespace Application.Features.ShoppingCarts.Commands.Create
 {
     public class CreateShoppingCartCommand : IRequest<ShoppingCartViewModel>
     {
-        public DateTime Date { get; set; }
+        public DateTime OrderAt { get; set; }
         public int Total { get; set; }
         public int DeliveryFees { get; set; }
         public Guid CustomerId { get; set; }

@@ -1,12 +1,7 @@
-﻿using Application.Features.AppUsers.Queries.GetAppUserById;
-using Application.Features.Categories.Queries.GetCategoryById;
-using Application.Features.InventoryLevels.Queries.GetInventoryLevels;
-using Application.Features.ShoppingCartItems.Queries.GetShoppingCartItemById;
-using Application.Features.ShoppingCartItems.Queries.GetShoppingCartItems;
+﻿using Application.Features.ShoppingCartItems.Queries.GetPagedList;
 using Domain.Common;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Features.ShoppingCarts.Queries.GetById
 {

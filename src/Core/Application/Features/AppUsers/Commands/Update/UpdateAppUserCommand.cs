@@ -1,28 +1,31 @@
 ﻿using Application.Exceptions;
-using Application.Features.AppUsers.Queries.GetAppUserById;
+using Application.Features.AppUsers.Queries.GetById;
 using Application.Interfaces;
-using Application.Wrappers;
 using AutoMapper;
 using MediatR;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Features.AppUsers.Commands.Update
 {
-    public class UpdateAppUserCommand : IRequest<GetAppUserViewModel>
+    public class UpdateAppUserCommand : IRequest<AppUserViewModel>
     {
         public string Id { get; set; }
         public string ImgLink { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string RoleName { get; set; }
+
+        public string Email { get; set; }
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
     }
 
-    public class UpdateAppUserCommandHandler : IRequestHandler<UpdateAppUserCommand, GetAppUserViewModel>
+    public class UpdateAppUserCommandHandler : IRequestHandler<UpdateAppUserCommand, AppUserViewModel>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
@@ -33,9 +36,9 @@ namespace Application.Features.AppUsers.Commands.Update
             _mapper = mapper;
         }
 
-        public async Task<GetAppUserViewModel> Handle(UpdateAppUserCommand command, CancellationToken cancellationToken)
+        public async Task<AppUserViewModel> Handle(UpdateAppUserCommand command, CancellationToken cancellationToken)
         {
-            var appUserEntity = await _repository.AccountService.GetByIdAsync(command.Id);
+            var appUserEntity = await _repository.AppUser.GetByIdAsync(command.Id);
 
             if (appUserEntity == null)
             {
@@ -44,10 +47,10 @@ namespace Application.Features.AppUsers.Commands.Update
 
             _mapper.Map(command, appUserEntity);
 
-            await _repository.AccountService.UpdateAsync(appUserEntity);
+            await _repository.AppUser.UpdateAsync(appUserEntity);
             await _repository.SaveAsync();
 
-            var appUserReadDto = _mapper.Map<GetAppUserViewModel>(appUserEntity);
+            var appUserReadDto = _mapper.Map<AppUserViewModel>(appUserEntity);
 
             //if (!string.IsNullOrWhiteSpace(appUserReadDto.ImgLink)) appUserReadDto.ImgLink = $"{_baseURL}{appUserReadDto.ImgLink}";
 

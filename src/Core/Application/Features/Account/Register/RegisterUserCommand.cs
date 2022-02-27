@@ -1,15 +1,19 @@
-﻿using Application.Features.AppUsers.Queries.GetAppUserById;
+﻿using Application.Features.AppUsers.Queries.GetById;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.AppUsers.Commands.Register
+namespace Application.Features.Account.Register
 {
-    public class RegisterAppUserCommand : IRequest<GetAppUserViewModel>
+    public class RegisterUserCommand : IRequest<AppUserViewModel>
     {
         public string ImgLink { get; set; }
         public string FirstName { get; set; }
@@ -23,27 +27,27 @@ namespace Application.Features.AppUsers.Commands.Register
         public string ConfirmPassword { get; set; }
     }
 
-    public class CreateAppUserCommandHandler : IRequestHandler<RegisterAppUserCommand, GetAppUserViewModel>
+    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, AppUserViewModel>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
 
-        public CreateAppUserCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public RegisterUserCommandHandler(IRepositoryWrapper repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
 
 
-        public async Task<GetAppUserViewModel> Handle(RegisterAppUserCommand command, CancellationToken cancellationToken)
+        public async Task<AppUserViewModel> Handle(RegisterUserCommand command, CancellationToken cancellationToken)
         {
-            var appUserEntity = _mapper.Map<AppUser>(command);
+            var appUser = _mapper.Map<AppUser>(command);
 
-            await _repository.AccountService.RegisterAsync(appUserEntity, command.Password);
+            await _repository.Account.RegisterAsync(appUser);
             await _repository.SaveAsync();
 
-            return _mapper.Map<GetAppUserViewModel>(appUserEntity);
+            return _mapper.Map<AppUserViewModel>(appUser);
         }
     }
 }

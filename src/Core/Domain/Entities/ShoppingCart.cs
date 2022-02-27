@@ -13,7 +13,7 @@ namespace Domain.Entities
             ShoppingCartItems = new HashSet<ShoppingCartItem>();
         }
 
-        public DateTime Date { get; set; }
+        public DateTime OrderAt { get; set; }
         public int Total { get; set; }
         public int DeliveryFees { get; set; }
         [Required]

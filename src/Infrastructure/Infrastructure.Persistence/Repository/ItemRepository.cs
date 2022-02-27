@@ -1,7 +1,5 @@
-﻿using Application.Features.Items.Commands.CreateItem;
-using Application.Features.Items.Queries.GetItems;
+﻿using Application.Features.Items.Queries.GetPagedList;
 using Application.Interfaces;
-using Application.Parameters;
 using Application.Wrappers;
 using Domain.Entities;
 using Infrastructure.Persistence.Contexts;
@@ -55,7 +53,7 @@ namespace Infrastructure.Persistence.Repository
 
         public async Task<bool> ExistAsync(Item item)
         {
-            return await BaseFindByCondition(x => x.Name == item.Name && x.Description == item.Description)
+            return await BaseFindByCondition(x => x.Name == item.Name && x.ShopId == item.ShopId)
                 .AnyAsync();
         }
 

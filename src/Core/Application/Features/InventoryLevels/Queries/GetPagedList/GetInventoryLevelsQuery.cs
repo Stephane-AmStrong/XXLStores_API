@@ -1,14 +1,14 @@
 ﻿using Application.Interfaces;
-using Application.Parameters;
 using Application.Wrappers;
 using AutoMapper;
+using Domain.Parameters;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Features.InventoryLevels.Queries.GetPagedList
 {
-    public class GetInventoryLevelsQuery : QueryStringParameters, IRequest<PagedList<InventoryLevelsViewModel>>
+    public class GetInventoryLevelsQuery : QueryParameters, IRequest<PagedList<InventoryLevelsViewModel>>
     {
         public GetInventoryLevelsQuery()
         {
@@ -18,12 +18,12 @@ namespace Application.Features.InventoryLevels.Queries.GetPagedList
         public string WithTheName { get; set; }
     }
 
-    public class GetAllInventoryLevelsQueryHandler : IRequestHandler<GetInventoryLevelsQuery, PagedList<InventoryLevelsViewModel>>
+    internal class GetInventoryLevelsQueryHandler : IRequestHandler<GetInventoryLevelsQuery, PagedList<InventoryLevelsViewModel>>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public GetAllInventoryLevelsQueryHandler(IRepositoryWrapper repository, IMapper mapper)
+        public GetInventoryLevelsQueryHandler(IRepositoryWrapper repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

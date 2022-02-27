@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Parameters
+namespace Domain.Parameters
 {
-    public abstract class QueryStringParameters
+    public abstract class QueryParameters
     {
         const int maxPageSize = 50;
         public int PageNumber { get; set; } = 1;

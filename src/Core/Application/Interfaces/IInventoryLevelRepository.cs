@@ -9,7 +9,7 @@ namespace Application.Interfaces
 {
     public interface IInventoryLevelRepository
     {
-        Task<PagedList<InventoryLevel>> GetPagedListAsync(GetInventoryLevelsQuery eventsQuery);
+        Task<PagedList<InventoryLevel>> GetPagedListAsync(GetInventoryLevelsQuery getInventoryLevelsQuery);
 
         Task<InventoryLevel> GetByIdAsync(Guid id);
         Task<bool> ExistAsync(InventoryLevel inventoryLevel);

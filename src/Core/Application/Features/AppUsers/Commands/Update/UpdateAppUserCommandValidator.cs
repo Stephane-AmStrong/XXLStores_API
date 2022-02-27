@@ -31,6 +31,24 @@ namespace Application.Features.AppUsers.Commands.Update
             RuleFor(p => p.RoleName)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
+
+            RuleFor(p => p.Email)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull()
+                .EmailAddress();
+
+            RuleFor(p => p.Password)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull();
+
+            RuleFor(p => p.ConfirmPassword)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull();
+
+            RuleFor(p => p.ConfirmPassword)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull()
+                .Equal(p => p.Password).WithMessage("The password and confirmation password do not match.");
         }
     }
 }

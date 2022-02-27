@@ -1,7 +1,7 @@
 ﻿using Application.Interfaces;
-using Application.Parameters;
 using Application.Wrappers;
 using AutoMapper;
+using Domain.Parameters;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.ShoppingCarts.Queries.GetPagedList
 {
-    public class GetShoppingCartsQuery : QueryStringParameters, IRequest<PagedList<ShoppingCartsViewModel>>
+    public class GetShoppingCartsQuery : QueryParameters, IRequest<PagedList<ShoppingCartsViewModel>>
     {
         public GetShoppingCartsQuery()
         {
@@ -21,12 +21,12 @@ namespace Application.Features.ShoppingCarts.Queries.GetPagedList
         public string WithTheName { get; set; }
     }
 
-    public class GetAllShoppingCartsQueryHandler : IRequestHandler<GetShoppingCartsQuery, PagedList<ShoppingCartsViewModel>>
+    internal class GetShoppingCartsQueryHandler : IRequestHandler<GetShoppingCartsQuery, PagedList<ShoppingCartsViewModel>>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public GetAllShoppingCartsQueryHandler(IRepositoryWrapper repository, IMapper mapper)
+        public GetShoppingCartsQueryHandler(IRepositoryWrapper repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

@@ -2,6 +2,18 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
+		<Authors>Stéphane Adjakotan</Authors>
+		<Company>Smart IT</Company>
+		<RepositoryUrl>https://github.com/Stephane-AmStrong/XXLStores_API.git</RepositoryUrl>
+		<RepositoryType>Public</RepositoryType>
+		<!--<PackageProjectUrl>https://www.codewithmukesh.com/blog/aspnet-core-webapi-clean-architecture/</PackageProjectUrl>-->
+		<Version>1.1.0</Version>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>XXLStores_API.xml</DocumentationFile>
+		<NoWarn>1701;1702;1591</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -24,6 +36,11 @@
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.13" />
 		<PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Core\Application\Application.csproj" />
+	  <ProjectReference Include="..\..\Infrastructure\Infrastructure.Persistence\Infrastructure.Persistence.csproj" />
 	</ItemGroup>
 
 </Project>

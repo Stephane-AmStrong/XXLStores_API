@@ -9,7 +9,7 @@ namespace Application.Interfaces
 {
     public interface IShoppingCartItemRepository
     {
-        Task<PagedList<ShoppingCartItem>> GetPagedListAsync(GetShoppingCartItemsQuery eventsQuery);
+        Task<PagedList<ShoppingCartItem>> GetPagedListAsync(GetShoppingCartItemsQuery getShoppingCartItemsQuery);
 
         Task<ShoppingCartItem> GetByIdAsync(Guid id);
         Task<bool> ExistAsync(ShoppingCartItem shoppingCartItem);

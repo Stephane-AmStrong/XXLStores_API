@@ -1,5 +1,6 @@
 ﻿using Application.Features.Categories.Queries.GetById;
 using Application.Interfaces;
+using Application.Wrappers;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -29,12 +30,12 @@ namespace Application.Features.Categories.Commands.Create
 
         public async Task<CategoryViewModel> Handle(CreateCategoryCommand command, CancellationToken cancellationToken)
         {
-            var productEntity = _mapper.Map<Category>(command);
+            var category = _mapper.Map<Category>(command);
 
-            await _repository.Category.CreateAsync(productEntity);
+            await _repository.Category.CreateAsync(category);
             await _repository.SaveAsync();
 
-            return _mapper.Map<CategoryViewModel>(productEntity);
+            return _mapper.Map<CategoryViewModel>(category);
         }
     }
 }

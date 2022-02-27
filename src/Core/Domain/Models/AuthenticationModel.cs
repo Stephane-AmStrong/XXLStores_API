@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class AuthenticationResponse
+    public class AuthenticationModel
     {
         public Dictionary<string, string> UserInfo { get; set; }
         public virtual AppUser AppUser { get; set; }

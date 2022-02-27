@@ -1,14 +1,14 @@
 ﻿using Application.Interfaces;
-using Application.Parameters;
 using Application.Wrappers;
 using AutoMapper;
+using Domain.Parameters;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Features.Categories.Queries.GetPagedList
 {
-    public class GetCategoriesQuery : QueryStringParameters, IRequest<PagedList<CategoriesViewModel>>
+    public class GetCategoriesQuery : QueryParameters, IRequest<PagedList<CategoriesViewModel>>
     {
         public GetCategoriesQuery()
         {
@@ -18,12 +18,12 @@ namespace Application.Features.Categories.Queries.GetPagedList
         public string WithTheName { get; set; }
     }
 
-    public class GetAllCategoriesQueryHandler : IRequestHandler<GetCategoriesQuery, PagedList<CategoriesViewModel>>
+    internal class GetCategoriesQueryHandler : IRequestHandler<GetCategoriesQuery, PagedList<CategoriesViewModel>>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public GetAllCategoriesQueryHandler(IRepositoryWrapper repository, IMapper mapper)
+        public GetCategoriesQueryHandler(IRepositoryWrapper repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

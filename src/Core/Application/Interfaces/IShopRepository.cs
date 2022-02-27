@@ -9,7 +9,7 @@ namespace Application.Interfaces
 {
     public interface IShopRepository
     {
-        Task<PagedList<Shop>> GetPagedListAsync(GetShopsQuery eventsQuery);
+        Task<PagedList<Shop>> GetPagedListAsync(GetShopsQuery shopQueryParameters);
 
         Task<Shop> GetByIdAsync(Guid id);
         Task<bool> ExistAsync(Shop shop);

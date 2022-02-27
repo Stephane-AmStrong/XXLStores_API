@@ -18,21 +18,21 @@ namespace Application.Features.ShoppingCarts.Commands.Create
             _repository = repository;
             _mapper = mapper;
 
-            RuleFor(p => p.Name)
+            RuleFor(p => p.OrderAt)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+                .Must(BeAValidDate).WithMessage("{PropertyName} is required.");
+            
+            RuleFor(p => p.OrderAt)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull()
+                .Must(BeAValidDate).WithMessage("{PropertyName} is required.");
 
-            RuleFor(p => p.CategoryId)
+            RuleFor(p => p.CustomerId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");
             
-            RuleFor(p => p.ShopId)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");
-
             RuleFor(p => p)
                 .MustAsync(IsUnique).WithMessage("{PropertyName} already exists.");
         }
@@ -40,6 +40,11 @@ namespace Application.Features.ShoppingCarts.Commands.Create
         private bool BeAValidGuid(Guid id)
         {
             return !id.Equals(new Guid());
+        }
+
+        private bool BeAValidDate(DateTime date)
+        {
+            return !date.Equals(default(DateTime)) && date < DateTime.Now;
         }
 
         private async Task<bool> IsUnique(CreateShoppingCartCommand shoppingCartCommand, CancellationToken cancellationToken)

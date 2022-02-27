@@ -1,20 +1,20 @@
-﻿
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using AutoMapper;
-using Domain.Entities;
 using FluentValidation;
 using System;
-using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.AppUsers.Commands.Register
+namespace Application.Features.Account.Register
 {
-    public class RegisterAppUserCommandValidator : AbstractValidator<RegisterAppUserCommand>
+    public  class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public RegisterAppUserCommandValidator(IRepositoryWrapper repository, IMapper mapper)
+        public RegisterUserCommandValidator(IRepositoryWrapper repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -23,29 +23,29 @@ namespace Application.Features.AppUsers.Commands.Register
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
-            
+
             RuleFor(p => p.LastName)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
-            
+
             RuleFor(p => p.RoleName)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
-            
+
             RuleFor(p => p.Email)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .EmailAddress();
-            
+
             RuleFor(p => p.Password)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
-            
+
             RuleFor(p => p.ConfirmPassword)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
-            
+
             RuleFor(p => p.ConfirmPassword)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()

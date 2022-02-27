@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:WebApi.Controllers.v1.CategoriesController.Get(Application.Features.Categories.Queries.GetPagedList.GetCategoriesQuery)">
+            <summary>
+            return categories that matche the criteria
+            </summary>
+            <param name="categoriesQuery"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.CategoriesController.Get(System.Guid)">
+            <summary>
+            Retreives a specific Category.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.CategoriesController.Post(Application.Features.Categories.Commands.Create.CreateCategoryCommand)">
+            <summary>
+            Creates a Category.
+            </summary>
+            <param name="command"></param>
+            <returns>A newly created Category</returns>
+            <response code="201">Returns the newly created command</response>
+            <response code="400">If the command is null</response>            
+        </member>
+        <member name="M:WebApi.Controllers.v1.CategoriesController.Put(System.Guid,Application.Features.Categories.Commands.Update.UpdateCategoryCommand)">
+            <summary>
+            Update a specific Category.
+            </summary>
+            <param name="id"></param>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.CategoriesController.Delete(System.Guid)">
+            <summary>
+            Deletes a specific Category.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

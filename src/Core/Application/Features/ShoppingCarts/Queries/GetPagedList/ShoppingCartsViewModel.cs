@@ -1,9 +1,5 @@
-﻿using Application.Features.AppUsers.Queries.GetAppUserById;
-using Application.Features.Categories.Queries.GetCategoryById;
-using Domain.Common;
+﻿using Domain.Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Features.ShoppingCarts.Queries.GetPagedList
 {

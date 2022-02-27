@@ -1,7 +1,7 @@
 ﻿using Application.Interfaces;
-using Application.Parameters;
 using Application.Wrappers;
 using AutoMapper;
+using Domain.Parameters;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Payments.Queries.GetPagedList
 {
-    public class GetPaymentsQuery : QueryStringParameters, IRequest<PagedList<PaymentsViewModel>>
+    public class GetPaymentsQuery : QueryParameters, IRequest<PagedList<PaymentsViewModel>>
     {
         public GetPaymentsQuery()
         {
@@ -21,12 +21,12 @@ namespace Application.Features.Payments.Queries.GetPagedList
         public string WithTheName { get; set; }
     }
 
-    public class GetAllPaymentsQueryHandler : IRequestHandler<GetPaymentsQuery, PagedList<PaymentsViewModel>>
+    internal class GetPaymentsQueryHandler : IRequestHandler<GetPaymentsQuery, PagedList<PaymentsViewModel>>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public GetAllPaymentsQueryHandler(IRepositoryWrapper repository, IMapper mapper)
+        public GetPaymentsQueryHandler(IRepositoryWrapper repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

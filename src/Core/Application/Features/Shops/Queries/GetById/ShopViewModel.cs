@@ -1,4 +1,5 @@
-﻿using Application.Features.Items.Queries.GetPagedList;
+﻿using Application.Features.AppUsers.Queries.GetById;
+using Application.Features.Items.Queries.GetPagedList;
 using Domain.Common;
 using System;
 

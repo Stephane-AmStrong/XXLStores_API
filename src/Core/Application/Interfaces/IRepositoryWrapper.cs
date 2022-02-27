@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
     public interface IRepositoryWrapper
     {
-        IFileService FileService { get; }
-
-        IAccountService AccountService { get; }
-        IEmailService EmailService { get; }
-
+        IAccountRepository Account { get; }
+        IAppUserRepository AppUser { get; }
         ICategoryRepository Category { get; }
         IInventoryLevelRepository InventoryLevel { get; }
         IItemRepository Item { get; }
@@ -20,6 +13,9 @@ namespace Application.Interfaces
         IShopRepository Shop { get; }
         IShoppingCartRepository ShoppingCart { get; }
         IShoppingCartItemRepository ShoppingCartItem { get; }
+
+        IFileService File { get; }
+        IEmailService Email { get; }
 
         string Path { set; }
 

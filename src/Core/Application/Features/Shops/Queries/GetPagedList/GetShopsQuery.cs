@@ -1,17 +1,14 @@
 ﻿using Application.Interfaces;
-using Application.Parameters;
 using Application.Wrappers;
 using AutoMapper;
+using Domain.Parameters;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Features.Shops.Queries.GetPagedList
 {
-    public class GetShopsQuery : QueryStringParameters, IRequest<PagedList<ShopsViewModel>>
+    public class GetShopsQuery : QueryParameters, IRequest<PagedList<ShopsViewModel>>
     {
         public GetShopsQuery()
         {
@@ -21,12 +18,12 @@ namespace Application.Features.Shops.Queries.GetPagedList
         public string WithTheName { get; set; }
     }
 
-    public class GetAllShopsQueryHandler : IRequestHandler<GetShopsQuery, PagedList<ShopsViewModel>>
+    internal class GetShopsQueryHandler : IRequestHandler<GetShopsQuery, PagedList<ShopsViewModel>>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public GetAllShopsQueryHandler(IRepositoryWrapper repository, IMapper mapper)
+        public GetShopsQueryHandler(IRepositoryWrapper repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

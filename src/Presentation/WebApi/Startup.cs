@@ -27,11 +27,16 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddApplicationLayer();
+            services.AddIdentityInfrastructure(_config);
+            services.AddPersistenceInfrastructure(_config);
+            services.AddSharedInfrastructure(_config);
+            services.AddSwaggerExtension();
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
-            });
+            services.AddApiVersioningExtension();
+            services.AddHealthChecks();
+            services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();
+            services.AddAutoMapper(typeof(MappingProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -20,19 +20,17 @@ namespace Application.Features.Shops.Commands.Create
 
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+                .NotNull();
+            
+            RuleFor(p => p.Address)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull();
 
-            RuleFor(p => p.CategoryId)
+            RuleFor(p => p.OwnerId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");
             
-            RuleFor(p => p.ShopId)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");
-
             RuleFor(p => p)
                 .MustAsync(IsUnique).WithMessage("{PropertyName} already exists.");
         }

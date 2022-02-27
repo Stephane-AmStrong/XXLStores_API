@@ -9,7 +9,7 @@ namespace Application.Interfaces
 {
     public interface IItemRepository
     {
-        Task<PagedList<Item>> GetPagedListAsync(GetItemsQuery eventsQuery);
+        Task<PagedList<Item>> GetPagedListAsync(GetItemsQuery getItemsQuery);
 
         Task<Item> GetByIdAsync(Guid id);
         Task<bool> ExistAsync(Item item);

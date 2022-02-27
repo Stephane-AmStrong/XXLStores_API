@@ -1,5 +1,5 @@
 ﻿using Application.Exceptions;
-using Application.Features.ShoppingCarts.Queries.GetShoppingCartById;
+using Application.Features.ShoppingCarts.Queries.GetById;
 using Application.Interfaces;
 using Application.Wrappers;
 using AutoMapper;
@@ -15,7 +15,7 @@ namespace Application.Features.ShoppingCarts.Commands.Update
     public class UpdateShoppingCartCommand : IRequest<ShoppingCartViewModel>
     {
         public Guid Id { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime OrderAt { get; set; }
         public int Total { get; set; }
         public int DeliveryFees { get; set; }
         public Guid CustomerId { get; set; }

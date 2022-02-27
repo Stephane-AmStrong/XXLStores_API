@@ -9,7 +9,7 @@ namespace Application.Interfaces
 {
     public interface ICategoryRepository
     {
-        Task<PagedList<Category>> GetPagedListAsync(GetCategoriesQuery categoriesQuery);
+        Task<PagedList<Category>> GetPagedListAsync(GetCategoriesQuery getCategoriesQuery);
 
         Task<Category> GetByIdAsync(Guid id);
         Task<bool> ExistAsync(Category category);

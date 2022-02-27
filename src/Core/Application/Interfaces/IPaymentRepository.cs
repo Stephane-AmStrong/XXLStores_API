@@ -9,7 +9,7 @@ namespace Application.Interfaces
 {
     public interface IPaymentRepository
     {
-        Task<PagedList<Payment>> GetPagedListAsync(GetPaymentsQuery eventsQuery);
+        Task<PagedList<Payment>> GetPagedListAsync(GetPaymentsQuery getPaymentsQuery);
 
         Task<Payment> GetByIdAsync(Guid id);
         Task<bool> ExistAsync(Payment payment);

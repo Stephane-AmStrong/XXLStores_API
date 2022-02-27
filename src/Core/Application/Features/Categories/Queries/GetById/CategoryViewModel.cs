@@ -1,8 +1,5 @@
-﻿using Application.Features.Items.Queries.GetItems;
+﻿using Application.Features.Items.Queries.GetPagedList;
 using Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Features.Categories.Queries.GetById
 {

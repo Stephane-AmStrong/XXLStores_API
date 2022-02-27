@@ -23,12 +23,11 @@ namespace Application.Features.Shops.Commands.Update
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
 
-            RuleFor(p => p.CategoryId)
+            RuleFor(p => p.Address)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");
-            
-            RuleFor(p => p.ShopId)
+                .NotNull();
+
+            RuleFor(p => p.OwnerId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");
