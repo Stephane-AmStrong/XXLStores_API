@@ -1,6 +1,8 @@
 ﻿using Application.Interfaces;
 using Domain.Common;
 using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Contexts
 {
-    public class RepositoryContext : DbContext
+    public class RepositoryContext : IdentityDbContext<AppUser>
     {
         private readonly IDateTimeService _dateTime;
         private readonly IAuthenticatedUserService _authenticatedUser;
@@ -55,6 +57,41 @@ namespace Infrastructure.Persistence.Contexts
                 property.SetColumnType("decimal(18,6)");
             }
             base.OnModelCreating(builder);
+            //builder.HasDefaultSchema("Identity");
+            builder.Entity<AppUser>(entity =>
+            {
+                entity.ToTable(name: "User");
+            });
+
+            builder.Entity<IdentityRole>(entity =>
+            {
+                entity.ToTable(name: "Role");
+            });
+            builder.Entity<IdentityUserRole<string>>(entity =>
+            {
+                entity.ToTable("UserRoles");
+            });
+
+            builder.Entity<IdentityUserClaim<string>>(entity =>
+            {
+                entity.ToTable("UserClaims");
+            });
+
+            builder.Entity<IdentityUserLogin<string>>(entity =>
+            {
+                entity.ToTable("UserLogins");
+            });
+
+            builder.Entity<IdentityRoleClaim<string>>(entity =>
+            {
+                entity.ToTable("RoleClaims");
+
+            });
+
+            builder.Entity<IdentityUserToken<string>>(entity =>
+            {
+                entity.ToTable("UserTokens");
+            });
         }
     }
 }

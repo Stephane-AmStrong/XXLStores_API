@@ -56,17 +56,17 @@ namespace Infrastructure.Persistence.Repository
         public IAppUserRepository AppUser => throw new System.NotImplementedException();
 
 
-        public IEmailService Email
-        {
-            get
-            {
-                if (_email == null)
-                {
-                    _email = new EmailService(_mailSettings);
-                }
-                return _email;
-            }
-        }
+        //public IEmailService Email
+        //{
+        //    get
+        //    {
+        //        if (_email == null)
+        //        {
+        //            _email = new EmailService(_mailSettings);
+        //        }
+        //        return _email;
+        //    }
+        //}
 
 
         public IFileService File
@@ -195,6 +195,7 @@ namespace Infrastructure.Persistence.Repository
             RepositoryContext repositoryContext,
             IWebHostEnvironment webHostEnvironment,
             IConfiguration configuration,
+            //MailSettings mailSettings,
 
             ISortHelper<AppUser> appUserSortHelper,
             ISortHelper<Category> categorySortHelper,
@@ -208,6 +209,7 @@ namespace Infrastructure.Persistence.Repository
         {
             _userManager = userManager;
             _configuration = configuration;
+            //_mailSettings = mailSettings;
             _repoContext = repositoryContext;
 
             _appUserSortHelper = appUserSortHelper;

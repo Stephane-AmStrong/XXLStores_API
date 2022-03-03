@@ -29,23 +29,23 @@ namespace Application.Features.Categories.Commands.Update
 
             public async Task<CategoryViewModel> Handle(UpdateCategoryCommand command, CancellationToken cancellationToken)
             {
-                var productEntity = await _repository.Category.GetByIdAsync(command.Id);
+                var categoryEntity = await _repository.Category.GetByIdAsync(command.Id);
 
-                if (productEntity == null)
+                if (categoryEntity == null)
                 {
                     throw new ApiException($"Category Not Found.");
                 }
 
-                _mapper.Map(command, productEntity);
+                _mapper.Map(command, categoryEntity);
 
-                await _repository.Category.UpdateAsync(productEntity);
+                await _repository.Category.UpdateAsync(categoryEntity);
                 await _repository.SaveAsync();
 
-                var productReadDto = _mapper.Map<CategoryViewModel>(productEntity);
+                var categoryReadDto = _mapper.Map<CategoryViewModel>(categoryEntity);
 
-                //if (!string.IsNullOrWhiteSpace(productReadDto.ImgLink)) productReadDto.ImgLink = $"{_baseURL}{productReadDto.ImgLink}";
+                //if (!string.IsNullOrWhiteSpace(categoryReadDto.ImgLink)) categoryReadDto.ImgLink = $"{_baseURL}{categoryReadDto.ImgLink}";
 
-                return productReadDto;
+                return categoryReadDto;
 
 
             }

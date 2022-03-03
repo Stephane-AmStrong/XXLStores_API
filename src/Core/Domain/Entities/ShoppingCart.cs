@@ -17,7 +17,7 @@ namespace Domain.Entities
         public int Total { get; set; }
         public int DeliveryFees { get; set; }
         [Required]
-        public Guid CustomerId { get; set; }
+        public string CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]
         public virtual AppUser Customer { get; set; }

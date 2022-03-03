@@ -15,7 +15,7 @@ namespace Application.Interfaces
         IShoppingCartItemRepository ShoppingCartItem { get; }
 
         IFileService File { get; }
-        IEmailService Email { get; }
+        //IEmailService Email { get; }
 
         string Path { set; }
 

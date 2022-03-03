@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Infrastructure.Persistence.Repository;
 
 namespace Infrastructure.Persistence
 {
@@ -19,17 +20,17 @@ namespace Infrastructure.Persistence
     {
         public static void AddIdentityInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<IdentityContext>(options =>
+            services.AddDbContext<RepositoryContext>(options =>
                 options.UseNpgsql(
                         configuration.GetConnectionString("IdentityConnection"),
-                        b => b.MigrationsAssembly(typeof(IdentityContext).Assembly.FullName)
+                        b => b.MigrationsAssembly(typeof(RepositoryContext).Assembly.FullName)
                     )
                 );
 
 
-            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
+            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<RepositoryContext>().AddDefaultTokenProviders();
             #region Services
-            services.AddTransient<IAccountRepository, AccountService>();
+            services.AddTransient<IAccountRepository, AccountRepository>();
             #endregion
 
             services.Configure<JWTSettings>(configuration.GetSection("JWTSettings"));

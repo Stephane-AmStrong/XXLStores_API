@@ -14,9 +14,9 @@ namespace Domain.Entities
 
         public string ImgLink { get; set; }
         [Required]
-        public string FirstName { get; set; }
+        public string Firstname { get; set; }
         [Required]
-        public string LastName { get; set; }
+        public string Lastname { get; set; }
 
         public List<RefreshToken> RefreshTokens { get; set; }
         public bool OwnsToken(string token)

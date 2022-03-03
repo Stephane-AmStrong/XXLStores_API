@@ -10,13 +10,13 @@ namespace Application.Interfaces
 {
     public interface IAccountRepository
     {
-        Task<AuthenticationModel> RegisterAsync(AppUser appUser);
+        Task<AuthenticationModel> RegisterAsync(AppUser appUser, string password);
         Task<AuthenticationModel> UpdateAsync(AppUser appUser);
         Task<AuthenticationModel> ConfirmEmailAsync(string userId, string token);
         Task<string> GenerateEmailConfirmationTokenAsync(AppUser appUser);
         Task<string> EncodeTokenAsync(string token);
         Task<string> DecodeTokenAsync(string encodedToken);
-        Task<AuthenticationModel> SignInAsync(LoginModel loginRequest);
+        Task<AuthenticationModel> SignInAsync(LoginModel loginModel);
         Task SignOutAsync();
         Task<AppUser> FindByEmailAsync(string email);
         Task<string> GeneratePasswordResetTokenAsync(AppUser appUser);
@@ -26,7 +26,7 @@ namespace Application.Interfaces
         Task<string> GetId(ClaimsPrincipal user);
 
         Task<ICollection<string>> GetWorkstationsAsync(AppUser user);
-        //Task<AuthenticationModel> AddToWorkstationAsync(AppUser user, Role workstation);
-        //Task<AuthenticationModel> RemoveFromWorkstationAsync(AppUser user, Workstation workstation);
+        Task<AuthenticationModel> AddToWorkstationAsync(AppUser user, IdentityRole role);
+        Task<AuthenticationModel> RemoveFromWorkstationAsync(AppUser user, IdentityRole role);
     }
 }

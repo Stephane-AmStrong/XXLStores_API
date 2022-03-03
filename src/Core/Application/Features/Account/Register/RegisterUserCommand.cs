@@ -44,7 +44,7 @@ namespace Application.Features.Account.Register
         {
             var appUser = _mapper.Map<AppUser>(command);
 
-            await _repository.Account.RegisterAsync(appUser);
+            await _repository.Account.RegisterAsync(appUser, command.Password);
             await _repository.SaveAsync();
 
             return _mapper.Map<AppUserViewModel>(appUser);

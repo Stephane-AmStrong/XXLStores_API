@@ -99,7 +99,7 @@ namespace Infrastructure.Persistence.Repository
         {
             if (!shoppingCarts.Any() || string.IsNullOrWhiteSpace(searchTerm)) return;
 
-            shoppingCarts = shoppingCarts.Where(x => x.Customer.FirstName.ToLower().Contains(searchTerm.Trim().ToLower()) || x.Customer.LastName.ToLower().Contains(searchTerm.Trim().ToLower()));
+            shoppingCarts = shoppingCarts.Where(x => x.Customer.Firstname.ToLower().Contains(searchTerm.Trim().ToLower()) || x.Customer.Lastname.ToLower().Contains(searchTerm.Trim().ToLower()));
         }
 
 

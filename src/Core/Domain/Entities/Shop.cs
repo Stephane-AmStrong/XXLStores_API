@@ -25,7 +25,7 @@ namespace Domain.Entities
         [Required]    
         public double Latitude { get; set; }
         [Required]
-        public Guid OwnerId { get; set; }
+        public string OwnerId { get; set; }
 
         public virtual ICollection<Item> Items { get; set; }
 

@@ -29,7 +29,6 @@
 	<!--delete these two line-->
 	<ItemGroup>
 		<Folder Include="Features\Account\ConfirmEmail\" />
-		<Folder Include="Mappings\" />
 		<Folder Include="Parameters\" />
 	</ItemGroup>
 
