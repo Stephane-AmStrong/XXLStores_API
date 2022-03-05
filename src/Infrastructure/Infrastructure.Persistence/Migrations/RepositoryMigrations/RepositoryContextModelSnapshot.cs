@@ -500,13 +500,13 @@ namespace Infrastructure.Persistence.Migrations.RepositoryMigrations
             modelBuilder.Entity("Domain.Entities.Item", b =>
                 {
                     b.HasOne("Domain.Entities.Category", "Category")
-                        .WithMany("Items")
+                        .WithMany("PagedList")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Shop", "Shop")
-                        .WithMany("Items")
+                        .WithMany("PagedList")
                         .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -626,7 +626,7 @@ namespace Infrastructure.Persistence.Migrations.RepositoryMigrations
 
             modelBuilder.Entity("Domain.Entities.Category", b =>
                 {
-                    b.Navigation("Items");
+                    b.Navigation("PagedList");
                 });
 
             modelBuilder.Entity("Domain.Entities.Item", b =>
@@ -638,7 +638,7 @@ namespace Infrastructure.Persistence.Migrations.RepositoryMigrations
 
             modelBuilder.Entity("Domain.Entities.Shop", b =>
                 {
-                    b.Navigation("Items");
+                    b.Navigation("PagedList");
                 });
 
             modelBuilder.Entity("Domain.Entities.ShoppingCart", b =>

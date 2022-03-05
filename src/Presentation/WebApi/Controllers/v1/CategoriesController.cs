@@ -32,7 +32,7 @@ namespace WebApi.Controllers.v1
             //_logger.LogInfo($"Returned all categories from database.");
 
 
-            return Ok(categories);
+            return Ok(categories.PagedList);
         }
 
 

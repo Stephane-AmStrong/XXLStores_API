@@ -3,12 +3,13 @@ using Application.Wrappers;
 using AutoMapper;
 using Domain.Parameters;
 using MediatR;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Features.Categories.Queries.GetPagedList
 {
-    public class GetCategoriesQuery : QueryParameters, IRequest<PagedList<CategoriesViewModel>>
+    public class GetCategoriesQuery : QueryParameters, IRequest<PagedListResponse<CategoriesViewModel>>
     {
         public GetCategoriesQuery()
         {
@@ -18,7 +19,7 @@ namespace Application.Features.Categories.Queries.GetPagedList
         public string WithTheName { get; set; }
     }
 
-    internal class GetCategoriesQueryHandler : IRequestHandler<GetCategoriesQuery, PagedList<CategoriesViewModel>>
+    internal class GetCategoriesQueryHandler : IRequestHandler<GetCategoriesQuery, PagedListResponse<CategoriesViewModel>>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
@@ -30,10 +31,13 @@ namespace Application.Features.Categories.Queries.GetPagedList
         }
 
 
-        public async Task<PagedList<CategoriesViewModel>> Handle(GetCategoriesQuery query, CancellationToken cancellationToken)
+        public async Task<PagedListResponse<CategoriesViewModel>> Handle(GetCategoriesQuery query, CancellationToken cancellationToken)
         {
             var categories = await _repository.Category.GetPagedListAsync(query);
-            return  _mapper.Map<PagedList<CategoriesViewModel>>(categories);
+            var lstCategoriesViewModel = _mapper.Map<List<CategoriesViewModel>>(categories);
+
+            var categoriesResponse = new PagedListResponse<CategoriesViewModel>(lstCategoriesViewModel, categories.MetaData);
+            return categoriesResponse;
         }
     }
 }

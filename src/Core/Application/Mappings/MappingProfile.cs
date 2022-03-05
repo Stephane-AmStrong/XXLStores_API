@@ -6,6 +6,8 @@ using Application.Features.AppUsers.Queries.GetPagedList;
 using Application.Features.Categories.Commands.Create;
 using Application.Features.Categories.Commands.Update;
 using Application.Features.Categories.Queries.GetById;
+using Application.Features.Categories.Queries.GetPagedList;
+using Application.Wrappers;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Models;
@@ -31,8 +33,11 @@ namespace Application.Mappings
             CreateMap<AppUser, AppUserViewModel>().ReverseMap();
             CreateMap<AppUser, GetAppUsersViewModel>().ReverseMap();
 
+            //CreateMap(typeof(List<>), typeof(PagedList<>)).ReverseMap();
+
             CreateMap<Category, CreateCategoryCommand>().ReverseMap();
             CreateMap<Category, CategoryViewModel>().ReverseMap();
+            CreateMap<Category, CategoriesViewModel>().ReverseMap();
             CreateMap<Category, UpdateCategoryCommand>().ReverseMap();
         }
     }
