@@ -1,6 +1,7 @@
 ﻿using Application.Exceptions;
 using Application.Wrappers;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -12,48 +13,66 @@ namespace WebApi.Middlewares
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<ErrorHandlerMiddleware> _logger;
 
-        public ErrorHandlerMiddleware(RequestDelegate next)
+        public ErrorHandlerMiddleware(RequestDelegate next, ILogger<ErrorHandlerMiddleware> logger)
         {
             _next = next;
+            _logger = logger;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext httpContext)
         {
             try
             {
-                await _next(context);
+                await _next(httpContext);
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
-                var response = context.Response;
-                response.ContentType = "application/json";
-                var responseModel = new Response<string>() { Message = error?.Message };
-                
-                switch (error)
-                {
-                    case Application.Exceptions.ApiException e:
-                        // custom application error
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        break;
-                    case ValidationException e:
-                        // custom application error
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        responseModel.Errors = e.Errors;
-                        break;
-                    case KeyNotFoundException e:
-                        // not found error
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
-                        break;
-                    default:
-                        // unhandled error
-                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        break;
-                }
-                var result = JsonSerializer.Serialize(responseModel);
-
-                await response.WriteAsync(result);
+                await HandleExceptionAsync(httpContext, ex);
             }
+        }
+
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        {
+            var response = context.Response;
+            response.ContentType = "application/json";
+            var errorDetails = new ErrorDetails { Message = exception?.Message};
+
+            switch (exception)
+            {
+                case ApiException e:
+                    // custom application error
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+                    errorDetails.StatusCode = response.StatusCode;
+                    break;
+                case ValidationException e:
+                    // custom application error
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+                    errorDetails.StatusCode = response.StatusCode;
+                    errorDetails.Errors = e.Errors;
+                    break;
+                case KeyNotFoundException e:
+                    // not found error
+                    response.StatusCode = (int)HttpStatusCode.NotFound;
+                    break;
+                default:
+                    // unhandled error
+                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+                    errorDetails.StatusCode = response.StatusCode;
+                    errorDetails.Message = "Internal Server Error.";
+                    errorDetails.Errors = null ;
+
+                    _logger.LogError($"\n\n{exception.Message}");
+                    break;
+            }
+
+            var result = JsonSerializer.Serialize(errorDetails);
+
+            await response.WriteAsync(result);
         }
     }
 }

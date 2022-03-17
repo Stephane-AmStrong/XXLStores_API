@@ -1,0 +1,10 @@
+2022-03-17 09:03:46.659 +01:00 [INF] Starting up
+2022-03-17 09:12:18.813 +01:00 [INF] Starting up
+2022-03-17 09:12:50.415 +01:00 [ERR] 
+
+Error mapping types.
+
+Mapping types:
+PagedList`1 -> List`1
+Application.Wrappers.PagedList`1[[Domain.Entities.Category, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[Application.Features.Categories.Queries.GetPagedList.CategoriesViewModel, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2022-03-17 09:53:03.352 +01:00 [INF] Starting up

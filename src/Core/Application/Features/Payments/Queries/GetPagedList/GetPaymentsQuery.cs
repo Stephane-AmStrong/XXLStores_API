@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Payments.Queries.GetPagedList
 {
-    public class GetPaymentsQuery : QueryParameters, IRequest<PagedList<PaymentsViewModel>>
+    public class GetPaymentsQuery : QueryParameters, IRequest<PagedListResponse<PaymentsViewModel>>
     {
         public GetPaymentsQuery()
         {
@@ -21,7 +21,7 @@ namespace Application.Features.Payments.Queries.GetPagedList
         public string WithTheName { get; set; }
     }
 
-    internal class GetPaymentsQueryHandler : IRequestHandler<GetPaymentsQuery, PagedList<PaymentsViewModel>>
+    internal class GetPaymentsQueryHandler : IRequestHandler<GetPaymentsQuery, PagedListResponse<PaymentsViewModel>>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
@@ -32,11 +32,11 @@ namespace Application.Features.Payments.Queries.GetPagedList
             _mapper = mapper;
         }
 
-
-        public async Task<PagedList<PaymentsViewModel>> Handle(GetPaymentsQuery query, CancellationToken cancellationToken)
+        public async Task<PagedListResponse<PaymentsViewModel>> Handle(GetPaymentsQuery query, CancellationToken cancellationToken)
         {
             var payments = await _repository.Payment.GetPagedListAsync(query);
-            return  _mapper.Map<PagedList<PaymentsViewModel>>(payments);
+            var paymentsViewModel = _mapper.Map<List<PaymentsViewModel>>(payments);
+            return new PagedListResponse<PaymentsViewModel>(paymentsViewModel, payments.MetaData);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Application.Features.Items.Commands.Delete
             public async Task<Unit> Handle(DeleteItemCommand command, CancellationToken cancellationToken)
             {
                 var item = await _repository.Item.GetByIdAsync(command.Id);
-                if (item == null) throw new ApiException($"Item Not Found.");
+                if (item == null) throw new ApiException($"Item with id: {command.Id}, hasn't been found.");
                 await _repository.Item.DeleteAsync(item);
                 await _repository.SaveAsync();
 

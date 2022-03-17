@@ -33,10 +33,7 @@ namespace Application.Features.InventoryLevels.Commands.Update
         {
             var productEntity = await _repository.InventoryLevel.GetByIdAsync(command.Id);
 
-            if (productEntity == null)
-            {
-                throw new ApiException($"InventoryLevel Not Found.");
-            }
+            if (productEntity == null) throw new ApiException($"InventoryLevel with id: {command.Id}, hasn't been found.");
 
             _mapper.Map(command, productEntity);
 

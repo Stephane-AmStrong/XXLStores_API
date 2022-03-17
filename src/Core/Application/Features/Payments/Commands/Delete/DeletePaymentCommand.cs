@@ -23,7 +23,7 @@ namespace Application.Features.Payments.Commands.Delete
             public async Task<Unit> Handle(DeletePaymentCommand command, CancellationToken cancellationToken)
             {
                 var payment = await _repository.Payment.GetByIdAsync(command.Id);
-                if (payment == null) throw new ApiException($"Payment Not Found.");
+                if (payment == null) throw new ApiException($"Payment with id: {command.Id}, hasn't been found.");
                 await _repository.Payment.DeleteAsync(payment);
                 await _repository.SaveAsync();
 

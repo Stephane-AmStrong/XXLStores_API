@@ -39,24 +39,15 @@ namespace Application.Features.AppUsers.Commands.Update
         public async Task<AppUserViewModel> Handle(UpdateAppUserCommand command, CancellationToken cancellationToken)
         {
             var appUserEntity = await _repository.AppUser.GetByIdAsync(command.Id);
-
-            if (appUserEntity == null)
-            {
-                throw new ApiException($"AppUser Not Found.");
-            }
+            if (appUserEntity == null) throw new ApiException($"AppUser with id: {command.Id}, hasn't been found.");
 
             _mapper.Map(command, appUserEntity);
-
             await _repository.AppUser.UpdateAsync(appUserEntity);
             await _repository.SaveAsync();
 
             var appUserReadDto = _mapper.Map<AppUserViewModel>(appUserEntity);
-
             //if (!string.IsNullOrWhiteSpace(appUserReadDto.ImgLink)) appUserReadDto.ImgLink = $"{_baseURL}{appUserReadDto.ImgLink}";
-
             return appUserReadDto;
-
-
         }
     }
 

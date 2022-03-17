@@ -30,14 +30,11 @@ namespace Application.Features.Categories.Queries.GetPagedList
             _mapper = mapper;
         }
 
-
         public async Task<PagedListResponse<CategoriesViewModel>> Handle(GetCategoriesQuery query, CancellationToken cancellationToken)
         {
             var categories = await _repository.Category.GetPagedListAsync(query);
-            var lstCategoriesViewModel = _mapper.Map<List<CategoriesViewModel>>(categories);
-
-            var categoriesResponse = new PagedListResponse<CategoriesViewModel>(lstCategoriesViewModel, categories.MetaData);
-            return categoriesResponse;
+            var categoriesViewModel = _mapper.Map<List<CategoriesViewModel>>(categories);
+            return new PagedListResponse<CategoriesViewModel>(categoriesViewModel, categories.MetaData);
         }
     }
 }

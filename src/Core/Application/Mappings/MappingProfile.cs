@@ -37,7 +37,7 @@ namespace Application.Mappings
 
             CreateMap<Category, CreateCategoryCommand>().ReverseMap();
             CreateMap<Category, CategoryViewModel>().ReverseMap();
-            CreateMap<Category, CategoriesViewModel>().ReverseMap();
+            //CreateMap<Category, CategoriesViewModel>().ReverseMap();
             CreateMap<Category, UpdateCategoryCommand>().ReverseMap();
         }
     }

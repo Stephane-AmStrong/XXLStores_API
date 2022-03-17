@@ -36,7 +36,7 @@ namespace Application.Features.Shops.Commands.Update
 
             if (shopEntity == null)
             {
-                throw new ApiException($"Shop Not Found.");
+                throw new ApiException($"Shop with id: {command.Id}, hasn't been found.");
             }
 
             _mapper.Map(command, shopEntity);

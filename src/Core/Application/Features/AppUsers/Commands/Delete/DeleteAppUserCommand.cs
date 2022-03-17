@@ -23,7 +23,7 @@ namespace Application.Features.AppUsers.Commands.Delete
             public async Task<Unit> Handle(DeleteAppUserCommand command, CancellationToken cancellationToken)
             {
                 var appUser = await _repository.AppUser.GetByIdAsync(command.Id);
-                if (appUser == null) throw new ApiException($"AppUser Not Found.");
+                if (appUser == null) throw new ApiException($"AppUser with id: {command.Id}, hasn't been found.");
                 await _repository.AppUser.DeleteAsync(appUser);
                 await _repository.SaveAsync();
 

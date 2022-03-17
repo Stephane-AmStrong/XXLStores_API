@@ -26,7 +26,7 @@ namespace Application.Features.Shops.Queries.GetById
             public async Task<ShopViewModel> Handle(GetShopByIdQuery query, CancellationToken cancellationToken)
             {
                 var shop = await _repository.Shop.GetByIdAsync(query.Id);
-                if (shop == null) throw new ApiException($"Shop Not Found.");
+                if (shop == null) throw new ApiException($"Shop with id: {query.Id}, hasn't been found.");
                 return _mapper.Map<ShopViewModel>(shop);
             }
         }

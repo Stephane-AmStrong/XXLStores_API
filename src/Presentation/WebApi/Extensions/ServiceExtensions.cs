@@ -12,17 +12,17 @@ namespace WebApi.Extensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.IncludeXmlComments(string.Format(@"{0}\XXLStores_API.xml", System.AppDomain.CurrentDomain.BaseDirectory));
+                c.IncludeXmlComments(string.Format(@"{0}\XXLStores_API.xml", AppDomain.CurrentDomain.BaseDirectory));
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Clean Architecture - WebApi",
+                    Title = "XXL Stores API",
                     Description = "This Api will be responsible for overall data distribution and authorization.",
                     Contact = new OpenApiContact
                     {
-                        Name = "codewithmukesh",
-                        Email = "hello@codewithmukesh.com",
-                        Url = new Uri("https://codewithmukesh.com/contact"),
+                        Name = "Stéphane Adjakotan",
+                        Email = "stephane.adjakotan@gmail.com",
+                        Url = new Uri("https://github.com/Stephane-AmStrong"),
                     }
                 });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

@@ -26,7 +26,7 @@ namespace Application.Features.Categories.Queries.GetById
             public async Task<CategoryViewModel> Handle(GetCategoryByIdQuery query, CancellationToken cancellationToken)
             {
                 var category = await _repository.Category.GetByIdAsync(query.Id);
-                if (category == null) throw new ApiException($"Category Not Found.");
+                if (category == null) throw new ApiException($"Category with id: {query.Id}, hasn't been found.");
                 return _mapper.Map<CategoryViewModel>(category);
             }
         }

@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Serilog;
+
 
 namespace WebApi.Controllers.v1
 {
@@ -16,6 +19,13 @@ namespace WebApi.Controllers.v1
     [AllowAnonymous]
     public class CategoriesController : BaseApiController
     {
+        private readonly ILogger<CategoriesController> _logger;
+        readonly IDiagnosticContext _diagnosticContext;
+        public CategoriesController(ILogger<CategoriesController> logger)
+        {
+            _logger = logger;
+        }
+
         // GET: api/<controller>
         /// <summary>
         /// return categories that matche the criteria
@@ -29,8 +39,7 @@ namespace WebApi.Controllers.v1
 
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(categories.MetaData));
 
-            //_logger.LogInfo($"Returned all categories from database.");
-
+            _logger.LogInformation($"Returned all categories from database.");
 
             return Ok(categories.PagedList);
         }
@@ -45,6 +54,8 @@ namespace WebApi.Controllers.v1
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
+            _logger.LogInformation($"Returned all categories from database.");
+            _logger.LogInformation($"Returned Category with id: {id}");
             return Ok(await Mediator.Send(new GetCategoryByIdQuery { Id = id }));
         }
 

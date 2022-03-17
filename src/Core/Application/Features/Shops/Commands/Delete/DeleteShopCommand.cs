@@ -23,7 +23,7 @@ namespace Application.Features.Shops.Commands.Delete
             public async Task<Unit> Handle(DeleteShopCommand command, CancellationToken cancellationToken)
             {
                 var shop = await _repository.Shop.GetByIdAsync(command.Id);
-                if (shop == null) throw new ApiException($"Shop Not Found.");
+                if (shop == null) throw new ApiException($"Shop with id: {command.Id}, hasn't been found.");
                 await _repository.Shop.DeleteAsync(shop);
                 await _repository.SaveAsync();
 

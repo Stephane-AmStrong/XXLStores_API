@@ -23,7 +23,7 @@ namespace Application.Features.ShoppingCartItems.Commands.Delete
             public async Task<Unit> Handle(DeleteShoppingCartItemCommand command, CancellationToken cancellationToken)
             {
                 var shoppingCartItem = await _repository.ShoppingCartItem.GetByIdAsync(command.Id);
-                if (shoppingCartItem == null) throw new ApiException($"ShoppingCartItem Not Found.");
+                if (shoppingCartItem == null) throw new ApiException($"ShoppingCartItem with id: {command.Id}, hasn't been found.");
                 await _repository.ShoppingCartItem.DeleteAsync(shoppingCartItem);
                 await _repository.SaveAsync();
 

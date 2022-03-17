@@ -34,14 +34,9 @@ namespace Application.Features.Payments.Commands.Update
         public async Task<PaymentViewModel> Handle(UpdatePaymentCommand command, CancellationToken cancellationToken)
         {
             var paymentEntity = await _repository.Payment.GetByIdAsync(command.Id);
-
-            if (paymentEntity == null)
-            {
-                throw new ApiException($"Payment Not Found.");
-            }
+            if (paymentEntity == null) throw new ApiException($"Payment with id: {command.Id}, hasn't been found.");
 
             _mapper.Map(command, paymentEntity);
-
             await _repository.Payment.UpdateAsync(paymentEntity);
             await _repository.SaveAsync();
 

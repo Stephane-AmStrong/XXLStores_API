@@ -26,7 +26,7 @@ namespace Application.Features.Payments.Queries.GetById
             public async Task<PaymentViewModel> Handle(GetPaymentByIdQuery query, CancellationToken cancellationToken)
             {
                 var payment = await _repository.Payment.GetByIdAsync(query.Id);
-                if (payment == null) throw new ApiException($"Payment Not Found.");
+                if (payment == null) throw new ApiException($"Payment with id: {query.Id}, hasn't been found.");
                 return _mapper.Map<PaymentViewModel>(payment);
             }
         }

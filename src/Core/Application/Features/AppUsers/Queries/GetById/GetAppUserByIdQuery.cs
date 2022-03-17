@@ -28,7 +28,7 @@ namespace Application.Features.AppUsers.Queries.GetById
         public async Task<AppUserViewModel> Handle(GetAppUserByIdQuery query, CancellationToken cancellationToken)
         {
             var appUser = await _repository.AppUser.GetByIdAsync(query.Id);
-            if (appUser == null) throw new ApiException($"AppUser Not Found.");
+            if (appUser == null) throw new ApiException($"AppUser with id: {query.Id}, hasn't been found.");
             return _mapper.Map<AppUserViewModel>(appUser);
         }
     }

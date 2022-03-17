@@ -35,24 +35,15 @@ namespace Application.Features.ShoppingCartItems.Commands.Update
         public async Task<ShoppingCartItemViewModel> Handle(UpdateShoppingCartItemCommand command, CancellationToken cancellationToken)
         {
             var shoppingCartItemEntity = await _repository.ShoppingCartItem.GetByIdAsync(command.Id);
-
-            if (shoppingCartItemEntity == null)
-            {
-                throw new ApiException($"ShoppingCartItem Not Found.");
-            }
+            if (shoppingCartItemEntity == null) throw new ApiException($"ShoppingCartItem with id: {command.Id}, hasn't been found.");
 
             _mapper.Map(command, shoppingCartItemEntity);
-
             await _repository.ShoppingCartItem.UpdateAsync(shoppingCartItemEntity);
             await _repository.SaveAsync();
 
             var shoppingCartItemReadDto = _mapper.Map<ShoppingCartItemViewModel>(shoppingCartItemEntity);
-
             //if (!string.IsNullOrWhiteSpace(shoppingCartItemReadDto.ImgLink)) shoppingCartItemReadDto.ImgLink = $"{_baseURL}{shoppingCartItemReadDto.ImgLink}";
-
             return shoppingCartItemReadDto;
-
-
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Application.Features.InventoryLevels.Queries.GetById
             public async Task<InventoryLevelViewModel> Handle(GetInventoryLevelByIdQuery query, CancellationToken cancellationToken)
             {
                 var inventoryLevel = await _repository.InventoryLevel.GetByIdAsync(query.Id);
-                if (inventoryLevel == null) throw new ApiException($"InventoryLevel Not Found.");
+                if (inventoryLevel == null) throw new ApiException($"InventoryLevel with id: {query.Id}, hasn't been found.");
                 return _mapper.Map<InventoryLevelViewModel>(inventoryLevel);
             }
         }

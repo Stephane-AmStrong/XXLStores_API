@@ -3,12 +3,13 @@ using Application.Wrappers;
 using AutoMapper;
 using Domain.Parameters;
 using MediatR;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Features.AppUsers.Queries.GetPagedList
 {
-    public class GetAppUsersQuery : QueryParameters, IRequest<PagedList<GetAppUsersViewModel>>
+    public class GetAppUsersQuery : QueryParameters, IRequest<PagedListResponse<GetAppUsersViewModel>>
     {
         public GetAppUsersQuery()
         {
@@ -18,7 +19,7 @@ namespace Application.Features.AppUsers.Queries.GetPagedList
         public string HavingTheName { get; set; }
     }
 
-    public class GetAppUsersQueryHandler : IRequestHandler<GetAppUsersQuery, PagedList<GetAppUsersViewModel>>
+    public class GetAppUsersQueryHandler : IRequestHandler<GetAppUsersQuery, PagedListResponse<GetAppUsersViewModel>>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
@@ -31,10 +32,11 @@ namespace Application.Features.AppUsers.Queries.GetPagedList
         }
 
 
-        public async Task<PagedList<GetAppUsersViewModel>> Handle(GetAppUsersQuery query, CancellationToken cancellationToken)
+        public async Task<PagedListResponse<GetAppUsersViewModel>> Handle(GetAppUsersQuery query, CancellationToken cancellationToken)
         {
             var appUsers = await _repository.AppUser.GetPagedListAsync(query);
-            return  _mapper.Map<PagedList<GetAppUsersViewModel>>(appUsers);
+            var appUsersViewModel = _mapper.Map<List<GetAppUsersViewModel>>(appUsers);
+            return new PagedListResponse<GetAppUsersViewModel>(appUsersViewModel, appUsers.MetaData);
         }
     }
 }

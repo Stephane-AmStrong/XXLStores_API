@@ -26,7 +26,7 @@ namespace Application.Features.ShoppingCarts.Queries.GetById
             public async Task<ShoppingCartViewModel> Handle(GetShoppingCartByIdQuery query, CancellationToken cancellationToken)
             {
                 var shoppingCart = await _repository.ShoppingCart.GetByIdAsync(query.Id);
-                if (shoppingCart == null) throw new ApiException($"ShoppingCart Not Found.");
+                if (shoppingCart == null) throw new ApiException($"ShoppingCart with id: {query.Id}, hasn't been found.");
                 return _mapper.Map<ShoppingCartViewModel>(shoppingCart);
             }
         }

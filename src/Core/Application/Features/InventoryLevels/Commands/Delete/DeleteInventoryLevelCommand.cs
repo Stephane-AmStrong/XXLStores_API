@@ -23,7 +23,7 @@ namespace Application.Features.InventoryLevels.Commands.Delete
             public async Task<Unit> Handle(DeleteInventoryLevelCommand command, CancellationToken cancellationToken)
             {
                 var product = await _repository.InventoryLevel.GetByIdAsync(command.Id);
-                if (product == null) throw new ApiException($"InventoryLevel Not Found.");
+                if (product == null) throw new ApiException($"InventoryLevel with id: {command.Id}, hasn't been found.");
                 await _repository.InventoryLevel.DeleteAsync(product);
                 await _repository.SaveAsync();
 

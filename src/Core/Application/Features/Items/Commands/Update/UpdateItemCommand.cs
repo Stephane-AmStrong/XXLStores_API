@@ -31,21 +31,14 @@ namespace Application.Features.Items.Commands.Update
         public async Task<ItemViewModel> Handle(UpdateItemCommand command, CancellationToken cancellationToken)
         {
             var itemEntity = await _repository.Item.GetByIdAsync(command.Id);
-
-            if (itemEntity == null)
-            {
-                throw new ApiException($"Item Not Found.");
-            }
+            if (itemEntity == null) throw new ApiException($"Item with id: {command.Id}, hasn't been found.");
 
             _mapper.Map(command, itemEntity);
-
             await _repository.Item.UpdateAsync(itemEntity);
             await _repository.SaveAsync();
 
             var itemReadDto = _mapper.Map<ItemViewModel>(itemEntity);
-
             //if (!string.IsNullOrWhiteSpace(itemReadDto.ImgLink)) itemReadDto.ImgLink = $"{_baseURL}{itemReadDto.ImgLink}";
-
             return itemReadDto;
 
 

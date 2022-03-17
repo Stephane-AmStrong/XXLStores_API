@@ -25,7 +25,7 @@ namespace Application.Features.Categories.Commands.Delete
         public async Task<Unit> Handle(DeleteCategoryByIdCommand command, CancellationToken cancellationToken)
         {
             var product = await _repository.Category.GetByIdAsync(command.Id);
-            if (product == null) throw new ApiException($"Category Not Found.");
+            if (product == null) throw new ApiException($"Category with id: {command.Id}, hasn't been found.");
             await _repository.Category.DeleteAsync(product);
             await _repository.SaveAsync();
 

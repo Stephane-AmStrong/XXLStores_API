@@ -26,7 +26,7 @@ namespace Application.Features.Items.Queries.GetById
             public async Task<ItemViewModel> Handle(GetItemByIdQuery query, CancellationToken cancellationToken)
             {
                 var item = await _repository.Item.GetByIdAsync(query.Id);
-                if (item == null) throw new ApiException($"Item Not Found.");
+                if (item == null) throw new ApiException($"Item with id: {query.Id}, hasn't been found.");
                 return _mapper.Map<ItemViewModel>(item);
             }
         }

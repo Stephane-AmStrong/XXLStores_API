@@ -3,12 +3,13 @@ using Application.Wrappers;
 using AutoMapper;
 using Domain.Parameters;
 using MediatR;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Features.Shops.Queries.GetPagedList
 {
-    public class GetShopsQuery : QueryParameters, IRequest<PagedList<ShopsViewModel>>
+    public class GetShopsQuery : QueryParameters, IRequest<PagedListResponse<ShopsViewModel>>
     {
         public GetShopsQuery()
         {
@@ -18,7 +19,7 @@ namespace Application.Features.Shops.Queries.GetPagedList
         public string WithTheName { get; set; }
     }
 
-    internal class GetShopsQueryHandler : IRequestHandler<GetShopsQuery, PagedList<ShopsViewModel>>
+    internal class GetShopsQueryHandler : IRequestHandler<GetShopsQuery, PagedListResponse<ShopsViewModel>>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
@@ -29,11 +30,11 @@ namespace Application.Features.Shops.Queries.GetPagedList
             _mapper = mapper;
         }
 
-
-        public async Task<PagedList<ShopsViewModel>> Handle(GetShopsQuery query, CancellationToken cancellationToken)
+        public async Task<PagedListResponse<ShopsViewModel>> Handle(GetShopsQuery query, CancellationToken cancellationToken)
         {
             var shops = await _repository.Shop.GetPagedListAsync(query);
-            return  _mapper.Map<PagedList<ShopsViewModel>>(shops);
+            var lstShopsViewModel = _mapper.Map<List<ShopsViewModel>>(shops);
+            return new PagedListResponse<ShopsViewModel>(lstShopsViewModel, shops.MetaData);
         }
     }
 }

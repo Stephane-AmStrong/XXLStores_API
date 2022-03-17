@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.ShoppingCarts.Queries.GetPagedList
 {
-    public class GetShoppingCartsQuery : QueryParameters, IRequest<PagedList<ShoppingCartsViewModel>>
+    public class GetShoppingCartsQuery : QueryParameters, IRequest<PagedListResponse<ShoppingCartsViewModel>>
     {
         public GetShoppingCartsQuery()
         {
@@ -21,7 +21,7 @@ namespace Application.Features.ShoppingCarts.Queries.GetPagedList
         public string WithTheName { get; set; }
     }
 
-    internal class GetShoppingCartsQueryHandler : IRequestHandler<GetShoppingCartsQuery, PagedList<ShoppingCartsViewModel>>
+    internal class GetShoppingCartsQueryHandler : IRequestHandler<GetShoppingCartsQuery, PagedListResponse<ShoppingCartsViewModel>>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
@@ -32,11 +32,11 @@ namespace Application.Features.ShoppingCarts.Queries.GetPagedList
             _mapper = mapper;
         }
 
-
-        public async Task<PagedList<ShoppingCartsViewModel>> Handle(GetShoppingCartsQuery query, CancellationToken cancellationToken)
+        public async Task<PagedListResponse<ShoppingCartsViewModel>> Handle(GetShoppingCartsQuery query, CancellationToken cancellationToken)
         {
             var shoppingCarts = await _repository.ShoppingCart.GetPagedListAsync(query);
-            return  _mapper.Map<PagedList<ShoppingCartsViewModel>>(shoppingCarts);
+            var shoppingCartsViewModel = _mapper.Map<List<ShoppingCartsViewModel>>(shoppingCarts);
+            return new PagedListResponse<ShoppingCartsViewModel>(shoppingCartsViewModel, shoppingCarts.MetaData);
         }
     }
 }
