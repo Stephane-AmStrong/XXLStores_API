@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Account.Register
+namespace Application.Features.Account.Commands.Register
 {
     public  class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
     {

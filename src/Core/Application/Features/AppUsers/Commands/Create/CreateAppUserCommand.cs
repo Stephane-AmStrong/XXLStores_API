@@ -3,6 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading;
@@ -24,16 +25,18 @@ namespace Application.Features.AppUsers.Commands.Create
         public string ConfirmPassword { get; set; }
     }
 
-    public class CreateAppUserCommandHandler : IRequestHandler<CreateAppUserCommand, AppUserViewModel>
+    internal class CreateAppUserCommandHandler : IRequestHandler<CreateAppUserCommand, AppUserViewModel>
     {
+        private readonly ILogger<CreateAppUserCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
 
-        public CreateAppUserCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public CreateAppUserCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<CreateAppUserCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
 

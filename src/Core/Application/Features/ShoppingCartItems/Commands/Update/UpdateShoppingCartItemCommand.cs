@@ -4,6 +4,7 @@ using Application.Interfaces;
 using Application.Wrappers;
 using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,15 +22,17 @@ namespace Application.Features.ShoppingCartItems.Commands.Update
         public Guid ItemId { get; set; }
     }
 
-    public class UpdateShoppingCartItemCommandHandler : IRequestHandler<UpdateShoppingCartItemCommand, ShoppingCartItemViewModel>
+    internal class UpdateShoppingCartItemCommandHandler : IRequestHandler<UpdateShoppingCartItemCommand, ShoppingCartItemViewModel>
     {
+        private readonly ILogger<UpdateShoppingCartItemCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public UpdateShoppingCartItemCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public UpdateShoppingCartItemCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<UpdateShoppingCartItemCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<ShoppingCartItemViewModel> Handle(UpdateShoppingCartItemCommand command, CancellationToken cancellationToken)

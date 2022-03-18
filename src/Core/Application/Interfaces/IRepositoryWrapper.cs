@@ -5,6 +5,7 @@ namespace Application.Interfaces
     public interface IRepositoryWrapper
     {
         IAccountRepository Account { get; }
+        IAccountNewRepository AccountNew { get; }
         IAppUserRepository AppUser { get; }
         ICategoryRepository Category { get; }
         IInventoryLevelRepository InventoryLevel { get; }

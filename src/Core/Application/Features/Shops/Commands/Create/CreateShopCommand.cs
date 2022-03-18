@@ -3,6 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,16 +19,18 @@ namespace Application.Features.Shops.Commands.Create
         public Guid OwnerId { get; set; }
     }
 
-    public class CreateShopCommandHandler : IRequestHandler<CreateShopCommand, ShopViewModel>
+    internal class CreateShopCommandHandler : IRequestHandler<CreateShopCommand, ShopViewModel>
     {
+        private readonly ILogger<CreateShopCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
 
-        public CreateShopCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public CreateShopCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<CreateShopCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
 

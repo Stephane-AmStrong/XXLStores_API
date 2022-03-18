@@ -26,6 +26,7 @@ namespace WebApi.Controllers.v1
             _logger = logger;
         }
 
+
         // GET: api/<controller>
         /// <summary>
         /// return categories that matche the criteria
@@ -36,11 +37,7 @@ namespace WebApi.Controllers.v1
         public async Task<IActionResult> Get([FromQuery] GetCategoriesQuery categoriesQuery)
         {
             var categories = await Mediator.Send(categoriesQuery);
-
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(categories.MetaData));
-
-            _logger.LogInformation($"Returned all categories from database.");
-
             return Ok(categories.PagedList);
         }
 
@@ -54,16 +51,11 @@ namespace WebApi.Controllers.v1
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            _logger.LogInformation($"Returned all categories from database.");
-            _logger.LogInformation($"Returned Category with id: {id}");
             return Ok(await Mediator.Send(new GetCategoryByIdQuery { Id = id }));
         }
 
 
-
-
         // POST api/<controller>
-
         /// <summary>
         /// Creates a Category.
         /// </summary>
@@ -80,6 +72,7 @@ namespace WebApi.Controllers.v1
             return Ok(await Mediator.Send(command));
         }
 
+
         // PUT api/<controller>/5
         /// <summary>
         /// Update a specific Category.
@@ -91,12 +84,10 @@ namespace WebApi.Controllers.v1
         [Authorize]
         public async Task<IActionResult> Put(Guid id, UpdateCategoryCommand command)
         {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
+            command.Id = id;
             return Ok(await Mediator.Send(command));
         }
+
 
         /// <summary>
         /// Deletes a specific Category.

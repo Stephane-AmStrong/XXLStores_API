@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using Application.Wrappers;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,11 +16,13 @@ namespace Application.Features.Categories.Commands.Delete
 
     internal class DeleteCategoryByIdCommandHandler : IRequestHandler<DeleteCategoryByIdCommand>
     {
+        private readonly ILogger<DeleteCategoryByIdCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
 
-        public DeleteCategoryByIdCommandHandler(IRepositoryWrapper repository)
+        public DeleteCategoryByIdCommandHandler(IRepositoryWrapper repository, ILogger<DeleteCategoryByIdCommandHandler> logger)
         {
             _repository = repository;
+            _logger = logger;
         }
 
         public async Task<Unit> Handle(DeleteCategoryByIdCommand command, CancellationToken cancellationToken)

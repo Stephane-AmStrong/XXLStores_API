@@ -3,6 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.Account.Register
+namespace Application.Features.Account.Commands.Register
 {
     public class RegisterUserCommand : IRequest<AppUserViewModel>
     {
@@ -27,16 +28,18 @@ namespace Application.Features.Account.Register
         public string ConfirmPassword { get; set; }
     }
 
-    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, AppUserViewModel>
+    internal class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, AppUserViewModel>
     {
+        private readonly ILogger<RegisterUserCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
 
-        public RegisterUserCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public RegisterUserCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<RegisterUserCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
 

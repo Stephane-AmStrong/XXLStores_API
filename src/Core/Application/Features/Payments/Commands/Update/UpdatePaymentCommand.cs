@@ -4,6 +4,7 @@ using Application.Interfaces;
 using Application.Wrappers;
 using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,15 +21,17 @@ namespace Application.Features.Payments.Commands.Update
         public Guid ShoppingCartId { get; set; }
     }
 
-    public class UpdatePaymentCommandHandler : IRequestHandler<UpdatePaymentCommand, PaymentViewModel>
+    internal class UpdatePaymentCommandHandler : IRequestHandler<UpdatePaymentCommand, PaymentViewModel>
     {
+        private readonly ILogger<UpdatePaymentCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public UpdatePaymentCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public UpdatePaymentCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<UpdatePaymentCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<PaymentViewModel> Handle(UpdatePaymentCommand command, CancellationToken cancellationToken)

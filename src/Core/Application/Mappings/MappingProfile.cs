@@ -1,5 +1,5 @@
-﻿using Application.Features.Account.Register;
-using Application.Features.Account.SignIn;
+﻿using Application.Features.Account.Commands.Register;
+using Application.Features.Account.Commands.SignIn;
 using Application.Features.AppUsers.Commands.Create;
 using Application.Features.AppUsers.Queries.GetById;
 using Application.Features.AppUsers.Queries.GetPagedList;
@@ -32,12 +32,9 @@ namespace Application.Mappings
 
             CreateMap<AppUser, AppUserViewModel>().ReverseMap();
             CreateMap<AppUser, GetAppUsersViewModel>().ReverseMap();
-
-            //CreateMap(typeof(List<>), typeof(PagedList<>)).ReverseMap();
-
             CreateMap<Category, CreateCategoryCommand>().ReverseMap();
             CreateMap<Category, CategoryViewModel>().ReverseMap();
-            //CreateMap<Category, CategoriesViewModel>().ReverseMap();
+            CreateMap<Category, CategoriesViewModel>().ReverseMap();
             CreateMap<Category, UpdateCategoryCommand>().ReverseMap();
         }
     }

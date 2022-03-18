@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Account.SignIn
+namespace Application.Features.Account.Commands.SignIn
 {
     public class SignInCommandValidator : AbstractValidator<SignInCommand>
     {

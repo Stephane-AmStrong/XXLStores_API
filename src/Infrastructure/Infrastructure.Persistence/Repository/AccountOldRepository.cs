@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Repository
 {
-    public class AccountRepository : RepositoryBase<AppUser>, IAccountRepository
+    public class AccountOldRepository : RepositoryBase<AppUser>, IAccountOldRepository
     {
         private readonly IConfiguration _configuration;
         private readonly UserManager<AppUser> _userManager;
@@ -28,7 +28,7 @@ namespace Infrastructure.Persistence.Repository
         //private readonly string _baseURL;
 
 
-        public AccountRepository(RepositoryContext repositoryContext, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IHttpContextAccessor httpContextAccessor) : base(repositoryContext)
+        public AccountOldRepository(RepositoryContext repositoryContext, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IHttpContextAccessor httpContextAccessor) : base(repositoryContext)
         {
             _configuration = configuration;
             _userManager = userManager;
@@ -100,7 +100,7 @@ namespace Infrastructure.Persistence.Repository
 
             var result = await _userManager.ConfirmEmailAsync(user, await DecodeTokenAsync(token));
 
-            var userInfo = user.ToDictionary();
+            var userInfo = user.ToDictionaryOld();
 
             if (result.Succeeded)
             {
@@ -209,7 +209,7 @@ namespace Infrastructure.Persistence.Repository
 
             // cookieSignIn
 
-            var userInfo = user.ToDictionary();
+            var userInfo = user.ToDictionaryOld();
 
             return new AuthenticationModel
             {
@@ -240,7 +240,7 @@ namespace Infrastructure.Persistence.Repository
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             var encodedToken = await EncodeTokenAsync(token);
 
-            var userInfo = user.ToDictionary();
+            var userInfo = user.ToDictionaryOld();
 
             return new AuthenticationModel
             {
@@ -346,9 +346,9 @@ namespace Infrastructure.Persistence.Repository
         }
     }
 
-    public static class AppUserExtension
+    public static class AppUserExtensionOld
     {
-        public static Dictionary<string, string> ToDictionary(this AppUser appUser)
+        public static Dictionary<string, string> ToDictionaryOld(this AppUser appUser)
         {
             return new Dictionary<string, string>
                 {

@@ -4,6 +4,7 @@ using Application.Wrappers;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,16 +16,18 @@ namespace Application.Features.Categories.Commands.Create
         public string Description { get; set; }
     }
 
-    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, CategoryViewModel>
+    internal class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, CategoryViewModel>
     {
+        private readonly ILogger<CreateCategoryCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
 
-        public CreateCategoryCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public CreateCategoryCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<CreateCategoryCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
 

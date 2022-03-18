@@ -3,6 +3,7 @@ using Application.Features.Items.Queries.GetById;
 using Application.Interfaces;
 using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,15 +18,17 @@ namespace Application.Features.Items.Commands.Update
         public Guid ShopId { get; set; }
     }
 
-    public class UpdateItemCommandHandler : IRequestHandler<UpdateItemCommand, ItemViewModel>
+    internal class UpdateItemCommandHandler : IRequestHandler<UpdateItemCommand, ItemViewModel>
     {
+        private readonly ILogger<UpdateItemCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public UpdateItemCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public UpdateItemCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<UpdateItemCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<ItemViewModel> Handle(UpdateItemCommand command, CancellationToken cancellationToken)
@@ -40,9 +43,6 @@ namespace Application.Features.Items.Commands.Update
             var itemReadDto = _mapper.Map<ItemViewModel>(itemEntity);
             //if (!string.IsNullOrWhiteSpace(itemReadDto.ImgLink)) itemReadDto.ImgLink = $"{_baseURL}{itemReadDto.ImgLink}";
             return itemReadDto;
-
-
         }
     }
-
 }

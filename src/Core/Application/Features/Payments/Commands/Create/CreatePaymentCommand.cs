@@ -3,6 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,16 +17,18 @@ namespace Application.Features.Payments.Commands.Create
         public Guid ShoppingCartId { get; set; }
     }
 
-    public class CreatePaymentCommandHandler : IRequestHandler<CreatePaymentCommand, PaymentViewModel>
+    internal class CreatePaymentCommandHandler : IRequestHandler<CreatePaymentCommand, PaymentViewModel>
     {
+        private readonly ILogger<CreatePaymentCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
 
-        public CreatePaymentCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public CreatePaymentCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<CreatePaymentCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
 

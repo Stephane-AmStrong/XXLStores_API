@@ -3,6 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,16 +18,18 @@ namespace Application.Features.ShoppingCartItems.Commands.Create
         public Guid ItemId { get; set; }
     }
 
-    public class CreateShoppingCartItemCommandHandler : IRequestHandler<CreateShoppingCartItemCommand, ShoppingCartItemViewModel>
+    internal class CreateShoppingCartItemCommandHandler : IRequestHandler<CreateShoppingCartItemCommand, ShoppingCartItemViewModel>
     {
+        private readonly ILogger<CreateShoppingCartItemCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
 
-        public CreateShoppingCartItemCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public CreateShoppingCartItemCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<CreateShoppingCartItemCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
 

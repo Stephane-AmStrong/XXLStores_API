@@ -3,6 +3,7 @@ using Application.Features.Shops.Queries.GetById;
 using Application.Interfaces;
 using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,38 +20,31 @@ namespace Application.Features.Shops.Commands.Update
         public Guid OwnerId { get; set; }
     }
 
-    public class UpdateShopCommandHandler : IRequestHandler<UpdateShopCommand, ShopViewModel>
+    internal class UpdateShopCommandHandler : IRequestHandler<UpdateShopCommand, ShopViewModel>
     {
+        private readonly ILogger<UpdateShopCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public UpdateShopCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public UpdateShopCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<UpdateShopCommandHandler> logger)
         {
             _repository = repository;
+            _logger = logger;
             _mapper = mapper;
         }
 
         public async Task<ShopViewModel> Handle(UpdateShopCommand command, CancellationToken cancellationToken)
         {
             var shopEntity = await _repository.Shop.GetByIdAsync(command.Id);
-
-            if (shopEntity == null)
-            {
-                throw new ApiException($"Shop with id: {command.Id}, hasn't been found.");
-            }
+            if (shopEntity == null) throw new ApiException($"Shop with id: {command.Id}, hasn't been found.");
 
             _mapper.Map(command, shopEntity);
-
             await _repository.Shop.UpdateAsync(shopEntity);
             await _repository.SaveAsync();
 
             var shopReadDto = _mapper.Map<ShopViewModel>(shopEntity);
-
             //if (!string.IsNullOrWhiteSpace(shopReadDto.ImgLink)) shopReadDto.ImgLink = $"{_baseURL}{shopReadDto.ImgLink}";
-
             return shopReadDto;
-
-
         }
     }
 }

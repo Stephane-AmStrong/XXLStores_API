@@ -3,6 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,16 +18,18 @@ namespace Application.Features.InventoryLevels.Commands.Create
         public Guid ItemId { get; set; }
     }
 
-    public class CreateInventoryLevelCommandHandler : IRequestHandler<CreateInventoryLevelCommand, InventoryLevelViewModel>
+    internal class CreateInventoryLevelCommandHandler : IRequestHandler<CreateInventoryLevelCommand, InventoryLevelViewModel>
     {
+        private readonly ILogger<CreateInventoryLevelCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
 
-        public CreateInventoryLevelCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public CreateInventoryLevelCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<CreateInventoryLevelCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
 

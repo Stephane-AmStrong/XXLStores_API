@@ -3,6 +3,7 @@ using Application.Features.AppUsers.Queries.GetById;
 using Application.Interfaces;
 using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading;
@@ -27,13 +28,15 @@ namespace Application.Features.AppUsers.Commands.Update
 
     public class UpdateAppUserCommandHandler : IRequestHandler<UpdateAppUserCommand, AppUserViewModel>
     {
+        private readonly ILogger<UpdateAppUserCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public UpdateAppUserCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public UpdateAppUserCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<UpdateAppUserCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<AppUserViewModel> Handle(UpdateAppUserCommand command, CancellationToken cancellationToken)

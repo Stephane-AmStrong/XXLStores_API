@@ -3,6 +3,7 @@ using Application.Features.InventoryLevels.Queries.GetById;
 using Application.Interfaces;
 using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,15 +19,17 @@ namespace Application.Features.InventoryLevels.Commands.Update
         public Guid ItemId { get; set; }
     }
 
-    public class UpdateInventoryLevelCommandHandler : IRequestHandler<UpdateInventoryLevelCommand, InventoryLevelViewModel>
+    internal class UpdateInventoryLevelCommandHandler : IRequestHandler<UpdateInventoryLevelCommand, InventoryLevelViewModel>
     {
+        private readonly ILogger<UpdateInventoryLevelCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public UpdateInventoryLevelCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public UpdateInventoryLevelCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<UpdateInventoryLevelCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<InventoryLevelViewModel> Handle(UpdateInventoryLevelCommand command, CancellationToken cancellationToken)
@@ -43,9 +46,6 @@ namespace Application.Features.InventoryLevels.Commands.Update
             var productReadDto = _mapper.Map<InventoryLevelViewModel>(productEntity);
 
             return productReadDto;
-
-
         }
     }
-
 }

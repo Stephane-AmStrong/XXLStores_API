@@ -98,7 +98,7 @@ namespace Infrastructure.Persistence.Repository
         {
             if (!payments.Any() || string.IsNullOrWhiteSpace(searchTerm)) return;
 
-            payments = payments.Where(x => x.ShoppingCart.Customer.Firstname.ToLower().Contains(searchTerm.Trim().ToLower()) || x.ShoppingCart.Customer.Lastname.ToLower().Contains(searchTerm.Trim().ToLower()));
+            payments = payments.Where(x => x.ShoppingCart.Customer.FirstName.ToLower().Contains(searchTerm.Trim().ToLower()) || x.ShoppingCart.Customer.LastName.ToLower().Contains(searchTerm.Trim().ToLower()));
         }
 
 

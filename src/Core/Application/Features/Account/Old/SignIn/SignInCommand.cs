@@ -3,6 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Models;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.Account.SignIn
+namespace Application.Features.Account.Commands.SignIn
 {
     public class SignInCommand : IRequest<AppUserViewModel>
     {
@@ -24,14 +25,15 @@ namespace Application.Features.Account.SignIn
 
     internal class SignInCommandHandler : IRequestHandler<SignInCommand, AppUserViewModel>
     {
+        private readonly ILogger<SignInCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-
-        public SignInCommandHandler(IRepositoryWrapper repository, IMapper mapper)
+        public SignInCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<SignInCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
 
