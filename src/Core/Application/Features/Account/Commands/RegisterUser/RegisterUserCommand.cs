@@ -70,18 +70,26 @@ namespace Application.Features.Account.Commands.RegisterUser
                 var result = await _userManager.CreateAsync(user, command.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
+                    //await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
                     var verificationUri = await SendVerificationEmail(user, command.Origin);
 
                     //TODO: Attach Email Service here and configure it via appsettings
-                    var message = new Message { From = "mail@codewithmukesh.com", To = user.Email, Content = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" };
+                    var message = new Message { From = "mail@codewithmukesh.com", To = user.UserName, Content = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" };
                     await _repository.Email.SendAsync(message);
 
                     return $"{user.Id}, message: User Registered. Please confirm your account by visiting this URL {verificationUri}";
                 }
                 else
                 {
-                    throw new ApiException($"{result.Errors}");
+                    var errorMessage = new StringBuilder();
+
+                    foreach (var error in result.Errors)
+                    {
+                        errorMessage.Append($"{error.Description}");
+                        errorMessage.Append(Environment.NewLine);
+                    }
+
+                    throw new ApiException($"{errorMessage}");
                 }
             }
             else

@@ -15,13 +15,13 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Account.Queries.ConfirmEmail
 {
-    public class ConfirmEmailCommand : IRequest<string>
+    public class ConfirmEmailQuery : IRequest<string>
     {
         public string UserId { get; set; }
         public string Code { get; set; }
     }
 
-    internal class ConfirmEmailCommandHandler : IRequestHandler<ConfirmEmailCommand, string>
+    internal class ConfirmEmailCommandHandler : IRequestHandler<ConfirmEmailQuery, string>
     {
         private readonly ILogger<ConfirmEmailCommandHandler> _logger;
         private readonly UserManager<AppUser> _userManager;
@@ -38,7 +38,7 @@ namespace Application.Features.Account.Queries.ConfirmEmail
         }
 
 
-        public async Task<string> Handle(ConfirmEmailCommand command, CancellationToken cancellationToken)
+        public async Task<string> Handle(ConfirmEmailQuery command, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByIdAsync(command.UserId);
             command.Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(command.Code));
@@ -46,7 +46,7 @@ namespace Application.Features.Account.Queries.ConfirmEmail
             var result = await _userManager.ConfirmEmailAsync(user, command.Code);
             if (result.Succeeded)
             {
-                return $"{user.Id}, message: Account Confirmed for {user.Email}. You can now use the /api/Account/authenticate endpoint.";
+                return $"{user.Id}, message: Account Confirmed for {user.UserName}. You can now use the /api/Account/authenticate endpoint.";
             }
             else
             {

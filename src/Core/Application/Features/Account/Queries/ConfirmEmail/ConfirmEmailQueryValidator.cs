@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Account.Queries.ConfirmEmail
 {
-    public class ConfirmEmailCommandValidator : AbstractValidator<ConfirmEmailCommand>
+    public class ConfirmEmailQueryValidator : AbstractValidator<ConfirmEmailQuery>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public ConfirmEmailCommandValidator(IRepositoryWrapper repository, IMapper mapper)
+        public ConfirmEmailQueryValidator(IRepositoryWrapper repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

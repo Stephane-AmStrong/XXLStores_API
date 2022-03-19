@@ -55,7 +55,7 @@ namespace Application.Features.Account.Commands.Authenticate
         {
             var loginModel = _mapper.Map<LoginModel>(command);
 
-            var user = await _userManager.FindByEmailAsync(loginModel.Email);
+            var user = await _userManager.FindByNameAsync(loginModel.Email);
 
             if (user == null) throw new ApiException($"No Accounts Registered with {loginModel.Email}.");
 
@@ -107,7 +107,7 @@ namespace Application.Features.Account.Commands.Authenticate
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                //new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim("uid", user.Id),
                 new Claim("ip", ipAddress)
             }

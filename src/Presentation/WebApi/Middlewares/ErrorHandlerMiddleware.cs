@@ -29,6 +29,7 @@ namespace WebApi.Middlewares
             }
             catch (Exception ex)
             {
+                _logger.LogError($"\n\n{ex}");
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
@@ -38,6 +39,8 @@ namespace WebApi.Middlewares
             var response = context.Response;
             response.ContentType = "application/json";
             var errorDetails = new ErrorDetails { Message = exception?.Message};
+
+
 
             switch (exception)
             {
@@ -65,8 +68,6 @@ namespace WebApi.Middlewares
                     errorDetails.StatusCode = response.StatusCode;
                     errorDetails.Message = "Internal Server Error.";
                     errorDetails.Errors = null ;
-
-                    _logger.LogError($"\n\n{exception.Message}");
                     break;
             }
 

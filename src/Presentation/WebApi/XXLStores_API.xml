@@ -19,8 +19,17 @@
             </summary>
             <param name="command"></param>
             <returns>A newly created User Account</returns>
-            <response code="201">Returns the newly User Account</response>
+            <response code="200">Returns the newly User Account</response>
             <response code="400">If the command is null</response>           
+        </member>
+        <member name="M:WebApi.Controllers.v1.AccountController.ConfirmEmailAsync(Application.Features.Account.Queries.ConfirmEmail.ConfirmEmailQuery)">
+            <summary>
+            Confirm user's email.
+            </summary>
+            <param name="command"></param>
+            <returns>Confirm a newly created User Account's email</returns>
+            <response code="200">Returns confirmation success message</response>
+            <response code="400">If the command is not valide</response>           
         </member>
         <member name="M:WebApi.Controllers.v1.CategoriesController.Get(Application.Features.Categories.Queries.GetPagedList.GetCategoriesQuery)">
             <summary>

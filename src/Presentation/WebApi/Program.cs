@@ -1,4 +1,6 @@
+using Domain.Entities;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -59,9 +61,46 @@ namespace WebApi
                 .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Code)
                 .CreateLogger();
 
-            try
+            using (var scope = host.Services.CreateScope())
             {
-                Log.Information("Starting up");
+                var services = scope.ServiceProvider;
+                var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+                try
+                {
+                    var userManager = services.GetRequiredService<UserManager<AppUser>>();
+                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+                    await Infrastructure.Persistence.Seeds.DefaultRoles.SeedAsync(userManager, roleManager);
+                    await Infrastructure.Persistence.Seeds.DefaultSuperAdmin.SeedAsync(userManager, roleManager);
+                    await Infrastructure.Persistence.Seeds.DefaultBasicUser.SeedAsync(userManager, roleManager);
+                    Log.Information("Finished Seeding Default Data");
+                    Log.Information("Application Starting");
+
+                    host.Run();
+                }
+                catch (Exception ex)
+                {
+                    Log.Fatal(ex, "An error occurred seeding the DB");
+                }
+                finally
+                {
+                    Log.CloseAndFlush();
+                }
+            }
+
+
+            /*
+             try
+            {
+                var userManager = services.GetRequiredService<UserManager<AppUser>>();
+                var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+                await Infrastructure.Identity.Seeds.DefaultRoles.SeedAsync(userManager, roleManager);
+                await Infrastructure.Identity.Seeds.DefaultSuperAdmin.SeedAsync(userManager, roleManager);
+                await Infrastructure.Identity.Seeds.DefaultBasicUser.SeedAsync(userManager, roleManager);
+                Log.Information("Finished Seeding Default Data");
+                Log.Information("Application Starting");
+
                 host.Run();
             }
             catch (Exception ex)
@@ -72,6 +111,7 @@ namespace WebApi
             {
                 Log.CloseAndFlush();
             }
+             */
         }
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
