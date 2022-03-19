@@ -17,9 +17,9 @@ namespace Infrastructure.Persistence.Repository
 
         public PaymentRepository
         (
-            RepositoryContext repositoryContext,
+            ApplicationDbContext appDbContext,
             ISortHelper<Payment> sortHelper
-        ) : base(repositoryContext)
+        ) : base(appDbContext)
         {
             _sortHelper = sortHelper;
         }
@@ -30,7 +30,7 @@ namespace Infrastructure.Persistence.Repository
 
             ApplyFilters(ref payments, paymentsQuery);
 
-            PerformSearch(ref payments, paymentsQuery.SearchTerm);
+            //PerformSearch(ref payments, paymentsQuery.SearchTerm);
 
             var sortedPayments = _sortHelper.ApplySort(payments, paymentsQuery.OrderBy);
 
@@ -94,12 +94,12 @@ namespace Infrastructure.Persistence.Repository
             */
         }
 
-        private void PerformSearch(ref IQueryable<Payment> payments, string searchTerm)
-        {
-            if (!payments.Any() || string.IsNullOrWhiteSpace(searchTerm)) return;
+        //private void PerformSearch(ref IQueryable<Payment> payments, string searchTerm)
+        //{
+        //    if (!payments.Any() || string.IsNullOrWhiteSpace(searchTerm)) return;
 
-            payments = payments.Where(x => x.ShoppingCart.Customer.FirstName.ToLower().Contains(searchTerm.Trim().ToLower()) || x.ShoppingCart.Customer.LastName.ToLower().Contains(searchTerm.Trim().ToLower()));
-        }
+        //    payments = payments.Where(x => x.ShoppingCart.Customer.FirstName.ToLower().Contains(searchTerm.Trim().ToLower()) || x.ShoppingCart.Customer.LastName.ToLower().Contains(searchTerm.Trim().ToLower()));
+        //}
 
 
     }

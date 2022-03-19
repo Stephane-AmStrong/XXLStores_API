@@ -17,9 +17,9 @@ namespace Infrastructure.Persistence.Repository
 
         public ItemRepository
         (
-            RepositoryContext repositoryContext,
+            ApplicationDbContext appDbContext,
             ISortHelper<Item> sortHelper
-        ) : base(repositoryContext)
+        ) : base(appDbContext)
         {
             _sortHelper = sortHelper;
         }

@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Account.Commands.SignIn
+namespace Application.Features.Account.Commands.ForgotPassword
 {
-    public class SignInCommandValidator : AbstractValidator<SignInCommand>
+    public  class ForgotPasswordCommandValidator : AbstractValidator<ForgotPasswordCommand>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public SignInCommandValidator(IRepositoryWrapper repository, IMapper mapper)
+        public ForgotPasswordCommandValidator(IRepositoryWrapper repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -24,7 +24,7 @@ namespace Application.Features.Account.Commands.SignIn
                 .NotNull()
                 .EmailAddress();
 
-            RuleFor(p => p.Password)
+            RuleFor(p => p.Origin)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
         }

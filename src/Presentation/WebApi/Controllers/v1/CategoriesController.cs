@@ -16,14 +16,12 @@ using Serilog;
 namespace WebApi.Controllers.v1
 {
     [ApiVersion("1.0")]
-    [AllowAnonymous]
+    [Authorize]
     public class CategoriesController : BaseApiController
     {
-        private readonly ILogger<CategoriesController> _logger;
         readonly IDiagnosticContext _diagnosticContext;
-        public CategoriesController(ILogger<CategoriesController> logger)
+        public CategoriesController()
         {
-            _logger = logger;
         }
 
 
@@ -34,6 +32,7 @@ namespace WebApi.Controllers.v1
         /// <param name="categoriesQuery"></param>
         /// <returns></returns>
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Get([FromQuery] GetCategoriesQuery categoriesQuery)
         {
             var categories = await Mediator.Send(categoriesQuery);

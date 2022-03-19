@@ -22,7 +22,7 @@ namespace Infrastructure.Persistence.Service
             _logger = logger;
         }
 
-        public async Task SendAsync(EmailRequest request)
+        public async Task SendAsync(Message request)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace Infrastructure.Persistence.Service
                 email.To.Add(MailboxAddress.Parse(request.To));
                 email.Subject = request.Subject;
                 var builder = new BodyBuilder();
-                builder.HtmlBody = request.Body;
+                builder.HtmlBody = request.Content;
                 email.Body = builder.ToMessageBody();
                 using var smtp = new SmtpClient();
                 smtp.Connect(_mailSettings.SmtpHost, _mailSettings.SmtpPort, SecureSocketOptions.StartTls);

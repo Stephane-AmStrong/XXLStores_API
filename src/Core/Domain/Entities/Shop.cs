@@ -29,7 +29,7 @@ namespace Domain.Entities
 
         public virtual ICollection<Item> Items { get; set; }
 
-        [ForeignKey("OwnerId")]
-        public virtual AppUser Owner { get; set; }
+        //[ForeignKey("OwnerId")]
+        //public virtual AppUser Owner { get; set; }
     }
 }

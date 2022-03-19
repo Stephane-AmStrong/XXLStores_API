@@ -11,14 +11,15 @@ namespace Infrastructure.Persistence
     {
         public static void AddSharedInfrastructure(this IServiceCollection services, IConfiguration _config)
         {
-            //services.Configure<MailSettings>(_config.GetSection("MailSettings"));
-            services.AddTransient<IDateTimeService, DateTimeService>();
-            //services.AddTransient<IEmailService, EmailService>();
+            //var emailConfig = _config
+            //    .GetSection("MailSettings")
+            //    .Get<MailSettings>();
+            //services.AddSingleton(emailConfig);
 
-            var emailConfig = _config
-                .GetSection("MailSettings")
-                .Get<MailSettings>();
-            services.AddSingleton(emailConfig);
+            services.Configure<MailSettings>(_config.GetSection("MailSettings"));
+            services.AddTransient<IDateTimeService, DateTimeService>();
+            services.AddTransient<IEmailService, EmailService>();
+
         }
     }
 }

@@ -21,18 +21,15 @@ namespace Infrastructure.Persistence
     {
         public static void AddPersistenceInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            if (configuration.GetValue<bool>("UseInMemoryDatabase"))
-            {
-                services.AddDbContext<RepositoryContext>(options =>
-                    options.UseInMemoryDatabase("ApplicationDb"));
-            }
-            else
-            {
-                services.AddDbContext<RepositoryContext>(options =>
-               options.UseNpgsql(
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql
+                (
                    configuration.GetConnectionString("DefaultConnection"),
-                   b => b.MigrationsAssembly(typeof(RepositoryContext).Assembly.FullName)));
-            }
+                   b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)
+                )
+            );
+
+
             #region Repositories
             services.AddScoped<ISortHelper<AppUser>, SortHelper<AppUser>>();
             services.AddScoped<ISortHelper<Category>, SortHelper<Category>>();
@@ -44,7 +41,6 @@ namespace Infrastructure.Persistence
             services.AddScoped<ISortHelper<ShoppingCartItem>, SortHelper<ShoppingCartItem>>();
 
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
-            //services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
             #endregion
         }
     }

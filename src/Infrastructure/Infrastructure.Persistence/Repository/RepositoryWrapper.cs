@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Repository
@@ -28,8 +29,8 @@ namespace Infrastructure.Persistence.Repository
         private readonly ISortHelper<ShoppingCart> _shoppingCartSortHelper;
         private readonly ISortHelper<ShoppingCartItem> _shoppingCartItemSortHelper;
 
-        private readonly MailSettings _mailSettings;
-        private readonly RepositoryContext _repoContext;
+        private readonly IOptions<MailSettings> _mailSettings;
+        private readonly ApplicationDbContext _appDbContext;
         private readonly UserManager<AppUser> _userManager;
         //private RoleManager<Workstation> _roleManager;
 
@@ -56,17 +57,17 @@ namespace Infrastructure.Persistence.Repository
         public IAppUserRepository AppUser => throw new System.NotImplementedException();
 
 
-        //public IEmailService Email
-        //{
-        //    get
-        //    {
-        //        if (_email == null)
-        //        {
-        //            _email = new EmailService(_mailSettings);
-        //        }
-        //        return _email;
-        //    }
-        //}
+        public IEmailService Email
+        {
+            get
+            {
+                if (_email == null)
+                {
+                    _email = new EmailService(_mailSettings);
+                }
+                return _email;
+            }
+        }
 
 
         public IFileService File
@@ -88,7 +89,7 @@ namespace Infrastructure.Persistence.Repository
         //    {
         //        if (_account == null)
         //        {
-        //            _account = new AccountService(_repoContext, _userManager, _roleManager, _configuration, _httpContextAccessor);
+        //            _account = new AccountService(_appDbContext, _userManager, _roleManager, _configuration, _httpContextAccessor);
         //        }
         //        return _account;
         //    }
@@ -101,7 +102,7 @@ namespace Infrastructure.Persistence.Repository
             {
                 if (_category == null)
                 {
-                    _category = new CategoryRepository(_repoContext, _categorySortHelper);
+                    _category = new CategoryRepository(_appDbContext, _categorySortHelper);
                 }
                 return _category;
             }
@@ -114,7 +115,7 @@ namespace Infrastructure.Persistence.Repository
             {
                 if (_inventoryLevel == null)
                 {
-                    _inventoryLevel = new InventoryLevelRepository(_repoContext, _inventoryLevelSortHelper);
+                    _inventoryLevel = new InventoryLevelRepository(_appDbContext, _inventoryLevelSortHelper);
                 }
                 return _inventoryLevel;
             }
@@ -127,7 +128,7 @@ namespace Infrastructure.Persistence.Repository
             {
                 if (_item == null)
                 {
-                    _item = new ItemRepository(_repoContext, _itemSortHelper);
+                    _item = new ItemRepository(_appDbContext, _itemSortHelper);
                 }
                 return _item;
             }
@@ -140,7 +141,7 @@ namespace Infrastructure.Persistence.Repository
             {
                 if (_payment == null)
                 {
-                    _payment = new PaymentRepository(_repoContext, _paymentSortHelper);
+                    _payment = new PaymentRepository(_appDbContext, _paymentSortHelper);
                 }
                 return _payment;
             }
@@ -153,7 +154,7 @@ namespace Infrastructure.Persistence.Repository
             {
                 if (_shop == null)
                 {
-                    _shop = new ShopRepository(_repoContext, _shopSortHelper);
+                    _shop = new ShopRepository(_appDbContext, _shopSortHelper);
                 }
                 return _shop;
             }
@@ -166,7 +167,7 @@ namespace Infrastructure.Persistence.Repository
             {
                 if (_shoppingCart == null)
                 {
-                    _shoppingCart = new ShoppingCartRepository(_repoContext, _shoppingCartSortHelper);
+                    _shoppingCart = new ShoppingCartRepository(_appDbContext, _shoppingCartSortHelper);
                 }
                 return _shoppingCart;
             }
@@ -179,7 +180,7 @@ namespace Infrastructure.Persistence.Repository
             {
                 if (_shoppingCartItem == null)
                 {
-                    _shoppingCartItem = new ShoppingCartItemRepository(_repoContext, _shoppingCartItemSortHelper);
+                    _shoppingCartItem = new ShoppingCartItemRepository(_appDbContext, _shoppingCartItemSortHelper);
                 }
                 return _shoppingCartItem;
             }
@@ -192,10 +193,10 @@ namespace Infrastructure.Persistence.Repository
 
         public RepositoryWrapper(
             UserManager<AppUser> userManager,
-            RepositoryContext repositoryContext,
+            ApplicationDbContext appDbContext,
             IWebHostEnvironment webHostEnvironment,
             IConfiguration configuration,
-            //MailSettings mailSettings,
+            IOptions<MailSettings> mailSettings,
 
             ISortHelper<AppUser> appUserSortHelper,
             ISortHelper<Category> categorySortHelper,
@@ -209,8 +210,8 @@ namespace Infrastructure.Persistence.Repository
         {
             _userManager = userManager;
             _configuration = configuration;
-            //_mailSettings = mailSettings;
-            _repoContext = repositoryContext;
+            _mailSettings = mailSettings;
+            _appDbContext = appDbContext;
 
             _appUserSortHelper = appUserSortHelper;
             _categorySortHelper = categorySortHelper;
@@ -228,7 +229,7 @@ namespace Infrastructure.Persistence.Repository
 
         public async Task SaveAsync()
         {
-            await _repoContext.SaveChangesAsync();
+            await _appDbContext.SaveChangesAsync();
         }
     }
 }

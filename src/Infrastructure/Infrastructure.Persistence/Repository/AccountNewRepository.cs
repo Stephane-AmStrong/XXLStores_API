@@ -4,7 +4,6 @@ using Application.Interfaces;
 using Domain.Entities;
 using Domain.Models;
 using Domain.Settings;
-using Infrastructure.Persistence.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -19,6 +18,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.WebUtilities;
 using Application.DataTransfertObjects.Account;
 using Application.DataTransfertObjects.Email;
+using Application.Features.Account.Commands.Authenticate;
+using Application.Helpers;
 
 namespace Infrastructure.Persistence.Repository
 {

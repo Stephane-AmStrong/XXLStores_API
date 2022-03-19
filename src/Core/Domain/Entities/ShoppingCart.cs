@@ -19,8 +19,8 @@ namespace Domain.Entities
         [Required]
         public string CustomerId { get; set; }
 
-        [ForeignKey("CustomerId")]
-        public virtual AppUser Customer { get; set; }
+        //[ForeignKey("CustomerId")]
+        //public virtual AppUser Customer { get; set; }
 
         public virtual ICollection<ShoppingCartItem> ShoppingCartItems { get; set; }
     }

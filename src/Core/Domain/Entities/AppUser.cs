@@ -6,11 +6,11 @@ namespace Domain.Entities
 {
     public class AppUser : IdentityUser
     {
-        public AppUser()
-        {
-            Shops = new HashSet<Shop>();
-            ShoppingCarts = new HashSet<ShoppingCart>();
-        }
+        //public AppUser()
+        //{
+        //    Shops = new HashSet<Shop>();
+        //    ShoppingCarts = new HashSet<ShoppingCart>();
+        //}
 
         public string ImgLink { get; set; }
         [Required]
@@ -24,7 +24,7 @@ namespace Domain.Entities
             return this.RefreshTokens?.Find(x => x.Token == token) != null;
         }
 
-        public virtual ICollection<Shop> Shops { get; set; }
-        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
+        //public virtual ICollection<Shop> Shops { get; set; }
+        //public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }
 }

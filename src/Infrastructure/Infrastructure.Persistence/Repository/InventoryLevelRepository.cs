@@ -17,9 +17,9 @@ namespace Infrastructure.Persistence.Repository
 
         public InventoryLevelRepository
         (
-            RepositoryContext repositoryContext,
+            ApplicationDbContext appDbContext,
             ISortHelper<InventoryLevel> sortHelper
-        ) : base(repositoryContext)
+        ) : base(appDbContext)
         {
             _sortHelper = sortHelper;
         }

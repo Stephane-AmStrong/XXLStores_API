@@ -1,5 +1,5 @@
-﻿using Application.Features.Account.Commands.Register;
-using Application.Features.Account.Commands.SignIn;
+﻿using Application.Features.Account.Commands.Authenticate;
+using Application.Features.Account.Commands.RegisterUser;
 using Application.Features.AppUsers.Commands.Create;
 using Application.Features.AppUsers.Queries.GetById;
 using Application.Features.AppUsers.Queries.GetPagedList;
@@ -25,7 +25,7 @@ namespace Application.Mappings
         {
             CreateMap<AppUser, RegisterUserCommand>().ReverseMap();
 
-            CreateMap<LoginModel, SignInCommand>().ReverseMap();
+            CreateMap<LoginModel, AuthenticationCommand>().ReverseMap();
             CreateMap<AuthenticationModel, AppUserViewModel>().ReverseMap();
 
             CreateMap<AppUser, CreateAppUserCommand>().ReverseMap();

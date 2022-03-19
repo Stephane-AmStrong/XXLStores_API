@@ -5,7 +5,7 @@ namespace Application.Interfaces
     public interface IRepositoryWrapper
     {
         IAccountRepository Account { get; }
-        IAccountNewRepository AccountNew { get; }
+        //IAccountNewRepository AccountNew { get; }
         IAppUserRepository AppUser { get; }
         ICategoryRepository Category { get; }
         IInventoryLevelRepository InventoryLevel { get; }
@@ -16,7 +16,7 @@ namespace Application.Interfaces
         IShoppingCartItemRepository ShoppingCartItem { get; }
 
         IFileService File { get; }
-        //IEmailService Email { get; }
+        IEmailService Email { get; }
 
         string Path { set; }
 

@@ -4,36 +4,33 @@
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
 
-
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="11.0.0" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-		
+
 		<PackageReference Include="FluentValidation" Version="10.3.6" />
 		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.6" />
-		
+
+		<!--IWebHostEnvironment-->
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.11" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.13" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.13" />
-		
+
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="System.Text.Json" Version="5.0.2" />
 
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
-
 	</ItemGroup>
+
 
 	<!--delete these two line-->
 	<ItemGroup>
-		<Folder Include="Features\Account\Commands\ConfirmEmail\" />
-		<Folder Include="Features\Account\Commands\ForgotPassword\" />
-		<Folder Include="Features\Account\Commands\ResetPassword\" />
-		<Folder Include="Features\Account\Queries\ConfirmEmail\" />
 		<Folder Include="Parameters\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Domain\Domain.csproj" />
+		<ProjectReference Include="..\Domain\Domain.csproj" />
 	</ItemGroup>
 
 </Project>

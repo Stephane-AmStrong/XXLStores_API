@@ -19,19 +19,15 @@ using System.Collections.Generic;
 using Application.Helpers;
 using Microsoft.IdentityModel.Tokens;
 using Domain.Settings;
+using Microsoft.Extensions.Options;
 
 namespace Application.Features.Account.Commands.Authenticate
 {
     public class AuthenticationCommand : IRequest<AuthenticationNewModel>
     {
-        [Required]
-        [EmailAddress]
         public string Email { get; set; }
-
-        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
         public string IpAddress { get; set; }
     }
 
@@ -45,13 +41,13 @@ namespace Application.Features.Account.Commands.Authenticate
         private readonly IMapper _mapper;
 
 
-        public AuthenticationRequestCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<AuthenticationRequestCommandHandler> logger, UserManager<AppUser> userManager, JWTSettings jwtSettings)
+        public AuthenticationRequestCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<AuthenticationRequestCommandHandler> logger, UserManager<AppUser> userManager, IOptions<JWTSettings> jwtSettings)
         {
             _userManager = userManager;
             _repository = repository;
             _mapper = mapper;
             _logger = logger;
-            _jwtSettings = jwtSettings;
+            _jwtSettings = jwtSettings.Value;
         }
 
 

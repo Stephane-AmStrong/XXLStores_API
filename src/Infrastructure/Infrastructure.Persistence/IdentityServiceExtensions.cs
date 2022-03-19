@@ -20,15 +20,15 @@ namespace Infrastructure.Persistence
     {
         public static void AddIdentityInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<RepositoryContext>(options =>
+            services.AddDbContext<IdentityContext>(options =>
                 options.UseNpgsql(
                         configuration.GetConnectionString("IdentityConnection"),
-                        b => b.MigrationsAssembly(typeof(RepositoryContext).Assembly.FullName)
+                        b => b.MigrationsAssembly(typeof(IdentityContext).Assembly.FullName)
                     )
                 );
 
 
-            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<RepositoryContext>().AddDefaultTokenProviders();
+            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
             #region Services
             services.AddTransient<IAccountRepository, AccountRepository>();
             #endregion

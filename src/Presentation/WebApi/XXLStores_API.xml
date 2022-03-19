@@ -4,6 +4,24 @@
         <name>WebApi</name>
     </assembly>
     <members>
+        <member name="M:WebApi.Controllers.v1.AccountController.Authenticate(Application.Features.Account.Commands.Authenticate.AuthenticationCommand)">
+            <summary>
+            Authenticate a User.
+            </summary>
+            <param name="command"></param>
+            <returns>An authenticated User</returns>
+            <response code="200">The authenticated User</response>
+            <response code="400">If the command is null</response>            
+        </member>
+        <member name="M:WebApi.Controllers.v1.AccountController.Register(Application.Features.Account.Commands.RegisterUser.RegisterUserCommand)">
+            <summary>
+            Creates a User Account.
+            </summary>
+            <param name="command"></param>
+            <returns>A newly created User Account</returns>
+            <response code="201">Returns the newly User Account</response>
+            <response code="400">If the command is null</response>           
+        </member>
         <member name="M:WebApi.Controllers.v1.CategoriesController.Get(Application.Features.Categories.Queries.GetPagedList.GetCategoriesQuery)">
             <summary>
             return categories that matche the criteria

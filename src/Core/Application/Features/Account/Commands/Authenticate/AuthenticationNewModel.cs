@@ -1,12 +1,11 @@
-﻿using Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace Application.Features.Account.Commands.Authenticate
 {
     public class AuthenticationNewModel
     {

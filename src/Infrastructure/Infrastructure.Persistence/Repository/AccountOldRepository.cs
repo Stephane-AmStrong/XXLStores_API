@@ -28,7 +28,7 @@ namespace Infrastructure.Persistence.Repository
         //private readonly string _baseURL;
 
 
-        public AccountOldRepository(RepositoryContext repositoryContext, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IHttpContextAccessor httpContextAccessor) : base(repositoryContext)
+        public AccountOldRepository(ApplicationDbContext appDbContext, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IHttpContextAccessor httpContextAccessor) : base(appDbContext)
         {
             _configuration = configuration;
             _userManager = userManager;

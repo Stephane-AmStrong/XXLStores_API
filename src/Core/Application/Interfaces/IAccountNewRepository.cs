@@ -1,4 +1,5 @@
 ﻿using Application.DataTransfertObjects.Account;
+using Application.Features.Account.Commands.Authenticate;
 using Domain.Entities;
 using Domain.Models;
 using System;

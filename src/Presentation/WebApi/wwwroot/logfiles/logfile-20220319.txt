@@ -1,0 +1,6 @@
+2022-03-19 05:34:14.274 +01:00 [INF] Starting up
+2022-03-19 05:41:04.248 +01:00 [INF] Starting up
+2022-03-19 05:46:45.641 +01:00 [INF] Starting up
+2022-03-19 05:52:08.860 +01:00 [INF] Starting up
+2022-03-19 05:53:18.716 +01:00 [INF] Starting up
+2022-03-19 05:54:53.554 +01:00 [WRN] User password validation failed: PasswordRequiresNonAlphanumeric;PasswordRequiresDigit;PasswordRequiresUpper.

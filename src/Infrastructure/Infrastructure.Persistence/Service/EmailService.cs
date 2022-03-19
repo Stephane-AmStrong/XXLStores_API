@@ -4,6 +4,7 @@ using Domain.Settings;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using MimeKit;
 using System.IO;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace Infrastructure.Persistence.Service
         private readonly MailSettings _mailSettings;
         public ILogger<EmailService> _logger { get; }
 
-        public EmailService(MailSettings mailSettings)
+        public EmailService(IOptions<MailSettings> mailSettings)
         {
-            _mailSettings = mailSettings;
+            _mailSettings = mailSettings.Value;
         }
 
         public void Send(Message message)

@@ -17,9 +17,9 @@ namespace Infrastructure.Persistence.Repository
 
         public ShoppingCartRepository
         (
-            RepositoryContext repositoryContext,
+            ApplicationDbContext appDbContext,
             ISortHelper<ShoppingCart> sortHelper
-        ) : base(repositoryContext)
+        ) : base(appDbContext)
         {
             _sortHelper = sortHelper;
         }
@@ -30,7 +30,7 @@ namespace Infrastructure.Persistence.Repository
 
             ApplyFilters(ref shoppingCarts, shoppingCartsQuery);
 
-            PerformSearch(ref shoppingCarts, shoppingCartsQuery.SearchTerm);
+            //PerformSearch(ref shoppingCarts, shoppingCartsQuery.SearchTerm);
 
             var sortedShoppingCarts = _sortHelper.ApplySort(shoppingCarts, shoppingCartsQuery.OrderBy);
 
@@ -79,8 +79,7 @@ namespace Infrastructure.Persistence.Repository
 
         private void ApplyFilters(ref IQueryable<ShoppingCart> shoppingCarts, GetShoppingCartsQuery shoppingCartsQuery)
         {
-            shoppingCarts = BaseFindAll()
-                .Include(x=>x.Customer);
+            shoppingCarts = BaseFindAll();
 
             /*
             if (shoppingCartsQuery.MinCreateAt != null)
@@ -95,12 +94,12 @@ namespace Infrastructure.Persistence.Repository
             */
         }
 
-        private void PerformSearch(ref IQueryable<ShoppingCart> shoppingCarts, string searchTerm)
-        {
-            if (!shoppingCarts.Any() || string.IsNullOrWhiteSpace(searchTerm)) return;
+        //private void PerformSearch(ref IQueryable<ShoppingCart> shoppingCarts, string searchTerm)
+        //{
+        //    if (!shoppingCarts.Any() || string.IsNullOrWhiteSpace(searchTerm)) return;
 
-            shoppingCarts = shoppingCarts.Where(x => x.Customer.FirstName.ToLower().Contains(searchTerm.Trim().ToLower()) || x.Customer.LastName.ToLower().Contains(searchTerm.Trim().ToLower()));
-        }
+        //    shoppingCarts = shoppingCarts.Where(x => x.Customer.FirstName.ToLower().Contains(searchTerm.Trim().ToLower()) || x.Customer.LastName.ToLower().Contains(searchTerm.Trim().ToLower()));
+        //}
 
 
     }

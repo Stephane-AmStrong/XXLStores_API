@@ -11,46 +11,46 @@ namespace Infrastructure.Persistence.Repository
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        protected RepositoryContext RepositoryContext { get; set; }
+        protected ApplicationDbContext ApplicationDbContext { get; set; }
 
-        public RepositoryBase(RepositoryContext repositoryContext)
+        public RepositoryBase(ApplicationDbContext appDbContext)
         {
-            RepositoryContext = repositoryContext;
+            ApplicationDbContext = appDbContext;
         }
 
         public IQueryable<T> BaseFindAll()
         {
-            return RepositoryContext.Set<T>().AsNoTracking();
+            return ApplicationDbContext.Set<T>().AsNoTracking();
         }
 
         public IQueryable<T> BaseFindByCondition(Expression<Func<T, bool>> expression)
         {
-            return RepositoryContext.Set<T>().Where(expression).AsNoTracking();
+            return ApplicationDbContext.Set<T>().Where(expression).AsNoTracking();
         }
 
         public async Task BaseCreateAsync(T entity)
         {
-            await RepositoryContext.Set<T>().AddAsync(entity);
+            await ApplicationDbContext.Set<T>().AddAsync(entity);
         }
 
         public async Task BaseCreateAsync(IEnumerable<T> entities)
         {
-            await RepositoryContext.Set<T>().AddRangeAsync(entities);
+            await ApplicationDbContext.Set<T>().AddRangeAsync(entities);
         }
 
         public async Task BaseUpdateAsync(T entity)
         {
-            await Task.Run(() => RepositoryContext.Set<T>().Update(entity));
+            await Task.Run(() => ApplicationDbContext.Set<T>().Update(entity));
         }
 
         public async Task BaseUpdateAsync(IEnumerable<T> entities)
         {
-            await Task.Run(() => RepositoryContext.Set<T>().UpdateRange(entities));
+            await Task.Run(() => ApplicationDbContext.Set<T>().UpdateRange(entities));
         }
 
         public async Task BaseDeleteAsync(T entity)
         {
-            await Task.Run(() => RepositoryContext.Set<T>().Remove(entity));
+            await Task.Run(() => ApplicationDbContext.Set<T>().Remove(entity));
         }
     }
 }

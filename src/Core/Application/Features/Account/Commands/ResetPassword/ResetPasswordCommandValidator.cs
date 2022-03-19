@@ -7,29 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Account.Commands.Register
+namespace Application.Features.Account.Commands.ResetPassword
 {
-    public  class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
+    public  class ResetPasswordCommandValidator : AbstractValidator<ResetPasswordCommand>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public RegisterUserCommandValidator(IRepositoryWrapper repository, IMapper mapper)
+        public ResetPasswordCommandValidator(IRepositoryWrapper repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
 
-            RuleFor(p => p.FirstName)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
-
-            RuleFor(p => p.LastName)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
-
-            RuleFor(p => p.RoleName)
+            RuleFor(p => p.Token)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
 
