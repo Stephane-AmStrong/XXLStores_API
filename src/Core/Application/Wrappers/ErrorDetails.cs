@@ -15,6 +15,7 @@ namespace Application.Wrappers
         public string Message { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        #pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public List<string>? Errors { get; set; }
     }
 }

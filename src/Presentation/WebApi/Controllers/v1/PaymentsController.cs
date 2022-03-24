@@ -1,8 +1,8 @@
-﻿using Application.Features.Categories.Commands.Create;
-using Application.Features.Categories.Commands.Delete;
-using Application.Features.Categories.Commands.Update;
-using Application.Features.Categories.Queries.GetById;
-using Application.Features.Categories.Queries.GetPagedList;
+﻿using Application.Features.Payments.Commands.Create;
+using Application.Features.Payments.Commands.Delete;
+using Application.Features.Payments.Commands.Update;
+using Application.Features.Payments.Queries.GetById;
+using Application.Features.Payments.Queries.GetPagedList;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,57 +14,59 @@ using Serilog;
 
 namespace WebApi.Controllers.v1
 {
-    [Authorize]
     [ApiVersion("1.0")]
-    public class CategoriesController : BaseApiController
+    [Authorize]
+    public class PaymentsController : BaseApiController
     {
         //readonly IDiagnosticContext _diagnosticContext;
-        public CategoriesController(){}
+        public PaymentsController()
+        {
+        }
 
 
         // GET: api/<controller>
         /// <summary>
-        /// return categories that matche the criteria
+        /// return payments that matche the criteria
         /// </summary>
-        /// <param name="categoriesQuery"></param>
+        /// <param name="paymentsQuery"></param>
         /// <returns></returns>
         [HttpGet]
-        //[Authorize(Policy = "category.read.policy")]
-        public async Task<IActionResult> Get([FromQuery] GetCategoriesQuery categoriesQuery)
+        [Authorize(Policy = "payment.read.policy")]
+        public async Task<IActionResult> Get([FromQuery] GetPaymentsQuery paymentsQuery)
         {
-            var categories = await Mediator.Send(categoriesQuery);
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(categories.MetaData));
-            return Ok(categories.PagedList);
+            var payments = await Mediator.Send(paymentsQuery);
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(payments.MetaData));
+            return Ok(payments.PagedList);
         }
 
 
         // GET api/<controller>/5
         /// <summary>
-        /// Retreives a specific Category.
+        /// Retreives a specific Payment.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        //[Authorize(Policy = "category.read.policy")]
+        [Authorize(Policy = "payment.read.policy")]
         public async Task<IActionResult> Get(Guid id)
         {
-            return Ok(await Mediator.Send(new GetCategoryByIdQuery { Id = id }));
+            return Ok(await Mediator.Send(new GetPaymentByIdQuery { Id = id }));
         }
 
 
         // POST api/<controller>
         /// <summary>
-        /// Creates a Category.
+        /// Creates a Payment.
         /// </summary>
         /// <param name="command"></param>
-        /// <returns>A newly created Category</returns>
+        /// <returns>A newly created Payment</returns>
         /// <response code="201">Returns the newly created command</response>
         /// <response code="400">If the command is null</response>            
         [HttpPost]
-        //[Authorize(Policy = "category.write.policy")]
+        [Authorize(Policy = "payment.write.policy")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post(CreateCategoryCommand command)
+        public async Task<IActionResult> Post(CreatePaymentCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
@@ -72,14 +74,14 @@ namespace WebApi.Controllers.v1
 
         // PUT api/<controller>/5
         /// <summary>
-        /// Update a specific Category.
+        /// Update a specific Payment.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        //[Authorize(Policy = "category.write.policy")]
-        public async Task<IActionResult> Put(Guid id, UpdateCategoryCommand command)
+        [Authorize(Policy = "payment.write.policy")]
+        public async Task<IActionResult> Put(Guid id, UpdatePaymentCommand command)
         {
             command.Id = id;
             return Ok(await Mediator.Send(command));
@@ -87,15 +89,15 @@ namespace WebApi.Controllers.v1
 
 
         /// <summary>
-        /// Deletes a specific Category.
+        /// Deletes a specific Payment.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        //[Authorize(Policy = "category.manage.policy")]
+        [Authorize(Policy = "payment.manage.policy")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            return Ok(await Mediator.Send(new DeleteCategoryCommand { Id = id }));
+            return Ok(await Mediator.Send(new DeletePaymentCommand { Id = id }));
         }
     }
 }

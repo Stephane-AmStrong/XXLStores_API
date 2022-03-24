@@ -38,6 +38,7 @@ namespace WebApi
             services.AddPersistenceInfrastructure(Configuration);
             services.AddSwaggerExtension();
             services.AddControllers();
+            services.ConfigureClaimPolicy();
             services.AddApiVersioningExtension();
             services.AddHealthChecks();
             services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();

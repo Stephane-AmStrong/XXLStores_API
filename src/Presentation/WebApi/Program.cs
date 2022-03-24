@@ -71,8 +71,8 @@ namespace WebApi
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
                     await Infrastructure.Persistence.Seeds.DefaultRoles.SeedAsync(userManager, roleManager);
-                    await Infrastructure.Persistence.Seeds.DefaultSuperAdmin.SeedAsync(userManager, roleManager);
-                    await Infrastructure.Persistence.Seeds.DefaultBasicUser.SeedAsync(userManager, roleManager);
+                    await Infrastructure.Persistence.Seeds.DefaultUsers.SeedVendorAsync(userManager, roleManager);
+                    await Infrastructure.Persistence.Seeds.DefaultUsers.SeedCustomerAsync(userManager, roleManager);
                     Log.Information("Finished Seeding Default Data");
                     Log.Information("Application Starting");
 

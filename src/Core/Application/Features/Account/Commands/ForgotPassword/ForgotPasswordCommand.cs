@@ -15,12 +15,14 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace Application.Features.Account.Commands.ForgotPassword
 {
     public class ForgotPasswordCommand : IRequest
     {
         public string Email { get; set; }
+        [JsonIgnore]
         public string Origin { get; set; }
     }
 
@@ -43,7 +45,7 @@ namespace Application.Features.Account.Commands.ForgotPassword
 
         public async Task<Unit> Handle(ForgotPasswordCommand command, CancellationToken cancellationToken)
         {
-            var account = await _userManager.FindByEmailAsync(command.Email);
+            var account = await _userManager.FindByNameAsync(command.Email);
 
             // always return ok response to prevent email enumeration
             if (account == null) return Unit.Value;

@@ -1,8 +1,8 @@
-﻿using Application.Features.Categories.Commands.Create;
-using Application.Features.Categories.Commands.Delete;
-using Application.Features.Categories.Commands.Update;
-using Application.Features.Categories.Queries.GetById;
-using Application.Features.Categories.Queries.GetPagedList;
+﻿using Application.Features.Shops.Commands.Create;
+using Application.Features.Shops.Commands.Delete;
+using Application.Features.Shops.Commands.Update;
+using Application.Features.Shops.Queries.GetById;
+using Application.Features.Shops.Queries.GetPagedList;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,57 +14,59 @@ using Serilog;
 
 namespace WebApi.Controllers.v1
 {
-    [Authorize]
     [ApiVersion("1.0")]
-    public class CategoriesController : BaseApiController
+    [Authorize]
+    public class ShopsController : BaseApiController
     {
         //readonly IDiagnosticContext _diagnosticContext;
-        public CategoriesController(){}
+        public ShopsController()
+        {
+        }
 
 
         // GET: api/<controller>
         /// <summary>
-        /// return categories that matche the criteria
+        /// return shops that matche the criteria
         /// </summary>
-        /// <param name="categoriesQuery"></param>
+        /// <param name="shopsQuery"></param>
         /// <returns></returns>
         [HttpGet]
-        //[Authorize(Policy = "category.read.policy")]
-        public async Task<IActionResult> Get([FromQuery] GetCategoriesQuery categoriesQuery)
+        [Authorize(Policy = "shop.read.policy")]
+        public async Task<IActionResult> Get([FromQuery] GetShopsQuery shopsQuery)
         {
-            var categories = await Mediator.Send(categoriesQuery);
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(categories.MetaData));
-            return Ok(categories.PagedList);
+            var shops = await Mediator.Send(shopsQuery);
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(shops.MetaData));
+            return Ok(shops.PagedList);
         }
 
 
         // GET api/<controller>/5
         /// <summary>
-        /// Retreives a specific Category.
+        /// Retreives a specific Shop.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        //[Authorize(Policy = "category.read.policy")]
+        [Authorize(Policy = "shop.read.policy")]
         public async Task<IActionResult> Get(Guid id)
         {
-            return Ok(await Mediator.Send(new GetCategoryByIdQuery { Id = id }));
+            return Ok(await Mediator.Send(new GetShopByIdQuery { Id = id }));
         }
 
 
         // POST api/<controller>
         /// <summary>
-        /// Creates a Category.
+        /// Creates a Shop.
         /// </summary>
         /// <param name="command"></param>
-        /// <returns>A newly created Category</returns>
+        /// <returns>A newly created Shop</returns>
         /// <response code="201">Returns the newly created command</response>
         /// <response code="400">If the command is null</response>            
         [HttpPost]
-        //[Authorize(Policy = "category.write.policy")]
+        [Authorize(Policy = "shop.write.policy")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post(CreateCategoryCommand command)
+        public async Task<IActionResult> Post(CreateShopCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
@@ -72,14 +74,14 @@ namespace WebApi.Controllers.v1
 
         // PUT api/<controller>/5
         /// <summary>
-        /// Update a specific Category.
+        /// Update a specific Shop.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        //[Authorize(Policy = "category.write.policy")]
-        public async Task<IActionResult> Put(Guid id, UpdateCategoryCommand command)
+        [Authorize(Policy = "shop.write.policy")]
+        public async Task<IActionResult> Put(Guid id, UpdateShopCommand command)
         {
             command.Id = id;
             return Ok(await Mediator.Send(command));
@@ -87,15 +89,15 @@ namespace WebApi.Controllers.v1
 
 
         /// <summary>
-        /// Deletes a specific Category.
+        /// Deletes a specific Shop.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        //[Authorize(Policy = "category.manage.policy")]
+        [Authorize(Policy = "shop.manage.policy")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            return Ok(await Mediator.Send(new DeleteCategoryCommand { Id = id }));
+            return Ok(await Mediator.Send(new DeleteShopCommand { Id = id }));
         }
     }
 }

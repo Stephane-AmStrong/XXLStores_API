@@ -20,6 +20,7 @@ using Application.Helpers;
 using Microsoft.IdentityModel.Tokens;
 using Domain.Settings;
 using Microsoft.Extensions.Options;
+using System.Text.Json.Serialization;
 
 namespace Application.Features.Account.Commands.Authenticate
 {
@@ -28,6 +29,7 @@ namespace Application.Features.Account.Commands.Authenticate
         public string Email { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [JsonIgnore]
         public string IpAddress { get; set; }
     }
 
@@ -36,14 +38,16 @@ namespace Application.Features.Account.Commands.Authenticate
     {
         private readonly ILogger<AuthenticationRequestCommandHandler> _logger;
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IRepositoryWrapper _repository;
         private readonly JWTSettings _jwtSettings;
         private readonly IMapper _mapper;
 
 
-        public AuthenticationRequestCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<AuthenticationRequestCommandHandler> logger, UserManager<AppUser> userManager, IOptions<JWTSettings> jwtSettings)
+        public AuthenticationRequestCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<AuthenticationRequestCommandHandler> logger, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<JWTSettings> jwtSettings)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _repository = repository;
             _mapper = mapper;
             _logger = logger;
@@ -92,24 +96,23 @@ namespace Application.Features.Account.Commands.Authenticate
         private async Task<JwtSecurityToken> GenerateJWToken(AppUser user)
         {
             var userClaims = await _userManager.GetClaimsAsync(user);
-            var roles = await _userManager.GetRolesAsync(user);
+            var roleName = (await _userManager.GetRolesAsync(user))[0];
+            var role = await _roleManager.FindByNameAsync(roleName);
 
             var roleClaims = new List<Claim>();
+            roleClaims.Add(new Claim(ClaimTypes.Role, roleName));
+            roleClaims.AddRange(await _roleManager.GetClaimsAsync(role));
 
-            for (int i = 0; i < roles.Count; i++)
-            {
-                roleClaims.Add(new Claim("roles", roles[i]));
-            }
 
             string ipAddress = IpHelper.GetIpAddress();
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                //new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim("uid", user.Id),
-                new Claim("ip", ipAddress)
+                new Claim("ip", ipAddress),
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.GivenName, user.LastName),
+                new Claim(ClaimTypes.Surname, user.FirstName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             }
             .Union(userClaims)
             .Union(roleClaims);
@@ -123,6 +126,7 @@ namespace Application.Features.Account.Commands.Authenticate
                 claims: claims,
                 expires: DateTime.UtcNow.AddMinutes(_jwtSettings.DurationInMinutes),
                 signingCredentials: signingCredentials);
+
             return jwtSecurityToken;
         }
 

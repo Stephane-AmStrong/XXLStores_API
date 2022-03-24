@@ -106,8 +106,8 @@ namespace Infrastructure.Persistence.Repository
                 var result = await _userManager.CreateAsync(user, registerRequest.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
-                    var verificationUri = await SendVerificationEmail(user, origin);
+                    await _userManager.AddToRoleAsync(user, Roles.Vendor.ToString());
+                    var verificationUri = await GenerateVerificationUri(user, origin);
                     //TODO: Attach Email Service here and configure it via appsettings
                     await _emailService.SendAsync(new Message { From = "mail@codewithmukesh.com", To = user.Email, Content = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
                     
@@ -171,7 +171,7 @@ namespace Infrastructure.Persistence.Repository
             return BitConverter.ToString(randomBytes).Replace("-", "");
         }
 
-        private async Task<string> SendVerificationEmail(AppUser user, string origin)
+        private async Task<string> GenerateVerificationUri(AppUser user, string origin)
         {
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Application.Enums
 {
     public enum Roles
     {
-        SuperAdmin,
-        Admin,
-        Moderator,
-        Basic
+        [Description("Customer")]
+        Customer = 1,
+
+        [Description("Vendor")]
+        Vendor = 2,
+
+        [Description("Admin")]
+        Admin = 3,
+
+        [Description("SuperAdmin")]
+        SuperAdmin = 4,
     }
 }

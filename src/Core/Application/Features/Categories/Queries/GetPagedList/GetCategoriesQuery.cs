@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Enums;
+using Application.Interfaces;
 using Application.Wrappers;
 using AutoMapper;
 using Domain.Parameters;

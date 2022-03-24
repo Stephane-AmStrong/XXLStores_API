@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Application.Enums;
 using Domain.Entities;
 using System.Security.Claims;
+using System.Collections.Generic;
+using Application.Wrappers;
 
 namespace Infrastructure.Persistence.Seeds
 {
@@ -17,49 +19,141 @@ namespace Infrastructure.Persistence.Seeds
                 superAdmin = new IdentityRole(Roles.SuperAdmin.ToString());
                 await roleManager.CreateAsync(superAdmin);
 
-                await roleManager.AddClaimAsync(superAdmin, new Claim("about.read", "Read About"));
-                await roleManager.AddClaimAsync(superAdmin, new Claim("about.write", "Write About"));
-                await roleManager.AddClaimAsync(superAdmin, new Claim("about.manage", "Manage About"));
+                for (int i = 0; i < ClaimsStore.AllClaims.Count; i++)
+                {
+                    await roleManager.AddClaimAsync(superAdmin, ClaimsStore.AllClaims[i]);
+                }
             }
 
-            //Seed Roles
 
             var admin = await roleManager.FindByNameAsync(Roles.Admin.ToString());
-            
+
             if (admin == null)
             {
                 admin = new IdentityRole(Roles.Admin.ToString());
                 await roleManager.CreateAsync(admin);
 
-                await roleManager.AddClaimAsync(admin, new Claim("about.read", "Read About"));
-                await roleManager.AddClaimAsync(admin, new Claim("about.write", "Write About"));
-                await roleManager.AddClaimAsync(admin, new Claim("about.manage", "Manage About"));
+                for (int i = 0; i < ClaimsStore.AllClaims.Count; i++)
+                {
+                    await roleManager.AddClaimAsync(admin, ClaimsStore.AllClaims[i]);
+                }
             }
 
 
-            var moderator = await roleManager.FindByNameAsync(Roles.Moderator.ToString());
+            var vendor = await roleManager.FindByNameAsync(Roles.Vendor.ToString());
 
-            if (moderator == null)
+            if (vendor == null)
             {
-                moderator = new IdentityRole(Roles.Moderator.ToString());
-                await roleManager.CreateAsync(moderator);
+                vendor = new IdentityRole(Roles.Vendor.ToString());
+                await roleManager.CreateAsync(vendor);
 
-                await roleManager.AddClaimAsync(moderator, new Claim("about.read", "Read About"));
-                await roleManager.AddClaimAsync(moderator, new Claim("about.write", "Write About"));
-                await roleManager.AddClaimAsync(moderator, new Claim("about.manage", "Manage About"));
+                for (int i = 0; i < ClaimsStore.VendorClaims.Count; i++)
+                {
+                    await roleManager.AddClaimAsync(vendor, ClaimsStore.VendorClaims[i]);
+                }
             }
 
-            var basic = await roleManager.FindByNameAsync(Roles.Basic.ToString());
+            var customer = await roleManager.FindByNameAsync(Roles.Customer.ToString());
 
-            if (basic == null)
+            if (customer == null)
             {
-                basic = new IdentityRole(Roles.Basic.ToString());
-                await roleManager.CreateAsync(basic);
+                customer = new IdentityRole(Roles.Customer.ToString());
+                await roleManager.CreateAsync(customer);
 
-                await roleManager.AddClaimAsync(basic, new Claim("about.read", "Read About"));
-                await roleManager.AddClaimAsync(basic, new Claim("about.write", "Write About"));
-                await roleManager.AddClaimAsync(basic, new Claim("about.manage", "Manage About"));
+                for (int i = 0; i < ClaimsStore.CustomerClaims.Count; i++)
+                {
+                    await roleManager.AddClaimAsync(customer, ClaimsStore.CustomerClaims[i]);
+                }
             }
         }
+    }
+
+    public static class ClaimsStore
+    {
+        public static List<ClaimWrapper> AllClaims = new List<ClaimWrapper>
+        {
+            new ClaimWrapper("appuser.read.policy", "appuser.read", "Read AppUsers"),
+            new ClaimWrapper("appuser.write.policy", "appuser.write", "Write AppUsers"),
+            new ClaimWrapper("appuser.manage.policy", "appuser.manage", "Manage AppUsers"),
+            
+            new ClaimWrapper("category.read.policy",  "category.read",  "Read Categories"),
+            new ClaimWrapper("category.write.policy", "category.write", "Write Categories"),
+            new ClaimWrapper("category.manage.policy","category.manage", "Manage Categories"),
+            
+            new ClaimWrapper("inventory.read.policy",  "inventory.read",  "Read Inventory"),
+            new ClaimWrapper("inventory.write.policy", "inventory.write", "Write Inventory"),
+            new ClaimWrapper("inventory.manage.policy","inventory.manage", "Manage Inventory"),
+            
+            new ClaimWrapper("item.read.policy",  "item.read",  "Read Items"),
+            new ClaimWrapper("item.write.policy", "item.write", "Write Items"),
+            new ClaimWrapper("item.manage.policy","item.manage", "Manage Items"),
+            
+            new ClaimWrapper("payment.read.policy",  "payment.read",  "Read Payments"),
+            new ClaimWrapper("payment.write.policy", "payment.write", "Write Payments"),
+            new ClaimWrapper("payment.manage.policy","payment.manage", "Manage Payments"),
+            
+            new ClaimWrapper("shop.read.policy",  "shop.read",  "Read Shops"),
+            new ClaimWrapper("shop.write.policy", "shop.write", "Write Shops"),
+            new ClaimWrapper("shop.manage.policy","shop.manage", "Manage Shops"),
+            
+            new ClaimWrapper("shoppingCart.read.policy",  "shoppingCart.read",  "Read ShoppingCarts"),
+            new ClaimWrapper("shoppingCart.write.policy", "shoppingCart.write", "Write ShoppingCarts"),
+            new ClaimWrapper("shoppingCart.manage.policy","shoppingCart.manage", "Manage ShoppingCarts"),
+            
+            new ClaimWrapper("shoppingCartItem.read.policy", "shoppingCartItem.read", "Read ShoppingCartItems"),
+            new ClaimWrapper("shoppingCartItem.write.policy", "shoppingCartItem.write", "Write ShoppingCartItems"),
+            new ClaimWrapper("shoppingCartItem.manage.policy", "shoppingCartItem.manage", "Manage ShoppingCartItems"),
+        };
+
+        public static List<Claim> VendorClaims = new List<Claim>
+        {
+            new Claim("appuser.read", "Read AppUsers"),
+            new Claim("appuser.write", "Write AppUsers"),
+            new Claim("appuser.manage", "Manage AppUsers"),
+            
+            new Claim("category.read",  "Read Categories"),
+            
+            new Claim("inventory.read",  "Read Inventory"),
+            new Claim("inventory.write", "Write Inventory"),
+            
+            new Claim("item.read",  "Read Items"),
+            new Claim("item.write", "Write Items"),
+            
+            new Claim("payment.read",  "Read Payments"),
+            new Claim("payment.write", "Write Payments"),
+            
+            new Claim("shop.read",  "Read Shops"),
+            new Claim("shop.write", "Write Shops"),
+            
+            new Claim("shoppingCart.read",  "Read ShoppingCarts"),
+            new Claim("shoppingCart.write", "Write ShoppingCarts"),
+            
+            new Claim("shoppingCartItem.read",  "Read ShoppingCartItems"),
+            new Claim("shoppingCartItem.write", "Write ShoppingCartItems"),
+        };
+        
+        public static List<Claim> CustomerClaims = new List<Claim>
+        {
+            new Claim("appuser.read", "Read AppUsers"),
+            new Claim("appuser.write", "Write AppUsers"),
+            
+            new Claim("category.read",  "Read Categories"),
+            
+            new Claim("inventory.read",  "Read Inventory"),
+            new Claim("inventory.write", "Write Inventory"),
+            
+            new Claim("item.read",  "Read Items"),
+            
+            new Claim("payment.read",  "Read Payments"),
+            new Claim("payment.write", "Write Payments"),
+            
+            new Claim("shop.read",  "Read Shops"),
+            
+            new Claim("shoppingCart.read",  "Read ShoppingCarts"),
+            new Claim("shoppingCart.write", "Write ShoppingCarts"),
+            
+            new Claim("shoppingCartItem.read",  "Read ShoppingCartItems"),
+            new Claim("shoppingCartItem.write", "Write ShoppingCartItems"),
+        };
     }
 }

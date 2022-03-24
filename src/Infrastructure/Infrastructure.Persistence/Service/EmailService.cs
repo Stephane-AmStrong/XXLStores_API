@@ -22,12 +22,13 @@ namespace Infrastructure.Persistence.Service
             _mailSettings = mailSettings.Value;
         }
 
-        public void Send(Message message)
+        /*public void Send(Message message)
         {
             var emailMessage = CreateEmailMessage(message);
-
             Send(emailMessage);
         }
+        */
+
 
         public async Task SendAsync(Message message)
         {
@@ -70,7 +71,7 @@ namespace Infrastructure.Persistence.Service
             return emailMessage;
         }
 
-        private void Send(MimeMessage mailMessage)
+        /*private void Send(MimeMessage mailMessage)
         {
             using var smtp = new SmtpClient();
             try
@@ -91,7 +92,7 @@ namespace Infrastructure.Persistence.Service
                 smtp.Disconnect(true);
                 smtp.Dispose();
             }
-        }
+        }*/
 
         private async Task SendAsync(MimeMessage mailMessage)
         {

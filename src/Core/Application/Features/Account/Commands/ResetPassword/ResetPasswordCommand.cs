@@ -45,7 +45,7 @@ namespace Application.Features.Account.Commands.ResetPassword
 
         public async Task<string> Handle(ResetPasswordCommand command, CancellationToken cancellationToken)
         {
-            var account = await _userManager.FindByEmailAsync(command.Email);
+            var account = await _userManager.FindByNameAsync(command.Email);
             if (account == null) throw new ApiException($"No Accounts Registered with {command.Email}.");
             var result = await _userManager.ResetPasswordAsync(account, command.Token, command.Password);
             if (result.Succeeded)

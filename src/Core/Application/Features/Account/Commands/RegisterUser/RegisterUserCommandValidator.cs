@@ -29,9 +29,9 @@ namespace Application.Features.Account.Commands.RegisterUser
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
 
-            RuleFor(p => p.RoleName)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull();
+            //RuleFor(p => p.RoleName)
+            //    .NotEmpty().WithMessage("{PropertyName} is required.")
+            //    .NotNull();
 
             RuleFor(p => p.Email)
                 .NotEmpty().WithMessage("{PropertyName} is required.")

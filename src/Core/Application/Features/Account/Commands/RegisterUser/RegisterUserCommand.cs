@@ -23,8 +23,10 @@ namespace Application.Features.Account.Commands.RegisterUser
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string RoleName { get; set; }
+        //public string RoleName { get; set; }
         public string Email { get; set; }
+
+        public Roles Role { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [DataType(DataType.Password)]
@@ -70,7 +72,7 @@ namespace Application.Features.Account.Commands.RegisterUser
                 var result = await _userManager.CreateAsync(user, command.Password);
                 if (result.Succeeded)
                 {
-                    //await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
+                    await _userManager.AddToRoleAsync(user, command.Role.ToString());
                     var verificationUri = await SendVerificationEmail(user, command.Origin);
 
                     //TODO: Attach Email Service here and configure it via appsettings
