@@ -1,14 +1,12 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 using Domain.Entities;
 using Domain.Models;
-using Infrastructure.Persistence.Contexts;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
+using Domain.Settings;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -16,219 +14,184 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.WebUtilities;
+using Application.DataTransfertObjects.Account;
+using Application.Helpers;
 
 namespace Infrastructure.Persistence.Repository
 {
-    public class AccountRepository : RepositoryBase<AppUser>, IAccountRepository
+    public class AccountRepository : IAccountRepository
     {
-        private readonly IConfiguration _configuration;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly HttpContext _httpContext;
-        //private readonly string _baseURL;
+        private readonly JWTSettings _jwtSettings;
 
 
-        public AccountRepository(ApplicationDbContext appDbContext, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IHttpContextAccessor httpContextAccessor) : base(appDbContext)
+        public AccountRepository
+        (
+            UserManager<AppUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            IOptions<JWTSettings> jwtSettings
+        )
         {
-            _configuration = configuration;
             _userManager = userManager;
             _roleManager = roleManager;
-            _httpContext = httpContextAccessor.HttpContext;
-            //_baseURL = string.Concat(httpContextAccessor.HttpContext.Request.Scheme, "://", httpContextAccessor.HttpContext.Request.Host);
+            _jwtSettings = jwtSettings.Value;
         }
 
 
-        public async Task<AuthenticationModel> RegisterAsync(AppUser user, string password)
+
+        public async Task<AuthenticationModel> AuthenticateAsync(LoginModel loginModel, string ipAddress)
         {
-            if (user == null) throw new ArgumentNullException(nameof(user));
-            
-            var result = await _userManager.CreateAsync(user, password);
+            var user = await _userManager.FindByNameAsync(loginModel.Email);
+            if (user == null) throw new ApiException($"No Accounts Registered with {loginModel.Email}.");
 
-            if (result.Succeeded)
-            {
-                var generatedToken = await GenerateEmailConfirmationTokenAsync(user);
-                var encodeToken = await EncodeTokenAsync(generatedToken);
-
-                return new AuthenticationModel
-                {
-                    Token = encodeToken,
-                    IsSuccess = true,
-                };
-            }
-
-            return new AuthenticationModel
-            {
-                Message = "AppUser is not created",
-                IsSuccess = false,
-                ErrorDetails = result.Errors.Select(errorDescription => errorDescription.Description)
-            };
-        }
-
-
-        public async Task<string> GenerateEmailConfirmationTokenAsync(AppUser appUser)
-        {
-            return await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
-        }
-
-
-        public async Task<string> EncodeTokenAsync(string token)
-        {
-            var encodedEmailToken = await Task.Run(() => Encoding.UTF8.GetBytes(token));
-            return await Task.Run(() => WebEncoders.Base64UrlEncode(encodedEmailToken));
-        }
-
-
-        public async Task<string> DecodeTokenAsync(string encodedToken)
-        {
-            var decodedToken = await Task.Run(() => WebEncoders.Base64UrlDecode(encodedToken));
-            return await Task.Run(() => Encoding.UTF8.GetString(decodedToken));
-        }
-
-
-        public async Task<AuthenticationModel> ConfirmEmailAsync(string userId, string token)
-        {
-            var user = await _userManager.FindByIdAsync(userId);
-
-            if (user == null)
-            {
-                return new AuthenticationModel
-                {
-                    IsSuccess = false,
-                    Message = "User not found !"
-                };
-            }
-
-            var result = await _userManager.ConfirmEmailAsync(user, await DecodeTokenAsync(token));
-
-            var userInfo = user.ToDictionary();
-
-            if (result.Succeeded)
-            {
-                return new AuthenticationModel
-                {
-                    IsSuccess = true,
-                    UserInfo = userInfo,
-                    Message = "Email confirmed successfuly!"
-                };
-            }
-
-            return new AuthenticationModel
-            {
-                IsSuccess = false,
-                Message = "Email confirmation failed",
-                ErrorDetails = result.Errors.Select(ex => ex.Description)
-            };
-        }
-
-
-        public async Task<AuthenticationModel> SignInAsync(LoginModel loginModel)
-        {
-            if (loginModel == null) throw new ArgumentNullException(nameof(loginModel));
-
-            var user = await _userManager.FindByEmailAsync(loginModel.Email);
-
-            if (user == null)
-            {
-                return new AuthenticationModel
-                {
-                    Message = "There is no user with that email adresse",
-                    IsSuccess = false,
-                };
-            }
-
+            var authenticationSucceeded = await _userManager.CheckPasswordAsync(user, loginModel.Password);
+            if (!authenticationSucceeded) throw new ApiException($"Invalid Credentials for '{loginModel.Email}'.");
 
             var isEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+            if (!isEmailConfirmed) throw new ApiException($"Account Not Confirmed for '{loginModel.Email}'.");
 
-            if (!isEmailConfirmed)
+            var jwtSecurityToken = await GenerateJWToken(user);
+            var refreshToken = await GenerateRefreshToken(ipAddress);
+
+            return new AuthenticationModel
             {
-                return new AuthenticationModel
-                {
-                    Message = "Cannot sign in without a confirmed email",
-                    AppUser = user,
-                    IsSuccess = false,
-                };
-            }
+                AppUser = user,
+                Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
+                RefreshToken = refreshToken,
+                UserInfo = user.ToDictionary(),
+                IsSuccess = true
+            };
+        }
 
 
-            var resultSucceeded = await _userManager.CheckPasswordAsync(user, loginModel.Password);
 
-            if (!resultSucceeded)
+        public async Task<AuthenticationModel> RegisterAsync(AppUser user, string password, string origin)
+        {
+            var userWithSameUserName = await _userManager.FindByNameAsync(user.UserName);
+            if (userWithSameUserName != null) throw new ApiException($"Username '{user.UserName}' is already taken.");
+
+            var userWithSameEmail = await _userManager.FindByEmailAsync(user.Email);
+            if (userWithSameEmail != null) throw new ApiException($"Email {user.Email } is already registered.");
+
+            var result = await _userManager.CreateAsync(user, password);
+            if (!result.Succeeded) throw new ApiException($"{result.Errors}");
+
+            //await _userManager.AddToRoleAsync(user, Roles.Vendor.ToString());
+            var emailConfirmationToken = await GenerateEmailConfirmationTokenAsync(user, origin);
+            //TODO: Attach Email Service here and configure it via appsettings
+            //await _emailService.SendAsync(new Message { From = "mail@codewithmukesh.com", To = user.Email, Content = $"Please confirm your account by visiting this URL {emailVerificationUri}", Subject = "Confirm Registration" });
+
+            return new AuthenticationModel
             {
-                return new AuthenticationModel
-                {
-                    Message = "Invalid password !",
-                    IsSuccess = false,
-                };
-            }
+                AppUser = user,
+                Token = emailConfirmationToken,
+                UserInfo = user.ToDictionary(),
+                IsSuccess = true
+            };
+        }
 
+        private async Task<JwtSecurityToken> GenerateJWToken(AppUser user)
+        {
+            var userClaims = await _userManager.GetClaimsAsync(user);
             var roleName = (await _userManager.GetRolesAsync(user))[0];
             var role = await _roleManager.FindByNameAsync(roleName);
 
-            var claims = new List<Claim>
+            var roleClaims = new List<Claim>();
+            roleClaims.Add(new Claim(ClaimTypes.Role, roleName));
+            roleClaims.AddRange(await _roleManager.GetClaimsAsync(role));
+
+
+            string ipAddress = IpHelper.GetIpAddress();
+
+            var claims = new[]
             {
+                new Claim("ip", ipAddress),
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.GivenName, user.LastName),
                 new Claim(ClaimTypes.Surname, user.FirstName),
-                new Claim(ClaimTypes.Role, roleName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
+            }
+            .Union(userClaims)
+            .Union(roleClaims);
 
-            if (!string.IsNullOrEmpty(user.ImgLink)) claims.Add(new Claim(ClaimTypes.Uri, user.ImgLink));
+            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
+            var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
-            claims.AddRange(await _roleManager.GetClaimsAsync(role));
+            var jwtSecurityToken = new JwtSecurityToken(
+                issuer: _jwtSettings.Issuer,
+                audience: _jwtSettings.Audience,
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(_jwtSettings.DurationInMinutes),
+                signingCredentials: signingCredentials);
 
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            return jwtSecurityToken;
+        }
 
+        private async Task<string> GenerateEmailConfirmationTokenAsync(AppUser user, string origin)
+        {
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            var route = "api/account/confirm-email/";
+            var _enpointUri = new Uri(string.Concat($"{origin}/", route));
+            var emailVerificationUri = QueryHelpers.AddQueryString(_enpointUri.ToString(), "userId", user.Id);
+            emailVerificationUri = QueryHelpers.AddQueryString(emailVerificationUri, "code", code);
 
-            var authProperties = new AuthenticationProperties
+            return emailVerificationUri;
+        }
+
+        public async Task<string> ConfirmEmailAsync(string userId, string code)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            if (result.Succeeded)
             {
-                //AllowRefresh = <bool>,
-                // Refreshing the authentication session should be allowed.
-
-                ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1),
-                // The time at which the authentication ticket expires. A 
-                // value set here overrides the ExpireTimeSpan option of 
-                // CookieAuthenticationOptions set with AddCookie.
-
-                IsPersistent = true,
-                // Whether the authentication session is persisted across 
-                // multiple requests. When used with cookies, controls
-                // whether the cookie's lifetime is absolute (matching the
-                // lifetime of the authentication ticket) or session-based.
-
-                //IssuedUtc = <DateTimeOffset>,
-                // The time at which the authentication ticket was issued.
-
-                //RedirectUri = <string>
-                // The full path or absolute URI to be used as an http 
-                // redirect response value.
-            };
-
-            await _httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-
-            // cookieSignIn
-
-            var userInfo = user.ToDictionary();
-
-            return new AuthenticationModel
+                return $"{user.Id}, message: Account Confirmed for {user.Email}. You can now use the /api/Account/authenticate endpoint.";
+            }
+            else
             {
-                UserInfo = userInfo,
-                AppUser = user,
-                IsSuccess = true,
+                throw new ApiException($"An error occured while confirming {user.Email}.");
+            }
+        }
+
+        public async Task<RefreshToken> GenerateRefreshToken(string ipAddress)
+        {
+            var randomTokenString = await RandomTokenString();
+
+            return new RefreshToken
+            {
+                Token = randomTokenString,
+                Expires = DateTime.UtcNow.AddDays(7),
+                Created = DateTime.UtcNow,
+                CreatedByIp = ipAddress
             };
         }
 
-        public async Task SignOutAsync()
+        public async Task<string> RandomTokenString()
         {
-            await _httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            var random = new Random();
+            var randomBytes = new byte[40];
+
+            //random.NextBytes(randomBytes);
+            //rngCryptoServiceProvider.GetBytes(randomBytes);
+
+            await Task.Run(() => random.NextBytes(randomBytes));
+
+            using var rngCryptoServiceProvider = new RNGCryptoServiceProvider();
+            await Task.Run(() => rngCryptoServiceProvider.GetBytes(randomBytes));
+
+            // convert random bytes to hex string
+            return await Task.Run(() => BitConverter.ToString(randomBytes).Replace("-", ""));
         }
 
-
-        public async Task<AuthenticationModel> ForgetPasswordAsync(string email)
+        public async Task<AuthenticationModel> GeneratePasswordResetTokenAsync(ForgotPasswordRequest model)
         {
-            var user = await _userManager.FindByEmailAsync(email);
-            if (user == null)
+            var account = await _userManager.FindByEmailAsync(model.Email);
+
+            // always return ok response to prevent email enumeration
+            if (account == null)
             {
                 return new AuthenticationModel
                 {
@@ -237,102 +200,43 @@ namespace Infrastructure.Persistence.Repository
                 };
             }
 
-            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var encodedToken = await EncodeTokenAsync(token);
+            var code = await _userManager.GeneratePasswordResetTokenAsync(account);
+            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
-            var userInfo = user.ToDictionary();
+            /*
+            var route = "api/account/reset-password/";
+            var _enpointUri = new Uri(string.Concat($"{origin}/", route));
+            
+            var emailRequest = new Message()
+            {
+                Content = $"You reset token is - {code}",
+                To = model.Email,
+                Subject = "Reset Password",
+            };
+            */
 
             return new AuthenticationModel
             {
-                Token = encodedToken,
+                Token = code,
                 IsSuccess = true,
-                UserInfo = userInfo,
                 Message = "Password reset url has been sent to your email successfully",
             };
-
         }
 
-
-        public async Task<AuthenticationModel> AddToIdentityRoleAsync(AppUser user, IdentityRole role)
+        public async Task<string> ResetPassword(ResetPasswordRequest model)
         {
-            if (user == null) throw new ArgumentNullException(nameof(user));
-            if (role == null) throw new ArgumentNullException(nameof(role));
+            var account = await _userManager.FindByEmailAsync(model.Email);
+            if (account == null) throw new ApiException($"No Accounts Registered with {model.Email}.");
 
-            var result = await _userManager.AddToRoleAsync(user, role.Name);
-
+            var result = await _userManager.ResetPasswordAsync(account, model.Token, model.Password);
             if (result.Succeeded)
             {
-                return new AuthenticationModel
-                {
-                    IsSuccess = true,
-                };
+                return $"{model.Email}, message: Password Resetted.";
             }
-
-            return new AuthenticationModel
+            else
             {
-                Message = "IdentityRole not assigned",
-                IsSuccess = false,
-                ErrorDetails = result.Errors.Select(errorDescription => errorDescription.Description)
-            };
-        }
-
-
-        public async Task<AuthenticationModel> RemoveFromIdentityRoleAsync(AppUser user, IdentityRole role)
-        {
-            if (user == null) throw new ArgumentNullException(nameof(user));
-            if (role == null) throw new ArgumentNullException(nameof(role));
-
-            var result = await _userManager.RemoveFromRoleAsync(user, role.Name);
-
-            if (result.Succeeded)
-            {
-                return new AuthenticationModel
-                {
-                    IsSuccess = true,
-                };
+                throw new ApiException($"Error occured while reseting the password.");
             }
-
-            return new AuthenticationModel
-            {
-                Message = "IdentityRole not removed",
-                IsSuccess = false,
-                ErrorDetails = result.Errors.Select(errorDescription => errorDescription.Description)
-            };
-        }
-
-        public async Task<AppUser> FindByEmailAsync(string email)
-        {
-            return await _userManager.FindByEmailAsync(email);
-        }
-
-        public async Task<string> GeneratePasswordResetTokenAsync(AppUser appUser)
-        {
-            return await _userManager.GeneratePasswordResetTokenAsync(appUser);
-        }
-
-        public async Task<IdentityResult> ResetPasswordAsync(AppUser appUser, string token, string password)
-        {
-            return await _userManager.ResetPasswordAsync(appUser, token, password);
-        }
-
-        public async Task<bool> IsEmailConfirmedAsync(AppUser appUser)
-        {
-            return await _userManager.IsEmailConfirmedAsync(appUser);
-        }
-
-        public Task<AuthenticationModel> UpdateAsync(AppUser appUser)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<string> GetId(ClaimsPrincipal user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ICollection<string>> GetWorkstationsAsync(AppUser user)
-        {
-            throw new NotImplementedException();
         }
 
         public Task<AuthenticationModel> AddToWorkstationAsync(AppUser user, IdentityRole role)

@@ -24,7 +24,7 @@ using System.Text.Json.Serialization;
 
 namespace Application.Features.Account.Commands.Authenticate
 {
-    public class AuthenticationCommand : IRequest<AuthenticationNewModel>
+    public class AuthenticationCommand : IRequest<AuthenticationViewModel>
     {
         public string Email { get; set; }
         [DataType(DataType.Password)]
@@ -34,7 +34,7 @@ namespace Application.Features.Account.Commands.Authenticate
     }
 
 
-    internal class AuthenticationRequestCommandHandler : IRequestHandler<AuthenticationCommand, AuthenticationNewModel>
+    internal class AuthenticationRequestCommandHandler : IRequestHandler<AuthenticationCommand, AuthenticationViewModel>
     {
         private readonly ILogger<AuthenticationRequestCommandHandler> _logger;
         private readonly UserManager<AppUser> _userManager;
@@ -55,39 +55,17 @@ namespace Application.Features.Account.Commands.Authenticate
         }
 
 
-        public async Task<AuthenticationNewModel> Handle(AuthenticationCommand command, CancellationToken cancellationToken)
+        public async Task<AuthenticationViewModel> Handle(AuthenticationCommand command, CancellationToken cancellationToken)
         {
             var loginModel = _mapper.Map<LoginModel>(command);
 
-            var user = await _userManager.FindByNameAsync(loginModel.Email);
+            _logger.LogInformation($"Authentication attempt with email: {command.Email}");
+            var authenticationModel = await _repository.Account.AuthenticateAsync(loginModel, command.IpAddress);
+            _logger.LogInformation($"Authentication succeeds");
 
-            if (user == null) throw new ApiException($"No Accounts Registered with {loginModel.Email}.");
+            var authenticationViewModel = _mapper.Map<AuthenticationViewModel>(authenticationModel);
 
-            var authenticationSucceeded = await _userManager.CheckPasswordAsync(user, command.Password);
-
-            if (!authenticationSucceeded) throw new ApiException($"Invalid Credentials for '{loginModel.Email}'.");
-
-            var isEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
-
-            if (!isEmailConfirmed) throw new ApiException($"Account Not Confirmed for '{loginModel.Email}'.");
-
-
-            var jwtSecurityToken = await GenerateJWToken(user);
-            var authenticationModel = new AuthenticationNewModel
-            {
-                Id = user.Id,
-                JWToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
-                Email = user.Email,
-                UserName = user.UserName
-            };
-
-            var rolesList = await _userManager.GetRolesAsync(user).ConfigureAwait(false);
-            authenticationModel.Roles = rolesList.ToList();
-            authenticationModel.IsVerified = user.EmailConfirmed;
-            var refreshToken = GenerateRefreshToken(command.IpAddress);
-            authenticationModel.RefreshToken = refreshToken.Token;
-
-            return authenticationModel;
+            return authenticationViewModel;
         }
 
 

@@ -12,7 +12,7 @@ namespace Application.Interfaces
 {
     public interface IAccountNewRepository
     {
-        Task<AuthenticationNewModel> AuthenticateAsync(LoginModel loginModel, string ipAddress);
+        Task<AuthenticationModel> AuthenticateAsync(LoginModel loginModel, string ipAddress);
         Task<string> RegisterAsync(RegisterRequest registerRequest, string origin);
         Task<string> ConfirmEmailAsync(string userId, string code);
         Task ForgotPassword(ForgotPasswordRequest model, string origin);

@@ -27,6 +27,7 @@ namespace Application.Mappings
 
             CreateMap<LoginModel, AuthenticationCommand>().ReverseMap();
             CreateMap<AuthenticationModel, AppUserViewModel>().ReverseMap();
+            CreateMap<AuthenticationModel, AuthenticationViewModel>().ReverseMap();
 
             CreateMap<AppUser, CreateAppUserCommand>().ReverseMap();
 

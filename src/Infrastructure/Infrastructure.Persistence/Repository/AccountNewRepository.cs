@@ -53,7 +53,7 @@ namespace Infrastructure.Persistence.Repository
 
 
 
-        public async Task<AuthenticationNewModel> AuthenticateAsync(LoginModel loginModel, string ipAddress)
+        public async Task<AuthenticationModel> AuthenticateAsync(LoginModel loginModel, string ipAddress)
         {
             var user = await _userManager.FindByEmailAsync(loginModel.Email);
 
@@ -67,21 +67,21 @@ namespace Infrastructure.Persistence.Repository
             
 
             JwtSecurityToken jwtSecurityToken = await GenerateJWToken(user);
-            var authenticationModel = new AuthenticationNewModel
-            {
-                Id = user.Id,
-                JWToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
-                Email = user.Email,
-                UserName = user.UserName
-            };
+            //var authenticationModel = new AuthenticationModel
+            //{
+            //    Id = user.Id,
+            //    JWToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
+            //    Email = user.Email,
+            //    UserName = user.UserName
+            //};
 
-            var rolesList = await _userManager.GetRolesAsync(user).ConfigureAwait(false);
-            authenticationModel.Roles = rolesList.ToList();
-            authenticationModel.IsVerified = user.EmailConfirmed;
-            var refreshToken = GenerateRefreshToken(ipAddress);
-            authenticationModel.RefreshToken = refreshToken.Token;
+            //var rolesList = await _userManager.GetRolesAsync(user).ConfigureAwait(false);
+            //authenticationModel.Roles = rolesList.ToList();
+            //authenticationModel.IsVerified = user.EmailConfirmed;
+            //var refreshToken = GenerateRefreshToken(ipAddress);
+            //authenticationModel.RefreshToken = refreshToken.Token;
 
-            return authenticationModel;
+            return new AuthenticationModel();
         }
 
 

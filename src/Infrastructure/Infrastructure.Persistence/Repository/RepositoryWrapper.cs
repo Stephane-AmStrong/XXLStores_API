@@ -30,9 +30,12 @@ namespace Infrastructure.Persistence.Repository
         private readonly ISortHelper<ShoppingCartItem> _shoppingCartItemSortHelper;
 
         private readonly IOptions<MailSettings> _mailSettings;
-        private readonly ApplicationDbContext _appDbContext;
+        private readonly IOptions<JWTSettings> _jwtSettings;
+
         private readonly UserManager<AppUser> _userManager;
-        //private RoleManager<Workstation> _roleManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        private readonly ApplicationDbContext _appDbContext;
 
         private IAccountRepository _account;
         private ICategoryRepository _category;
@@ -51,8 +54,6 @@ namespace Infrastructure.Persistence.Repository
         }
 
 
-
-        public IAccountRepository Account => throw new System.NotImplementedException();
 
         public IAppUserRepository AppUser => throw new System.NotImplementedException();
 
@@ -83,19 +84,19 @@ namespace Infrastructure.Persistence.Repository
         }
 
 
-        //public IAccountRepository Account
-        //{
-        //    get
-        //    {
-        //        if (_account == null)
-        //        {
-        //            _account = new AccountService(_appDbContext, _userManager, _roleManager, _configuration, _httpContextAccessor);
-        //        }
-        //        return _account;
-        //    }
-        //}
+        public IAccountRepository Account
+        {
+            get
+            {
+                if (_account == null)
+                {
+                    _account = new AccountRepository(_userManager, _roleManager, _jwtSettings);
+                }
+                return _account;
+            }
+        }
 
-        
+
         public ICategoryRepository Category
         {
             get
@@ -193,11 +194,12 @@ namespace Infrastructure.Persistence.Repository
 
         public RepositoryWrapper(
             UserManager<AppUser> userManager,
+            RoleManager<IdentityRole> roleManager,
             ApplicationDbContext appDbContext,
             IWebHostEnvironment webHostEnvironment,
             IConfiguration configuration,
             IOptions<MailSettings> mailSettings,
-
+            IOptions<JWTSettings> jwtSettings,
             ISortHelper<AppUser> appUserSortHelper,
             ISortHelper<Category> categorySortHelper,
             ISortHelper<InventoryLevel> inventoryLevelSortHelper,
@@ -209,8 +211,10 @@ namespace Infrastructure.Persistence.Repository
             IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _configuration = configuration;
             _mailSettings = mailSettings;
+            _jwtSettings = jwtSettings;
             _appDbContext = appDbContext;
 
             _appUserSortHelper = appUserSortHelper;

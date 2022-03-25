@@ -1,4 +1,6 @@
-﻿using Application.Wrappers;
+﻿using Application.DataTransfertObjects.Account;
+using Application.Features.Account.Commands.Authenticate;
+using Application.Wrappers;
 using Domain.Entities;
 using Domain.Models;
 using Microsoft.AspNetCore.Identity;
@@ -10,22 +12,12 @@ namespace Application.Interfaces
 {
     public interface IAccountRepository
     {
-        Task<AuthenticationModel> RegisterAsync(AppUser appUser, string password);
-        Task<AuthenticationModel> UpdateAsync(AppUser appUser);
-        Task<AuthenticationModel> ConfirmEmailAsync(string userId, string token);
-        Task<string> GenerateEmailConfirmationTokenAsync(AppUser appUser);
-        Task<string> EncodeTokenAsync(string token);
-        Task<string> DecodeTokenAsync(string encodedToken);
-        Task<AuthenticationModel> SignInAsync(LoginModel loginModel);
-        Task SignOutAsync();
-        Task<AppUser> FindByEmailAsync(string email);
-        Task<string> GeneratePasswordResetTokenAsync(AppUser appUser);
-        Task<AuthenticationModel> ForgetPasswordAsync(string email);
-        Task<IdentityResult> ResetPasswordAsync(AppUser appUser, string token, string password);
-        Task<bool> IsEmailConfirmedAsync(AppUser appUser);
-        Task<string> GetId(ClaimsPrincipal user);
-
-        Task<ICollection<string>> GetWorkstationsAsync(AppUser user);
+        Task<AuthenticationModel> AuthenticateAsync(LoginModel loginModel, string ipAddress);
+        Task<string> ConfirmEmailAsync(string userId, string code);
+        Task<AuthenticationModel> GeneratePasswordResetTokenAsync(ForgotPasswordRequest model);
+        //Task<AuthenticationModel> GenerateEmailConfirmationTokenAsync(AppUser user, string origin);
+        Task<AuthenticationModel> RegisterAsync(AppUser user, string password, string origin);
+        Task<string> ResetPassword(ResetPasswordRequest model);
         Task<AuthenticationModel> AddToWorkstationAsync(AppUser user, IdentityRole role);
         Task<AuthenticationModel> RemoveFromWorkstationAsync(AppUser user, IdentityRole role);
     }
