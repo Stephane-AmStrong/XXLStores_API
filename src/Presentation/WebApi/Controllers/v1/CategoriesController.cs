@@ -29,7 +29,7 @@ namespace WebApi.Controllers.v1
         /// <param name="categoriesQuery"></param>
         /// <returns></returns>
         [HttpGet]
-        //[Authorize(Policy = "category.read.policy")]
+        [Authorize(Policy = "category.read.policy")]
         public async Task<IActionResult> Get([FromQuery] GetCategoriesQuery categoriesQuery)
         {
             var categories = await Mediator.Send(categoriesQuery);
@@ -45,7 +45,7 @@ namespace WebApi.Controllers.v1
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        //[Authorize(Policy = "category.read.policy")]
+        [Authorize(Policy = "category.read.policy")]
         public async Task<IActionResult> Get(Guid id)
         {
             return Ok(await Mediator.Send(new GetCategoryByIdQuery { Id = id }));
@@ -61,7 +61,7 @@ namespace WebApi.Controllers.v1
         /// <response code="201">Returns the newly created command</response>
         /// <response code="400">If the command is null</response>            
         [HttpPost]
-        //[Authorize(Policy = "category.write.policy")]
+        [Authorize(Policy = "category.write.policy")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post(CreateCategoryCommand command)
@@ -78,7 +78,7 @@ namespace WebApi.Controllers.v1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        //[Authorize(Policy = "category.write.policy")]
+        [Authorize(Policy = "category.write.policy")]
         public async Task<IActionResult> Put(Guid id, UpdateCategoryCommand command)
         {
             command.Id = id;
@@ -92,7 +92,7 @@ namespace WebApi.Controllers.v1
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        //[Authorize(Policy = "category.manage.policy")]
+        [Authorize(Policy = "category.manage.policy")]
         public async Task<IActionResult> Delete(Guid id)
         {
             return Ok(await Mediator.Send(new DeleteCategoryCommand { Id = id }));

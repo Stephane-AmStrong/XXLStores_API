@@ -58,7 +58,7 @@ namespace WebApi.Extensions
             Description = "Input your Bearer token in this format - Bearer {your token here} to access this API",
             Name = "Authorization",
             In = ParameterLocation.Header,
-            Type = SecuritySchemeType.ApiKey,
+            Type = SecuritySchemeType.Http,
             Scheme = "Bearer",
             BearerFormat = "JWT",
             Reference = new OpenApiReference
