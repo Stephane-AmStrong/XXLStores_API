@@ -21,7 +21,7 @@ namespace Infrastructure.Persistence
         public static void AddIdentityInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<IdentityContext>(options =>
-                options.UseNpgsql(
+                options.UseSqlServer(
                         configuration.GetConnectionString("IdentityConnection"),
                         b => b.MigrationsAssembly(typeof(IdentityContext).Assembly.FullName)
                     )

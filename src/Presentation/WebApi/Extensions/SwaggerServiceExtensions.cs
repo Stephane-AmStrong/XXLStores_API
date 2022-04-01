@@ -15,7 +15,7 @@ namespace WebApi.Extensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.IncludeXmlComments(string.Format(@"{0}\XXLStores_API.xml", AppDomain.CurrentDomain.BaseDirectory));
+                c.IncludeXmlComments(string.Format(@"{0}\wwwroot\XXLStores_API.xml", AppDomain.CurrentDomain.BaseDirectory));
 
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {

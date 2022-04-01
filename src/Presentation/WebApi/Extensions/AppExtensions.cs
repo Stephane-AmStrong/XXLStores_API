@@ -11,6 +11,7 @@ namespace WebApi.Extensions
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "XXLStores_API");
+                c.RoutePrefix = string.Empty;
             });
         }
         public static void UseErrorHandlingMiddleware(this IApplicationBuilder app)

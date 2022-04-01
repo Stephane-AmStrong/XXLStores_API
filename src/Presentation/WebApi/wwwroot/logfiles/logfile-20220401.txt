@@ -1,0 +1,6 @@
+2022-04-01 15:17:25.773 +01:00 [INF] Finished Seeding Default Data
+2022-04-01 15:17:25.886 +01:00 [INF] Application Starting
+2022-04-01 15:28:48.643 +01:00 [INF] Finished Seeding Default Data
+2022-04-01 15:28:48.741 +01:00 [INF] Application Starting
+2022-04-01 15:29:38.758 +01:00 [INF] Finished Seeding Default Data
+2022-04-01 15:29:38.831 +01:00 [INF] Application Starting
