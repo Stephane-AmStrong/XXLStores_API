@@ -29,7 +29,7 @@ namespace Infrastructure.Persistence.Repository
         private readonly ISortHelper<ShoppingCart> _shoppingCartSortHelper;
         private readonly ISortHelper<ShoppingCartItem> _shoppingCartItemSortHelper;
 
-        private readonly IOptions<MailSettings> _mailSettings;
+        private readonly IOptions<EmailSettings> _mailSettings;
         private readonly IOptions<JWTSettings> _jwtSettings;
 
         private readonly UserManager<AppUser> _userManager;
@@ -198,7 +198,7 @@ namespace Infrastructure.Persistence.Repository
             ApplicationDbContext appDbContext,
             IWebHostEnvironment webHostEnvironment,
             IConfiguration configuration,
-            IOptions<MailSettings> mailSettings,
+            IOptions<EmailSettings> mailSettings,
             IOptions<JWTSettings> jwtSettings,
             ISortHelper<AppUser> appUserSortHelper,
             ISortHelper<Category> categorySortHelper,

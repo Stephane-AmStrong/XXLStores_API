@@ -6,6 +6,7 @@ using MailKit.Security;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,21 +15,13 @@ namespace Infrastructure.Persistence.Service
 {
     public class EmailService : IEmailService
     {
-        private readonly MailSettings _mailSettings;
+        private readonly EmailSettings _mailSettings;
         public ILogger<EmailService> _logger { get; }
 
-        public EmailService(IOptions<MailSettings> mailSettings)
+        public EmailService(IOptions<EmailSettings> mailSettings)
         {
             _mailSettings = mailSettings.Value;
         }
-
-        /*public void Send(Message message)
-        {
-            var emailMessage = CreateEmailMessage(message);
-            Send(emailMessage);
-        }
-        */
-
 
         public async Task SendAsync(Message message)
         {
@@ -41,14 +34,12 @@ namespace Infrastructure.Persistence.Service
         private MimeMessage CreateEmailMessage(Message message)
         {
             var emailMessage = new MimeMessage();
-            //emailMessage.From.Add(new MailboxAddress(_emailConfig.Name, _emailConfig.EmailId));
-            emailMessage.Sender = new MailboxAddress(_mailSettings.DisplayName, message.From ?? _mailSettings.EmailFrom);
-            emailMessage.To.Add(MailboxAddress.Parse(message.To));
+            emailMessage.From.Add(new MailboxAddress(_mailSettings.DisplayName, message.From ?? _mailSettings.EmailId));
+            emailMessage.To.AddRange(message.To);
             emailMessage.Subject = message.Subject;
 
             var bodyBuilder = new BodyBuilder
             {
-                //HtmlBody = string.Format("<h2 style='color:red;'>{0}</h2>", message.Content) 
                 HtmlBody = message.Content
             };
 
@@ -71,37 +62,14 @@ namespace Infrastructure.Persistence.Service
             return emailMessage;
         }
 
-        /*private void Send(MimeMessage mailMessage)
-        {
-            using var smtp = new SmtpClient();
-            try
-            {
-                smtp.Connect(_mailSettings.SmtpHost, _mailSettings.SmtpPort, SecureSocketOptions.StartTls);
-                smtp.AuthenticationMechanisms.Remove("XOAUTH2");
-                smtp.Authenticate(_mailSettings.SmtpUser, _mailSettings.SmtpPass);
-
-                smtp.Send(mailMessage);
-            }
-            catch
-            {
-                //log an error message or throw an exception, or both.
-                throw;
-            }
-            finally
-            {
-                smtp.Disconnect(true);
-                smtp.Dispose();
-            }
-        }*/
-
         private async Task SendAsync(MimeMessage mailMessage)
         {
             using var smtp = new SmtpClient();
             try
             {
-                await smtp.ConnectAsync(_mailSettings.SmtpHost, _mailSettings.SmtpPort, SecureSocketOptions.StartTls);
+                await smtp.ConnectAsync(_mailSettings.SmtpServer, _mailSettings.Port);
                 smtp.AuthenticationMechanisms.Remove("XOAUTH2");
-                await smtp.AuthenticateAsync(_mailSettings.SmtpUser, _mailSettings.SmtpPass);
+                await smtp.AuthenticateAsync(_mailSettings.EmailId, _mailSettings.Password);
 
                 await smtp.SendAsync(mailMessage);
             }

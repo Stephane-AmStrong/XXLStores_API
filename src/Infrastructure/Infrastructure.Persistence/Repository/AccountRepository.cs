@@ -69,6 +69,8 @@ namespace Infrastructure.Persistence.Repository
 
         public async Task<AuthenticationModel> RegisterAsync(AppUser user, string password, string origin)
         {
+            user.UserName = user.Email;
+
             var userWithSameUserName = await _userManager.FindByNameAsync(user.UserName);
             if (userWithSameUserName != null) throw new ApiException($"Username '{user.UserName}' is already taken.");
 
@@ -76,7 +78,14 @@ namespace Infrastructure.Persistence.Repository
             if (userWithSameEmail != null) throw new ApiException($"Email {user.Email } is already registered.");
 
             var result = await _userManager.CreateAsync(user, password);
-            if (!result.Succeeded) throw new ApiException($"{result.Errors}");
+            var errorMessage = new StringBuilder();
+
+            foreach (var error in result.Errors)
+            {
+                errorMessage.Append(error.Description);
+            }
+
+            if (!result.Succeeded) throw new ApiException($"{errorMessage}");
 
             //await _userManager.AddToRoleAsync(user, Roles.Vendor.ToString());
             var emailConfirmationToken = await GenerateEmailConfirmationTokenAsync(user, origin);

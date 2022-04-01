@@ -37,21 +37,15 @@ namespace Application.Features.Account.Commands.Authenticate
     internal class AuthenticationRequestCommandHandler : IRequestHandler<AuthenticationCommand, AuthenticationViewModel>
     {
         private readonly ILogger<AuthenticationRequestCommandHandler> _logger;
-        private readonly UserManager<AppUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IRepositoryWrapper _repository;
-        private readonly JWTSettings _jwtSettings;
         private readonly IMapper _mapper;
 
 
-        public AuthenticationRequestCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<AuthenticationRequestCommandHandler> logger, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<JWTSettings> jwtSettings)
+        public AuthenticationRequestCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<AuthenticationRequestCommandHandler> logger)
         {
-            _userManager = userManager;
-            _roleManager = roleManager;
             _repository = repository;
             _mapper = mapper;
             _logger = logger;
-            _jwtSettings = jwtSettings.Value;
         }
 
 

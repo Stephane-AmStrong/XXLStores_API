@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
+using MimeKit;
 
 namespace Application.Features.Account.Commands.ForgotPassword
 {
@@ -54,12 +55,7 @@ namespace Application.Features.Account.Commands.ForgotPassword
             var route = "api/account/reset-password/";
             var _enpointUri = new Uri(string.Concat($"{command.Origin}/", route));
 
-            var emailRequest = new Message()
-            {
-                Content = $"You reset token is - {code}",
-                To = command.Email,
-                Subject = "Reset Password",
-            };
+            var emailRequest = new Message(new string[] { command.Email }, "Reset Password", $"You reset token is - {code}", null);
             await _repository.Email.SendAsync(emailRequest);
 
             return Unit.Value;
