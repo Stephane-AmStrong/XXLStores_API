@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
+		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
 		<Authors>Stéphane Adjakotan</Authors>
 		<Company>Smart IT</Company>
 		<RepositoryUrl>https://github.com/Stephane-AmStrong/XXLStores_API.git</RepositoryUrl>
