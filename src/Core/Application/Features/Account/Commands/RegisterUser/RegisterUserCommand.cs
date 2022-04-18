@@ -16,6 +16,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
 
 namespace Application.Features.Account.Commands.RegisterUser
 {
@@ -26,12 +29,14 @@ namespace Application.Features.Account.Commands.RegisterUser
         //public string RoleName { get; set; }
         public string Email { get; set; }
 
+        [JsonProperty("type")] 
+        [Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), converterParameters:typeof(CamelCaseNamingStrategy))]
         public Roles Role { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
-        [JsonIgnore]
+        [System.Text.Json.Serialization.JsonIgnore]
         public string Origin { get; set; }
 
     }
@@ -39,14 +44,12 @@ namespace Application.Features.Account.Commands.RegisterUser
     internal class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, string>
     {
         private readonly ILogger<RegisterUserCommandHandler> _logger;
-        private readonly UserManager<AppUser> _userManager;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
 
-        public RegisterUserCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<RegisterUserCommandHandler> logger, UserManager<AppUser> userManager)
+        public RegisterUserCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<RegisterUserCommandHandler> logger)
         {
-            _userManager = userManager;
             _repository = repository;
             _mapper = mapper;
             _logger = logger;
@@ -56,16 +59,17 @@ namespace Application.Features.Account.Commands.RegisterUser
         public async Task<string> Handle(RegisterUserCommand command, CancellationToken cancellationToken)
         {
             var appUser = _mapper.Map<AppUser>(command);
-
             _logger.LogInformation($"Registration attempt with email: {command.Email}");
-            var authenticationModel = await _repository.Account.RegisterAsync(appUser, command.Password, command.Origin);
+
+            var authenticationModel = await _repository.Account.RegisterAsync(appUser, command.Role, command.Password, command.Origin);
             _logger.LogInformation($"Registration succeeds");
 
-            //TODO: Attach Email Service here and configure it via appsettings
-            var message = new Message(new string[] { command.Email }, "Confirm Registration", $"Please check your email for verification action.", null);
+            _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
+            var message = new Message(new string[] { command.Email }, "Confirm Registration", $"Please confirm your account by visiting this URL {authenticationModel.Token}", null);
             await _repository.Email.SendAsync(message);
+            _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
 
-            return $"{authenticationModel.UserInfo["Name"]}, message: User Registered. Please confirm your account by visiting this URL {authenticationModel.Token}";
+            return $"{authenticationModel.UserInfo["Name"]}, message: User Registered. Please check your email for verification action.";
         }
     }
 }

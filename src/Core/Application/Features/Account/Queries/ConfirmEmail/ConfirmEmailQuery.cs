@@ -1,15 +1,6 @@
-﻿using Application.Exceptions;
-using Application.Interfaces;
-using AutoMapper;
-using Domain.Entities;
+﻿using Application.Interfaces;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,34 +15,23 @@ namespace Application.Features.Account.Queries.ConfirmEmail
     internal class ConfirmEmailCommandHandler : IRequestHandler<ConfirmEmailQuery, string>
     {
         private readonly ILogger<ConfirmEmailCommandHandler> _logger;
-        private readonly UserManager<AppUser> _userManager;
         private readonly IRepositoryWrapper _repository;
-        private readonly IMapper _mapper;
 
 
-        public ConfirmEmailCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<ConfirmEmailCommandHandler> logger, UserManager<AppUser> userManager)
+        public ConfirmEmailCommandHandler(IRepositoryWrapper repository, ILogger<ConfirmEmailCommandHandler> logger)
         {
-            _userManager = userManager;
             _repository = repository;
-            _mapper = mapper;
             _logger = logger;
         }
 
 
         public async Task<string> Handle(ConfirmEmailQuery command, CancellationToken cancellationToken)
         {
-            var user = await _userManager.FindByIdAsync(command.UserId);
-            command.Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(command.Code));
+            _logger.LogInformation($"Email confirmation attempt with UserId: {command.UserId}");
+            var emailConfirmationMessage = await _repository.Account.ConfirmEmailAsync(command.UserId, command.Code);
 
-            var result = await _userManager.ConfirmEmailAsync(user, command.Code);
-            if (result.Succeeded)
-            {
-                return $"{user.Id}, message: Account Confirmed for {user.UserName}. You can now use the /api/Account/authenticate endpoint.";
-            }
-            else
-            {
-                throw new ApiException($"An error occured while confirming {user.Email}.");
-            }
+            _logger.LogInformation($"Email confirmation succeeds");
+            return emailConfirmationMessage;
         }
     }
 }

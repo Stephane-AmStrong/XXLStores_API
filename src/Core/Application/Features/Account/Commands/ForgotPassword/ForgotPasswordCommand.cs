@@ -1,7 +1,4 @@
 ﻿using Application.DataTransfertObjects.Email;
-using Application.Enums;
-using Application.Exceptions;
-using Application.Features.AppUsers.Queries.GetById;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
@@ -9,56 +6,48 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using System;
-using Microsoft.AspNetCore.WebUtilities;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
-using MimeKit;
+using Application.DataTransfertObjects.Account;
 
 namespace Application.Features.Account.Commands.ForgotPassword
 {
-    public class ForgotPasswordCommand : IRequest
+    public class ForgotPasswordCommand : IRequest<string>
     {
         public string Email { get; set; }
         [JsonIgnore]
         public string Origin { get; set; }
     }
 
-    internal class ForgotPasswordCommandHandler : IRequestHandler<ForgotPasswordCommand>
+    internal class ForgotPasswordCommandHandler : IRequestHandler<ForgotPasswordCommand, string>
     {
         private readonly ILogger<ForgotPasswordCommandHandler> _logger;
-        private readonly UserManager<AppUser> _userManager;
         private readonly IRepositoryWrapper _repository;
-        private readonly IMapper _mapper;
 
 
-        public ForgotPasswordCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<ForgotPasswordCommandHandler> logger, UserManager<AppUser> userManager)
+        public ForgotPasswordCommandHandler(IRepositoryWrapper repository, ILogger<ForgotPasswordCommandHandler> logger)
         {
-            _userManager = userManager;
             _repository = repository;
-            _mapper = mapper;
             _logger = logger;
         }
 
 
-        public async Task<Unit> Handle(ForgotPasswordCommand command, CancellationToken cancellationToken)
+        public async Task<string> Handle(ForgotPasswordCommand command, CancellationToken cancellationToken)
         {
-            var account = await _userManager.FindByNameAsync(command.Email);
+            _logger.LogInformation($"Forgot password attempt with Email: {command.Email}");
+            var authenticationModel = await _repository.Account.GeneratePasswordResetTokenAsync(command.Email);
+            _logger.LogInformation($"Forgot password succeeds");
 
-            // always return ok response to prevent email enumeration
-            if (account == null) return Unit.Value;
+            if (authenticationModel.IsSuccess)
+            {
+                _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
+                var message = new Message(new string[] { command.Email }, "Reset Password", $"You reset token is:  {authenticationModel.Token}", null);
+                await _repository.Email.SendAsync(message);
+                _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
+            }
 
-            var code = await _userManager.GeneratePasswordResetTokenAsync(account);
-            var route = "api/account/reset-password/";
-            var _enpointUri = new Uri(string.Concat($"{command.Origin}/", route));
-
-            var emailRequest = new Message(new string[] { command.Email }, "Reset Password", $"You reset token is - {code}", null);
-            await _repository.Email.SendAsync(emailRequest);
-
-            return Unit.Value;
+            return $"Password reset url has been sent to your email successfully.";
         }
     }
 }

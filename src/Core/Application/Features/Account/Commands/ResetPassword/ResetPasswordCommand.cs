@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.DataTransfertObjects.Account;
 
 namespace Application.Features.Account.Commands.ResetPassword
 {
@@ -29,14 +30,12 @@ namespace Application.Features.Account.Commands.ResetPassword
     internal class ResetPasswordCommandHandler : IRequestHandler<ResetPasswordCommand, string>
     {
         private readonly ILogger<ResetPasswordCommandHandler> _logger;
-        private readonly UserManager<AppUser> _userManager;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
 
-        public ResetPasswordCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<ResetPasswordCommandHandler> logger, UserManager<AppUser> userManager)
+        public ResetPasswordCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<ResetPasswordCommandHandler> logger)
         {
-            _userManager = userManager;
             _repository = repository;
             _mapper = mapper;
             _logger = logger;
@@ -45,17 +44,13 @@ namespace Application.Features.Account.Commands.ResetPassword
 
         public async Task<string> Handle(ResetPasswordCommand command, CancellationToken cancellationToken)
         {
-            var account = await _userManager.FindByNameAsync(command.Email);
-            if (account == null) throw new ApiException($"No Accounts Registered with {command.Email}.");
-            var result = await _userManager.ResetPasswordAsync(account, command.Token, command.Password);
-            if (result.Succeeded)
-            {
-                return $"{command.Email}, message: Password Resetted.";
-            }
-            else
-            {
-                throw new ApiException($"Error occured while reseting the password.");
-            }
+            var resetPasswordRequest = _mapper.Map<ResetPasswordRequest>(command);
+            _logger.LogInformation($"Reset Password attempt with email: {command.Email} and resetToken: {command.Token}");
+
+            var resetPasswordMessage = await _repository.Account.ResetPassword(resetPasswordRequest);
+            _logger.LogInformation($"Reset Password succeeds");
+
+            return resetPasswordMessage;
         }
     }
 }

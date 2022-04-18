@@ -5,15 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace Application.DataTransfertObjects.Account
 {
-    public class AuthenticationRequest
+    public class ForgotPasswordModel
     {
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-        [Required]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string Origin { get; set; }
     }
 }

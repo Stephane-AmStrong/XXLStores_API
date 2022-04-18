@@ -68,6 +68,7 @@ namespace WebApi.Controllers.v1
         /// <response code="200">Returns confirmation success message</response>
         /// <response code="400">If the command is not valide</response>           
         [HttpGet("confirm-email")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ConfirmEmailAsync([FromQuery]ConfirmEmailQuery command)

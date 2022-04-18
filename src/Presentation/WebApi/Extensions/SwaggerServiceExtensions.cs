@@ -34,6 +34,8 @@ namespace WebApi.Extensions
 
                 c.OperationFilter<OpenApiOperationFilter>();
             });
+
+            services.AddSwaggerGenNewtonsoftSupport();
         }
 
         public static void AddApiVersioningExtension(this IServiceCollection services)

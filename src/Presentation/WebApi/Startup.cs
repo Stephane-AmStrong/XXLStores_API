@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +39,15 @@ namespace WebApi
             services.AddSharedInfrastructure(Configuration);
             services.AddPersistenceInfrastructure(Configuration);
             services.AddSwaggerExtension();
-            services.AddControllers();
+            //services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(o =>
+            {
+                o.SerializerSettings.Converters.Add(new StringEnumConverter
+                {
+                    NamingStrategy = new CamelCaseNamingStrategy()
+                });
+            });
+
             services.ConfigureClaimPolicy();
             services.AddApiVersioningExtension();
             services.AddHealthChecks();

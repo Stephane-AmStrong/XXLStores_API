@@ -45,10 +45,10 @@ namespace Infrastructure.Persistence
                     o.SaveToken = false;
                     o.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidateIssuerSigningKey = true,
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = bool.Parse(configuration["JWTSettings:ValidateIssuerSigningKey"]),
+                        ValidateIssuer = bool.Parse(configuration["JWTSettings:ValidateIssuer"]),
+                        ValidateAudience = bool.Parse(configuration["JWTSettings:ValidateAudience"]),
+                        ValidateLifetime = bool.Parse(configuration["JWTSettings:ValidateLifetime"]),
                         ClockSkew = TimeSpan.Zero,
                         ValidIssuer = configuration["JWTSettings:Issuer"],
                         ValidAudience = configuration["JWTSettings:Audience"],

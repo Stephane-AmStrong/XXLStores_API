@@ -22,9 +22,6 @@ namespace Application.Features.InventoryLevels.Commands.Update
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");
-
-            RuleFor(p => p)
-                .MustAsync(IsUnique).WithMessage("{PropertyName} already exists.");
         }
 
         private bool BeAValidGuid(Guid id)

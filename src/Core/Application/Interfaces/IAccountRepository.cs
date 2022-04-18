@@ -1,4 +1,5 @@
 ﻿using Application.DataTransfertObjects.Account;
+using Application.Enums;
 using Application.Features.Account.Commands.Authenticate;
 using Application.Wrappers;
 using Domain.Entities;
@@ -12,12 +13,12 @@ namespace Application.Interfaces
 {
     public interface IAccountRepository
     {
-        Task<AuthenticationModel> AuthenticateAsync(LoginModel loginModel, string ipAddress);
+        Task<AuthenticationModel> RegisterAsync(AppUser user, Roles role, string password, string origin);
         Task<string> ConfirmEmailAsync(string userId, string code);
-        Task<AuthenticationModel> GeneratePasswordResetTokenAsync(ForgotPasswordRequest model);
-        //Task<AuthenticationModel> GenerateEmailConfirmationTokenAsync(AppUser user, string origin);
-        Task<AuthenticationModel> RegisterAsync(AppUser user, string password, string origin);
-        Task<string> ResetPassword(ResetPasswordRequest model);
+        Task<AuthenticationModel> AuthenticateAsync(LoginModel loginModel, string ipAddress);
+        Task<AuthenticationModel> GeneratePasswordResetTokenAsync(string email);
+        Task<ClaimsPrincipal> GetPrincipalFromExpiredTokenAsync(string token);
+        Task<string> ResetPassword(ResetPasswordRequest resetPasswordRequest);
         Task<AuthenticationModel> AddToWorkstationAsync(AppUser user, IdentityRole role);
         Task<AuthenticationModel> RemoveFromWorkstationAsync(AppUser user, IdentityRole role);
     }
