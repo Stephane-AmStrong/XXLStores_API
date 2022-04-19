@@ -12,7 +12,7 @@ namespace Domain.Entities
         //    ShoppingCarts = new HashSet<ShoppingCart>();
         //}
 
-        public string ImgLink { get; set; }
+        public string? ImgLink { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]

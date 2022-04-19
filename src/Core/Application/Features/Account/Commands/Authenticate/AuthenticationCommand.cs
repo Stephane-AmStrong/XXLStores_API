@@ -1,26 +1,9 @@
-﻿using Application.Exceptions;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using AutoMapper;
-using Domain.Entities;
 using Domain.Models;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Security.Cryptography;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Collections.Generic;
-using Application.Helpers;
-using Microsoft.IdentityModel.Tokens;
-using Domain.Settings;
-using Microsoft.Extensions.Options;
-using System.Text.Json.Serialization;
 
 namespace Application.Features.Account.Commands.Authenticate
 {
@@ -29,8 +12,8 @@ namespace Application.Features.Account.Commands.Authenticate
         public string Email { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        [JsonIgnore]
-        public string IpAddress { get; set; }
+        [Newtonsoft.Json.JsonIgnore]
+        public string? IpAddress { get; set; }
     }
 
 

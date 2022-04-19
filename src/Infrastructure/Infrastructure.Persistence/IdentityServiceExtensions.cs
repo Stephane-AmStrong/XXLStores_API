@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Text;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Infrastructure.Persistence.Repository;
+using System.Text.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Infrastructure.Persistence
 {
@@ -54,32 +55,99 @@ namespace Infrastructure.Persistence
                         ValidAudience = configuration["JWTSettings:Audience"],
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWTSettings:Key"]))
                     };
-                    o.Events = new JwtBearerEvents()
+
+                    //o.Events = new JwtBearerEvents()
+                    //{
+                    //    OnAuthenticationFailed = context =>
+                    //    {
+                    //        context.NoResult();
+                    //        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    //        context.Response.ContentType = "application/json";
+                    //        return context.Response.WriteAsync(JsonSerializer.Serialize(context.Exception.ToString()));
+                    //    },
+                    //    OnChallenge = context =>
+                    //    {
+                    //        context.HandleResponse();
+                    //        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    //        context.Response.ContentType = "application/json";
+                    //        var result = JsonSerializer.Serialize("You are not Authorized");
+                    //        return context.Response.WriteAsync(result);
+                    //    },
+                    //    OnForbidden = context =>
+                    //    {
+                    //        context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                    //        context.Response.ContentType = "application/json";
+                    //        var result = JsonSerializer.Serialize("You are not authorized to access this resource");
+                    //        return context.Response.WriteAsync(result);
+                    //    },
+                    //};
+
+
+                    //
+
+                    o.Events = new JwtBearerEvents
                     {
-                        OnAuthenticationFailed = c =>
+                        OnAuthenticationFailed = context =>
                         {
-                            c.NoResult();
-                            c.Response.StatusCode = 500;
-                            c.Response.ContentType = "text/plain";
-                            return c.Response.WriteAsync(c.Exception.ToString());
+                            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                            string message = "";
+                            message += FlattenException(StatusCodes.Status401Unauthorized, context.Exception);
+                            return Task.CompletedTask;
                         },
+
                         OnChallenge = context =>
                         {
                             context.HandleResponse();
-                            context.Response.StatusCode = 401;
+                            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
                             context.Response.ContentType = "application/json";
-                            var result = JsonConvert.SerializeObject("You are not Authorized");
-                            return context.Response.WriteAsync(result);
+
+                            var errorDetails = new JObject
+                            {
+                                //["error"] = context.Error,
+                                ["StatusCode"] = StatusCodes.Status401Unauthorized,
+                                ["Message"] = context.ErrorDescription
+                            };
+
+                            return context.Response.WriteAsync(errorDetails.ToString());
                         },
+
                         OnForbidden = context =>
                         {
-                            context.Response.StatusCode = 403;
+                            context.Response.StatusCode = StatusCodes.Status403Forbidden;
                             context.Response.ContentType = "application/json";
-                            var result = JsonConvert.SerializeObject("You are not authorized to access this resource");
-                            return context.Response.WriteAsync(result);
-                        },
+
+                            var errorDetails = new JObject
+                            {
+                                ["StatusCode"] = StatusCodes.Status401Unauthorized,
+                                ["Message"] = "You are not Authorized"
+                            };
+
+                            return context.Response.WriteAsync(JsonSerializer.Serialize(errorDetails));
+                        }
                     };
+
                 });
+        }
+
+        public static string FlattenException(int statusCode, Exception exception)
+        {
+            var stringBuilder = new StringBuilder();
+
+            while (exception != null)
+            {
+                stringBuilder.AppendLine(exception.Message);
+                //stringBuilder.AppendLine(exception.StackTrace);
+
+                exception = exception.InnerException;
+            }
+
+            var errorDetails = new JObject
+            {
+                ["StatusCode"] = statusCode,
+                ["Message"] = stringBuilder.ToString()
+            };
+
+            return JsonSerializer.Serialize(errorDetails);
         }
     }
 }

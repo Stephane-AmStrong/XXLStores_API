@@ -31,7 +31,7 @@ namespace WebApi.Controllers.v1
         /// <param name="itemsQuery"></param>
         /// <returns></returns>
         [HttpGet]
-        //[Authorize(Policy = "item.read.policy")]
+        [Authorize(Policy = "item.read.policy")]
         public async Task<IActionResult> Get([FromQuery] GetItemsQuery itemsQuery)
         {
             var items = await Mediator.Send(itemsQuery);
@@ -47,7 +47,7 @@ namespace WebApi.Controllers.v1
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        //[Authorize(Policy = "item.read.policy")]
+        [Authorize(Policy = "item.read.policy")]
         public async Task<IActionResult> Get(Guid id)
         {
             return Ok(await Mediator.Send(new GetItemByIdQuery { Id = id }));
@@ -63,7 +63,7 @@ namespace WebApi.Controllers.v1
         /// <response code="201">Returns the newly created command</response>
         /// <response code="400">If the command is null</response>            
         [HttpPost]
-        //[Authorize(Policy = "item.write.policy")]
+        [Authorize(Policy = "item.write.policy")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post(CreateItemCommand command)
@@ -80,7 +80,7 @@ namespace WebApi.Controllers.v1
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        //[Authorize(Policy = "item.write.policy")]
+        [Authorize(Policy = "item.write.policy")]
         public async Task<IActionResult> Put(Guid id, UpdateItemCommand command)
         {
             command.Id = id;
@@ -94,7 +94,7 @@ namespace WebApi.Controllers.v1
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        //[Authorize(Policy = "item.manage.policy")]
+        [Authorize(Policy = "item.manage.policy")]
         public async Task<IActionResult> Delete(Guid id)
         {
             return Ok(await Mediator.Send(new DeleteItemCommand { Id = id }));

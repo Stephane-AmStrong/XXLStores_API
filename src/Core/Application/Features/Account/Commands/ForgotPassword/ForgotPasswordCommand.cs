@@ -1,22 +1,14 @@
 ﻿using Application.DataTransfertObjects.Email;
 using Application.Interfaces;
-using AutoMapper;
-using Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Text.Json.Serialization;
-using Application.DataTransfertObjects.Account;
 
 namespace Application.Features.Account.Commands.ForgotPassword
 {
     public class ForgotPasswordCommand : IRequest<string>
     {
         public string Email { get; set; }
-        [JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public string Origin { get; set; }
     }
 

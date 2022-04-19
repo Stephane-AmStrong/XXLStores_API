@@ -5,11 +5,80 @@ using Domain.Entities;
 using System.Security.Claims;
 using System.Collections.Generic;
 using Application.Wrappers;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.Persistence.Seeds
 {
     public static class DefaultRoles
     {
+        public static async Task<WebApplication> SeedDefaultRolesAsync(this WebApplication webApp)
+        {
+            using (var scope = webApp.Services.CreateScope())
+            {
+                using (var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>())
+                {
+                    var superAdmin = await roleManager.FindByNameAsync(Roles.SuperAdmin.ToString());
+
+                    if (superAdmin == null)
+                    {
+                        superAdmin = new IdentityRole(Roles.SuperAdmin.ToString());
+                        await roleManager.CreateAsync(superAdmin);
+
+                        for (int i = 0; i < ClaimsStore.AllClaims.Count; i++)
+                        {
+                            await roleManager.AddClaimAsync(superAdmin, ClaimsStore.AllClaims[i]);
+                        }
+                    }
+
+
+                    var admin = await roleManager.FindByNameAsync(Roles.Admin.ToString());
+
+                    if (admin == null)
+                    {
+                        admin = new IdentityRole(Roles.Admin.ToString());
+                        await roleManager.CreateAsync(admin);
+
+                        for (int i = 0; i < ClaimsStore.AllClaims.Count; i++)
+                        {
+                            await roleManager.AddClaimAsync(admin, ClaimsStore.AllClaims[i]);
+                        }
+                    }
+
+
+                    var vendor = await roleManager.FindByNameAsync(Roles.Vendor.ToString());
+
+                    if (vendor == null)
+                    {
+                        vendor = new IdentityRole(Roles.Vendor.ToString());
+                        await roleManager.CreateAsync(vendor);
+
+                        for (int i = 0; i < ClaimsStore.VendorClaims.Count; i++)
+                        {
+                            await roleManager.AddClaimAsync(vendor, ClaimsStore.VendorClaims[i]);
+                        }
+                    }
+
+                    var customer = await roleManager.FindByNameAsync(Roles.Customer.ToString());
+
+                    if (customer == null)
+                    {
+                        customer = new IdentityRole(Roles.Customer.ToString());
+                        await roleManager.CreateAsync(customer);
+
+                        for (int i = 0; i < ClaimsStore.CustomerClaims.Count; i++)
+                        {
+                            await roleManager.AddClaimAsync(customer, ClaimsStore.CustomerClaims[i]);
+                        }
+                    }
+                }
+            }
+
+            return webApp;
+        }
+
+        
+        /*
         public static async Task SeedAsync(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             var superAdmin = await roleManager.FindByNameAsync(Roles.SuperAdmin.ToString());
@@ -66,6 +135,7 @@ namespace Infrastructure.Persistence.Seeds
                 }
             }
         }
+        */
     }
 
     public static class ClaimsStore

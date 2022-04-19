@@ -29,15 +29,15 @@ namespace Application.Features.Account.Commands.RegisterUser
         //public string RoleName { get; set; }
         public string Email { get; set; }
 
-        [JsonProperty("type")] 
+        //[JsonProperty("type")] 
         [Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), converterParameters:typeof(CamelCaseNamingStrategy))]
         public Roles Role { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
-        [System.Text.Json.Serialization.JsonIgnore]
-        public string Origin { get; set; }
+        [Newtonsoft.Json.JsonIgnore]
+        public string? Origin { get; set; }
 
     }
 
