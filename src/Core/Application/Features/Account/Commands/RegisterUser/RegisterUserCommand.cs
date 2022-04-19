@@ -19,7 +19,7 @@ namespace Application.Features.Account.Commands.RegisterUser
         public string Email { get; set; }
 
         //[JsonProperty("type")] 
-        //[Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), converterParameters:typeof(CamelCaseNamingStrategy))]
+        [Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), converterParameters: typeof(CamelCaseNamingStrategy))]
         public Roles Role { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
