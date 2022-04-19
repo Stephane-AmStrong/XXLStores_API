@@ -1,24 +1,13 @@
 ﻿using Application.DataTransfertObjects.Email;
 using Application.Enums;
-using Application.Exceptions;
-using Application.Features.AppUsers.Queries.GetById;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using System;
-using Microsoft.AspNetCore.WebUtilities;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
-using Newtonsoft.Json;
 
 namespace Application.Features.Account.Commands.RegisterUser
 {
@@ -30,7 +19,7 @@ namespace Application.Features.Account.Commands.RegisterUser
         public string Email { get; set; }
 
         //[JsonProperty("type")] 
-        [Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), converterParameters:typeof(CamelCaseNamingStrategy))]
+        //[Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), converterParameters:typeof(CamelCaseNamingStrategy))]
         public Roles Role { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
