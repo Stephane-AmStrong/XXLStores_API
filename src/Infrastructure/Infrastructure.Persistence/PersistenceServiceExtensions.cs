@@ -1,17 +1,9 @@
 ﻿using Application.Interfaces;
 using Domain.Entities;
-using Domain.Settings;
 using Infrastructure.Persistence.Contexts;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Text;
-using Microsoft.AspNetCore.Http;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Infrastructure.Persistence.Repository;
 using Infrastructure.Persistence.Repositories;
 
