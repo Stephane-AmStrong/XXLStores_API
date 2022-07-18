@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using Application.Models;
 using AutoMapper;
 using Domain.Entities;
 using FluentValidation;
@@ -18,40 +19,31 @@ namespace Application.Features.AppUsers.Commands.Create
             _repository = repository;
             _mapper = mapper;
 
-            _repository = repository;
-            _mapper = mapper;
-
+            RuleFor(p => p.Name)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull();
+            
             RuleFor(p => p.FirstName)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
-
-            RuleFor(p => p.LastName)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
-
-            RuleFor(p => p.RoleName)
+                .NotNull();
+            
+            RuleFor(p => p.Sexe)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
 
-            RuleFor(p => p.Email)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .EmailAddress();
+            RuleFor(p => p)
+                .MustAsync(IsUnique).WithMessage("{PropertyName} already exists.");
+        }
 
-            RuleFor(p => p.Password)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull();
+        private bool BeAValidGuid(Guid id)
+        {
+            return !id.Equals(new Guid());
+        }
 
-            RuleFor(p => p.ConfirmPassword)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull();
-
-            RuleFor(p => p.ConfirmPassword)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .Equal(p => p.Password).WithMessage("The password and confirmation password do not match.");
+        private async Task<bool> IsUnique(CreateAppUserCommand appUserCommand, CancellationToken cancellationToken)
+        {
+            var appUser = _mapper.Map<AppUser>(appUserCommand);
+            return await _repository.AppUser.ExistAsync(appUser);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Application.Wrappers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -50,16 +51,21 @@ namespace WebApi.Middlewares
 
                     errorDetails.StatusCode = response.StatusCode;
                     break;
+                case KeyNotFoundException e:
+                    // not found error
+                    response.StatusCode = (int)HttpStatusCode.NotFound;
+                    break;
+                case SecurityTokenException e:
+                    // not found error
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    errorDetails.StatusCode = response.StatusCode;
+                    break;
                 case ValidationException e:
                     // custom application error
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
 
                     errorDetails.StatusCode = response.StatusCode;
                     errorDetails.Errors = e.Errors;
-                    break;
-                case KeyNotFoundException e:
-                    // not found error
-                    response.StatusCode = (int)HttpStatusCode.NotFound;
                     break;
                 default:
                     // unhandled error

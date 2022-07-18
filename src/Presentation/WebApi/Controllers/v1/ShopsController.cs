@@ -9,13 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
-using Serilog;
 
 
 namespace WebApi.Controllers.v1
 {
-    [ApiVersion("1.0")]
     [Authorize]
+    [ApiVersion("1.0")]
     public class ShopsController : BaseApiController
     {
         //readonly IDiagnosticContext _diagnosticContext;
@@ -24,7 +23,6 @@ namespace WebApi.Controllers.v1
         }
 
 
-        // GET: api/<controller>
         /// <summary>
         /// return shops that matche the criteria
         /// </summary>
@@ -40,7 +38,6 @@ namespace WebApi.Controllers.v1
         }
 
 
-        // GET api/<controller>/5
         /// <summary>
         /// Retreives a specific Shop.
         /// </summary>
@@ -54,7 +51,6 @@ namespace WebApi.Controllers.v1
         }
 
 
-        // POST api/<controller>
         /// <summary>
         /// Creates a Shop.
         /// </summary>
@@ -72,7 +68,6 @@ namespace WebApi.Controllers.v1
         }
 
 
-        // PUT api/<controller>/5
         /// <summary>
         /// Update a specific Shop.
         /// </summary>
@@ -97,7 +92,8 @@ namespace WebApi.Controllers.v1
         [Authorize(Policy = "shop.manage.policy")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            return Ok(await Mediator.Send(new DeleteShopCommand { Id = id }));
+            await Mediator.Send(new DeleteShopCommand { Id = id });
+            return NoContent();
         }
     }
 }

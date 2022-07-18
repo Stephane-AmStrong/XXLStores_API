@@ -10,7 +10,7 @@ namespace WebApi.Extensions
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "XXLStores_API");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MedicalImaging_API");
                 c.RoutePrefix = string.Empty;
             });
         }

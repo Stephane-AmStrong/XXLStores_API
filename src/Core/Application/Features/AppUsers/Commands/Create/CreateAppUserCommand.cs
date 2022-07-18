@@ -1,11 +1,11 @@
 ﻿using Application.Features.AppUsers.Queries.GetById;
 using Application.Interfaces;
+using Application.Models;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,16 +13,16 @@ namespace Application.Features.AppUsers.Commands.Create
 {
     public class CreateAppUserCommand : IRequest<AppUserViewModel>
     {
-        public string ImgLink { get; set; }
+        public string Sexe { get; set; }
+        public string Name { get; set; }
         public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string RoleName { get; set; }
-
-        public string Email { get; set; }
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-        [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; }
+        public string NameEpoux { get; set; }
+        public DateTime? DateNaissance { get; set; }
+        public string Adresse { get; set; }
+        public string Telephone { get; set; }
+        public string PersonneNameFirstName { get; set; }
+        public string PersonneTelephone { get; set; }
+        public string OperatorId { get; set; }
     }
 
     internal class CreateAppUserCommandHandler : IRequestHandler<CreateAppUserCommand, AppUserViewModel>

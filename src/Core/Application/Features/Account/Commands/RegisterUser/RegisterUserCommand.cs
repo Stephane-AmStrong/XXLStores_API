@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
+using Application.Models;
 
 namespace Application.Features.Account.Commands.RegisterUser
 {
@@ -18,15 +19,14 @@ namespace Application.Features.Account.Commands.RegisterUser
         //public string RoleName { get; set; }
         public string Email { get; set; }
 
-        //[JsonProperty("type")] 
-        [Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), converterParameters: typeof(CamelCaseNamingStrategy))]
-        public Roles Role { get; set; }
+        //[Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), converterParameters:typeof(CamelCaseNamingStrategy))]
+        public Enums.Roles Role { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
-        [Newtonsoft.Json.JsonIgnore]
-        public string? Origin { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        public string Origin { get; set; }
 
     }
 
@@ -54,7 +54,7 @@ namespace Application.Features.Account.Commands.RegisterUser
             _logger.LogInformation($"Registration succeeds");
 
             _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
-            var message = new Message(new string[] { command.Email }, "Confirm Registration", $"Please confirm your account by visiting this URL {authenticationModel.Token}", null);
+            var message = new Message(new string[] { command.Email }, "Confirm Registration", $"Please confirm your account by visiting this URL {authenticationModel.AccessToken}", null);
             await _repository.Email.SendAsync(message);
             _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
 

@@ -5,7 +5,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
-using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,20 +13,15 @@ namespace Application.Features.AppUsers.Commands.Update
 {
     public class UpdateAppUserCommand : IRequest<AppUserViewModel>
     {
+        [JsonIgnore]
         public string Id { get; set; }
         public string ImgLink { get; set; }
         public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string RoleName { get; set; }
-
+        public string Name { get; set; }
         public string Email { get; set; }
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-        [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; }
     }
 
-    public class UpdateAppUserCommandHandler : IRequestHandler<UpdateAppUserCommand, AppUserViewModel>
+    internal class UpdateAppUserCommandHandler : IRequestHandler<UpdateAppUserCommand, AppUserViewModel>
     {
         private readonly ILogger<UpdateAppUserCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
@@ -53,5 +48,4 @@ namespace Application.Features.AppUsers.Commands.Update
             return appUserReadDto;
         }
     }
-
 }

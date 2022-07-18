@@ -1,8 +1,10 @@
 using Application;
 using Application.Interfaces;
 using Application.Mappings;
-using Infrastructure.Persistence;
-using Infrastructure.Persistence.Seeds;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using Persistence;
+using Persistence.Seeds;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -33,10 +35,19 @@ builder.Host.UseSerilog();
 
 builder.Services.AddApplicationLayer();
 builder.Services.AddIdentityInfrastructure(builder.Configuration);
+builder.Services.ConfigureJwtBearerService(builder.Configuration);
 builder.Services.AddSharedInfrastructure(builder.Configuration);
 builder.Services.AddPersistenceInfrastructure(builder.Configuration);
 builder.Services.AddSwaggerExtension();
-builder.Services.AddControllers();
+
+builder.Services.AddControllers().AddNewtonsoftJson(o =>
+{
+    o.SerializerSettings.Converters.Add(new StringEnumConverter
+    {
+        NamingStrategy = new CamelCaseNamingStrategy()
+    });
+});
+
 builder.Services.ConfigureClaimPolicy();
 builder.Services.AddApiVersioningExtension();
 builder.Services.AddHealthChecks();
@@ -50,6 +61,9 @@ try
     Log.Information("Starting Seeding Default Data");
 
     await app.SeedDefaultRolesAsync();
+    await app.SeedVendorAsync();
+    await app.SeedCustomerAsync();
+    Log.Information("Seeding Complete");
 
     if (app.Environment.IsDevelopment())
     {

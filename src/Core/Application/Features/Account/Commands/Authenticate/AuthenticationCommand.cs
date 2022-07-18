@@ -1,9 +1,9 @@
 ﻿using Application.Interfaces;
 using AutoMapper;
-using Domain.Models;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
+using Application.Models;
 
 namespace Application.Features.Account.Commands.Authenticate
 {
@@ -12,8 +12,8 @@ namespace Application.Features.Account.Commands.Authenticate
         public string Email { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        [Newtonsoft.Json.JsonIgnore]
-        public string? IpAddress { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        public string IpAddress { get; set; }
     }
 
 
@@ -39,6 +39,10 @@ namespace Application.Features.Account.Commands.Authenticate
             _logger.LogInformation($"Authentication attempt with email: {command.Email}");
             var authenticationModel = await _repository.Account.AuthenticateAsync(loginModel, command.IpAddress);
             _logger.LogInformation($"Authentication succeeds");
+
+            var refreshTokenModel = await _repository.Token.CommitAsync(authenticationModel.RefreshToken);
+            _logger.LogInformation($"RefreshToken succeeds");
+            authenticationModel.RefreshToken = refreshTokenModel;
 
             var authenticationViewModel = _mapper.Map<AuthenticationViewModel>(authenticationModel);
 

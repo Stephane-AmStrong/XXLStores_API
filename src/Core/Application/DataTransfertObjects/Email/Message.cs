@@ -5,16 +5,6 @@ using System.Linq;
 
 namespace Application.DataTransfertObjects.Email
 {
-    /*
-     public record Message
-    {
-        public string To { get; set; }
-        public string Subject { get; set; }
-        public string Content { get; set; }
-        public IFormFileCollection Attachments { get; set; }
-    }
-     */
-
     public record Message
     {
         public string From { get; set; }
@@ -28,7 +18,7 @@ namespace Application.DataTransfertObjects.Email
         {
             To = new List<MailboxAddress>();
 
-            To.AddRange(to.Select(x => new MailboxAddress(x)));
+            To.AddRange(to.Select(x => new MailboxAddress("UTF-8", x)));
             Subject = subject;
             Content = content;
             Attachments = attachments;

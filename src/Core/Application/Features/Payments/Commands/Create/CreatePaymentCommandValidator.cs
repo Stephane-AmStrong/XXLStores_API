@@ -28,7 +28,7 @@ namespace Application.Features.Payments.Commands.Create
             RuleFor(p => p.PaidAt)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
-                .Must(BeAValidDate).WithMessage("{PropertyName} is required.");
+                .Must(BeAValidDate).WithMessage("{PropertyName} is invalid.");
             
             RuleFor(p => p.ShoppingCartId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")

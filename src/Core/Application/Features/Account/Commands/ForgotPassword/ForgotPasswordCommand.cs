@@ -1,14 +1,22 @@
 ﻿using Application.DataTransfertObjects.Email;
 using Application.Interfaces;
+using AutoMapper;
+using Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Application.DataTransfertObjects.Account;
+using Newtonsoft.Json;
 
 namespace Application.Features.Account.Commands.ForgotPassword
 {
     public class ForgotPasswordCommand : IRequest<string>
     {
         public string Email { get; set; }
-        [Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public string Origin { get; set; }
     }
 
@@ -28,13 +36,13 @@ namespace Application.Features.Account.Commands.ForgotPassword
         public async Task<string> Handle(ForgotPasswordCommand command, CancellationToken cancellationToken)
         {
             _logger.LogInformation($"Forgot password attempt with Email: {command.Email}");
-            var authenticationModel = await _repository.Account.GeneratePasswordResetTokenAsync(command.Email);
+            var authenticationModel = await _repository.Token.GeneratePasswordResetTokenAsync(command.Email);
             _logger.LogInformation($"Forgot password succeeds");
 
             if (authenticationModel.IsSuccess)
             {
                 _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
-                var message = new Message(new string[] { command.Email }, "Reset Password", $"You reset token is:  {authenticationModel.Token}", null);
+                var message = new Message(new string[] { command.Email }, "Reset Password", $"You reset token is:  {authenticationModel.AccessToken}", null);
                 await _repository.Email.SendAsync(message);
                 _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
             }

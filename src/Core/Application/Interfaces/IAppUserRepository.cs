@@ -1,4 +1,5 @@
 ﻿using Application.Features.AppUsers.Queries.GetPagedList;
+using Application.Models;
 using Application.Wrappers;
 using Domain.Entities;
 using System;

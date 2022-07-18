@@ -1,6 +1,5 @@
 ﻿using Application.Exceptions;
 using Application.Interfaces;
-using Application.Wrappers;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;

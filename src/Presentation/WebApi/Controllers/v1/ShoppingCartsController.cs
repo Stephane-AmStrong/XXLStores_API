@@ -9,13 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
-using Serilog;
 
 
 namespace WebApi.Controllers.v1
 {
-    [ApiVersion("1.0")]
     [Authorize]
+    [ApiVersion("1.0")]
     public class ShoppingCartsController : BaseApiController
     {
         //readonly IDiagnosticContext _diagnosticContext;
@@ -24,7 +23,6 @@ namespace WebApi.Controllers.v1
         }
 
 
-        // GET: api/<controller>
         /// <summary>
         /// return shoppingCarts that matche the criteria
         /// </summary>
@@ -40,7 +38,6 @@ namespace WebApi.Controllers.v1
         }
 
 
-        // GET api/<controller>/5
         /// <summary>
         /// Retreives a specific ShoppingCart.
         /// </summary>
@@ -54,7 +51,6 @@ namespace WebApi.Controllers.v1
         }
 
 
-        // POST api/<controller>
         /// <summary>
         /// Creates a ShoppingCart.
         /// </summary>
@@ -72,7 +68,6 @@ namespace WebApi.Controllers.v1
         }
 
 
-        // PUT api/<controller>/5
         /// <summary>
         /// Update a specific ShoppingCart.
         /// </summary>
@@ -97,7 +92,8 @@ namespace WebApi.Controllers.v1
         [Authorize(Policy = "shoppingCart.manage.policy")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            return Ok(await Mediator.Send(new DeleteShoppingCartCommand { Id = id }));
+            await Mediator.Send(new DeleteShoppingCartCommand { Id = id });
+            return NoContent();
         }
     }
 }

@@ -26,12 +26,12 @@ namespace Application.Features.ShoppingCarts.Commands.Update
             RuleFor(p => p.OrderAt)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
-                .Must(BeAValidDate).WithMessage("{PropertyName} is required.");
+                .Must(BeAValidDate).WithMessage("{PropertyName} is invalid.");
 
             RuleFor(p => p.OrderAt)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
-                .Must(BeAValidDate).WithMessage("{PropertyName} is required.");
+                .Must(BeAValidDate).WithMessage("{PropertyName} is invalid.");
 
             RuleFor(p => p.CustomerId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")

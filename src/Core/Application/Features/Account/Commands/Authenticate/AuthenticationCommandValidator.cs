@@ -17,10 +17,18 @@ namespace Application.Features.Account.Commands.Authenticate
             _repository = repository;
             _mapper = mapper;
 
+            /*
+             
             RuleFor(p => p.Email)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .EmailAddress();
+
+             */
+
+            RuleFor(p => p.Email)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull();
 
             RuleFor(p => p.Password)
                 .NotEmpty().WithMessage("{PropertyName} is required.")

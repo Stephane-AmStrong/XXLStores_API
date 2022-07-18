@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace Application.Features.AppUsers.Queries.GetPagedList
 {
-    public class GetAppUsersQuery : QueryParameters, IRequest<PagedListResponse<GetAppUsersViewModel>>
+    public class GetAppUsersQuery : QueryParameters, IRequest<PagedListResponse<AppUsersViewModel>>
     {
         public GetAppUsersQuery()
         {
             OrderBy = "name";
         }
 
-        public string HavingTheName { get; set; }
+        public string WithTheName { get; set; }
     }
 
-    internal class GetAppUsersQueryHandler : IRequestHandler<GetAppUsersQuery, PagedListResponse<GetAppUsersViewModel>>
+    internal class GetAppUsersQueryHandler : IRequestHandler<GetAppUsersQuery, PagedListResponse<AppUsersViewModel>>
     {
         private readonly ILogger<GetAppUsersQueryHandler> _logger;
         private readonly IRepositoryWrapper _repository;
@@ -33,13 +33,12 @@ namespace Application.Features.AppUsers.Queries.GetPagedList
             _logger = logger;
         }
 
-
-        public async Task<PagedListResponse<GetAppUsersViewModel>> Handle(GetAppUsersQuery query, CancellationToken cancellationToken)
+        public async Task<PagedListResponse<AppUsersViewModel>> Handle(GetAppUsersQuery query, CancellationToken cancellationToken)
         {
             var appUsers = await _repository.AppUser.GetPagedListAsync(query);
+            var appUsersViewModel = _mapper.Map<List<AppUsersViewModel>>(appUsers);
             _logger.LogInformation($"Returned Paged List of AppUsers from database.");
-            var appUsersViewModel = _mapper.Map<List<GetAppUsersViewModel>>(appUsers);
-            return new PagedListResponse<GetAppUsersViewModel>(appUsersViewModel, appUsers.MetaData);
+            return new PagedListResponse<AppUsersViewModel>(appUsersViewModel, appUsers.MetaData);
         }
     }
 }
