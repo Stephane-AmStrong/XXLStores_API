@@ -1,0 +1,7 @@
+2022-07-25 17:25:29.058 +01:00 [INF] Starting Seeding Default Data
+2022-07-25 17:25:37.600 +01:00 [INF] Seeding Complete
+2022-07-25 17:25:59.265 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-07-25 17:26:01.137 +01:00 [INF] Authentication succeeds
+2022-07-25 17:26:02.915 +01:00 [INF] RefreshToken succeeds
+2022-07-25 17:27:21.894 +01:00 [INF] Returned Paged List of Categories from database.
+2022-07-25 17:28:27.327 +01:00 [INF] Returned Paged List of Categories from database.

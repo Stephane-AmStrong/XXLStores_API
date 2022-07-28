@@ -340,3 +340,8 @@ CREATE TABLE [Identity].[RefreshTokens] (
 2022-07-18 17:13:39.517 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
 2022-07-18 17:13:39.518 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
 2022-07-18 17:13:39.794 +01:00 [INF] Returned Paged List of Categories from database.
+2022-07-18 17:16:30.556 +01:00 [INF] Starting Seeding Default Data
+2022-07-18 17:16:36.892 +01:00 [INF] Seeding Complete
+2022-07-18 17:16:51.333 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-07-18 17:16:53.098 +01:00 [INF] Authentication succeeds
+2022-07-18 17:16:54.770 +01:00 [INF] RefreshToken succeeds

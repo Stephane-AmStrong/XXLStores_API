@@ -58,7 +58,7 @@ namespace Application.Features.Account.Commands.RegisterUser
             await _repository.Email.SendAsync(message);
             _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
 
-            return $"{authenticationModel.UserInfo["Name"]}, message: User Registered. Please check your email for verification action.";
+            return $"{authenticationModel.UserInfo["name"]}, message: User Registered. Please check your email for verification action.";
         }
     }
 }

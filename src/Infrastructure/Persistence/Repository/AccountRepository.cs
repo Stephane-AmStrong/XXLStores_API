@@ -54,9 +54,9 @@ namespace Persistence.Repository
             {
                 UserInfo = new Dictionary<string, string>
                 {
-                    { "Name", appUser.FirstName +" "+appUser.LastName},
-                    { "Email", appUser.Email },
-                    { "PhoneNumber", appUser.PhoneNumber },
+                    { "name", appUser.FirstName +" "+appUser.LastName},
+                    { "email", appUser.Email },
+                    //{ "PhoneNumber", appUser.PhoneNumber },
                 },
 
                 AccessToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
@@ -98,9 +98,9 @@ namespace Persistence.Repository
             {
                 UserInfo = new Dictionary<string, string>
                 {
-                    { "Name", appUser.FirstName +" "+appUser.LastName},
-                    { "Email", appUser.Email },
-                    { "PhoneNumber", appUser.PhoneNumber },
+                    { "name", appUser.FirstName +" "+appUser.LastName},
+                    { "email", appUser.Email },
+                    //{ "phoneNumber", appUser.PhoneNumber },
                 },
                 AccessToken = emailConfirmationToken,
                 IsSuccess = true
@@ -137,9 +137,9 @@ namespace Persistence.Repository
             {
                 UserInfo = new Dictionary<string, string>
                 {
-                    { "Name", appUser.FirstName +" "+appUser.LastName},
-                    { "Email", appUser.UserName },
-                    { "PhoneNumber", appUser.PhoneNumber },
+                    { "name", appUser.FirstName +" "+appUser.LastName},
+                    { "email", appUser.UserName },
+                    //{ "phoneNumber", appUser.PhoneNumber },
                 },
                 AccessToken = "done",
                 IsSuccess = true
@@ -223,9 +223,9 @@ namespace Persistence.Repository
         {
             return new Dictionary<string, string>
                 {
-                    { "Name", utilisateur.FirstName +" "+utilisateur.LastName},
-                    { "Email", utilisateur.Email },
-                    { "PhoneNumber", utilisateur.PhoneNumber },
+                    { "name", utilisateur.FirstName +" "+utilisateur.LastName},
+                    { "email", utilisateur.Email },
+                    //{ "phoneNumber", utilisateur.PhoneNumber },
                 };
         }
     }

@@ -135,6 +135,16 @@ namespace Persistence.Seeds
         */
     }
 
+
+    /*
+     public DbSet<Category> Categories { get; set; }
+        public DbSet<inventory> inventory { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Shop> Shops { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+     */
     public static class ClaimsStore
     {
         public static List<ClaimWrapper> AllClaims = new List<ClaimWrapper>

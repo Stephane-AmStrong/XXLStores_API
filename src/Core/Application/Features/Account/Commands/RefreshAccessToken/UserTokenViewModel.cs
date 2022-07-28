@@ -12,7 +12,5 @@ namespace Application.Features.Account.Commands.RefreshAccessToken
         public string UserId { get; set; }
         public string Value { get; set; }
         public DateTime ExpiryTime { get; set; }
-
-        public bool IsActive => (ExpiryTime > DateTime.UtcNow);
     }
 }
