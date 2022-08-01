@@ -26,7 +26,7 @@ namespace Application.Features.Account.Commands.RevokeAccessToken
     public class RevokeTokenCommand : IRequest
     {
         [System.Text.Json.Serialization.JsonIgnore]
-        public string userId { get; set; }
+        public string UserId { get; set; }
     }
 
 
@@ -47,10 +47,10 @@ namespace Application.Features.Account.Commands.RevokeAccessToken
 
         public async Task<Unit> Handle(RevokeTokenCommand command, CancellationToken cancellationToken)
         {
-            _logger.LogInformation($"Retreiving user: |{command.userId}|'s Refresh Token");
-            var refreshToken = await _repository.Token.GetByUserIdAsync(command.userId);
+            _logger.LogInformation($"Retreiving user: |{command.UserId}|'s Refresh Token");
+            var refreshToken = await _repository.Token.GetByUserIdAsync(command.UserId);
 
-            _logger.LogInformation($"Attempting to delete user: |{command.userId}|'s Refresh Token");
+            _logger.LogInformation($"Attempting to delete user: |{command.UserId}|'s Refresh Token");
             await _repository.Token.DeleteAsync(refreshToken);
 
             await _repository.Token.SaveAsync();

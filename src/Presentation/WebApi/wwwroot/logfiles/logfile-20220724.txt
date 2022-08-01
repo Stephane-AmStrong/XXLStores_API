@@ -1,5 +1,0 @@
-2022-07-24 23:05:05.510 +01:00 [INF] Starting Seeding Default Data
-2022-07-24 23:05:18.365 +01:00 [INF] Seeding Complete
-2022-07-24 23:05:40.100 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
-2022-07-24 23:05:41.778 +01:00 [INF] Authentication succeeds
-2022-07-24 23:05:43.375 +01:00 [INF] RefreshToken succeeds

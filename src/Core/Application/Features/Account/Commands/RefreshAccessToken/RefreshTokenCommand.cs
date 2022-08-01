@@ -7,7 +7,7 @@ using Application.Features.Account.Commands.Authenticate;
 
 namespace Application.Features.Account.Commands.RefreshAccessToken
 {
-    public class RefreshTokenCommand : IRequest<RefreshTokenResponse>
+    public class RefreshTokensCommand : IRequest<RefreshTokensViewModel>
     {
         public string AccessToken { get; set; }
         public string RefreshToken { get; set; }
@@ -17,7 +17,7 @@ namespace Application.Features.Account.Commands.RefreshAccessToken
     }
 
 
-    internal class RefreshTokenRequestCommandHandler : IRequestHandler<RefreshTokenCommand, RefreshTokenResponse>
+    internal class RefreshTokenRequestCommandHandler : IRequestHandler<RefreshTokensCommand, RefreshTokensViewModel>
     {
         private readonly ILogger<RefreshTokenRequestCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
@@ -32,15 +32,15 @@ namespace Application.Features.Account.Commands.RefreshAccessToken
         }
 
 
-        public async Task<RefreshTokenResponse> Handle(RefreshTokenCommand command, CancellationToken cancellationToken)
+        public async Task<RefreshTokensViewModel> Handle(RefreshTokensCommand command, CancellationToken cancellationToken)
         {
             _logger.LogInformation($"RefreshToken attempt with accessToken: {command.AccessToken}");
-            var generateRefreshTokenModel = _mapper.Map<GenerateRefreshTokenModel>(command);
-            var refreshTokenResponse = await _repository.Token.RefreshAsync(generateRefreshTokenModel, command.IpAddress);
+            //var generateRefreshTokenModel = _mapper.Map<GenerateRefreshTokenModel>(command);
+            var refreshTokens = await _repository.Token.RefreshAsync(command.AccessToken, command.RefreshToken, command.IpAddress);
             _logger.LogInformation($"RefreshToken succeeds");
 
-            //var authenticationViewModel = _mapper.Map<AuthenticationViewModel>(authenticationModel);
-            return refreshTokenResponse;
+            var refreshTokensViewModel = _mapper.Map<RefreshTokensViewModel>(refreshTokens);
+            return refreshTokensViewModel;
         }
     }
 }

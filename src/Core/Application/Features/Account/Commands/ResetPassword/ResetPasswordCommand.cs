@@ -5,10 +5,12 @@ using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.DataTransfertObjects.Account;
+using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace Application.Features.Account.Commands.ResetPassword
 {
-    public class ResetPasswordCommand : IRequest<string>
+    public class ResetPasswordCommand : IRequest<JObject>
     {
         public string Email { get; set; }
         public string Token { get; set; }
@@ -16,7 +18,7 @@ namespace Application.Features.Account.Commands.ResetPassword
         public string ConfirmPassword { get; set; }
     }
 
-    internal class ResetPasswordCommandHandler : IRequestHandler<ResetPasswordCommand, string>
+    internal class ResetPasswordCommandHandler : IRequestHandler<ResetPasswordCommand, JObject>
     {
         private readonly ILogger<ResetPasswordCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
@@ -31,7 +33,7 @@ namespace Application.Features.Account.Commands.ResetPassword
         }
 
 
-        public async Task<string> Handle(ResetPasswordCommand command, CancellationToken cancellationToken)
+        public async Task<JObject> Handle(ResetPasswordCommand command, CancellationToken cancellationToken)
         {
             var resetPasswordRequest = _mapper.Map<ResetPasswordRequest>(command);
             _logger.LogInformation($"Reset Password attempt with email: {command.Email} and resetToken: {command.Token}");
@@ -39,7 +41,13 @@ namespace Application.Features.Account.Commands.ResetPassword
             var resetPasswordMessage = await _repository.Account.ResetPassword(resetPasswordRequest);
             _logger.LogInformation($"Reset Password succeeds");
 
-            return resetPasswordMessage;
+            var successJson = new JObject
+            {
+                ["StatusCode"] = StatusCodes.Status201Created,
+                ["Message"] = resetPasswordMessage
+            };
+
+            return successJson;
         }
     }
 }

@@ -59,8 +59,12 @@ namespace Persistence.Repository
                     //{ "PhoneNumber", appUser.PhoneNumber },
                 },
 
-                AccessToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
-                ExpireDate = jwtSecurityToken.ValidTo,
+                AccessToken = new AccessToken
+                {
+                    Value = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
+                    ExpiryTime = jwtSecurityToken.ValidTo
+                },
+
                 RefreshToken = userToken,
                 IsSuccess = true
             };
@@ -102,7 +106,11 @@ namespace Persistence.Repository
                     { "email", appUser.Email },
                     //{ "phoneNumber", appUser.PhoneNumber },
                 },
-                AccessToken = emailConfirmationToken,
+                AccessToken = new AccessToken
+                {
+                    Value = emailConfirmationToken,
+                    //ExpiryTime
+                },
                 IsSuccess = true
             };
         }
@@ -141,7 +149,11 @@ namespace Persistence.Repository
                     { "email", appUser.UserName },
                     //{ "phoneNumber", appUser.PhoneNumber },
                 },
-                AccessToken = "done",
+                AccessToken = new AccessToken
+                {
+                    Value = "done",
+                    //ExpiryTime =
+                },
                 IsSuccess = true
             };
         }
@@ -151,7 +163,7 @@ namespace Persistence.Repository
         private async Task<string> GenerateEmailConfirmationTokenAsync(AppUser appUser, string origin)
         {
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
-            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            code = await EncodeStringAsync(code);
             var route = "api/account/confirm-email/";
             var _enpointUri = new Uri(string.Concat($"{origin}/", route));
             var emailVerificationUri = QueryHelpers.AddQueryString(_enpointUri.ToString(), "userId", appUser.Id);
@@ -165,7 +177,8 @@ namespace Persistence.Repository
         public async Task<string> ConfirmEmailAsync(string appUserId, string code)
         {
             var appUser = await _userManager.FindByIdAsync(appUserId);
-            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            //code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            code = await DecodeStringAsync(code);
             var result = await _userManager.ConfirmEmailAsync(appUser, code);
 
             if (!result.Succeeded) throw new ApiException($"An error occured while confirming {appUser.Email}.");
@@ -179,6 +192,10 @@ namespace Persistence.Repository
         {
             var account = await _userManager.FindByEmailAsync(resetPasswordRequest.Email);
             if (account == null) throw new ApiException($"No Accounts Registered with {resetPasswordRequest.Email}.");
+
+            //décode token
+            var decodedToken = await Task.Run(() => WebEncoders.Base64UrlDecode(resetPasswordRequest.Token));
+            resetPasswordRequest.Token = await Task.Run(() => Encoding.UTF8.GetString(decodedToken));
 
             var result = await _userManager.ResetPasswordAsync(account, resetPasswordRequest.Token, resetPasswordRequest.Password);
 

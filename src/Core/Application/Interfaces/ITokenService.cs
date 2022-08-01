@@ -12,15 +12,18 @@ namespace Application.Interfaces
 {
     public interface ITokenService
     {
+        Task<string> EncodeStringAsync(string stringToEncode);
+        Task<string> DecodeStringAsync(string stringToDecode);
+
         Task<AuthenticationModel> GeneratePasswordResetTokenAsync(string email);
         Task<JwtSecurityToken> GenerateJWToken(AppUser appUser);
         Task<UserToken> GenerateRefreshTokenAsync(string ipAddress, string userId);
         Task<ClaimsPrincipal> GetPrincipalFromExpiredTokenAsync(string token);
-        Task<RefreshTokenResponse> RefreshAsync(GenerateRefreshTokenModel generateRefreshTokenModel, string ipAddress);
+        Task<RefreshTokens> RefreshAsync(string accessToken, string refreshToken, string ipAddress);
 
 
         Task<UserToken> CommitAsync(UserToken refreshToken);
-        //Task<Dictionary<string, string>> GetByIdAsync(Guid id);
+        Task<UserToken> GetByIdAsync(Guid Id);
         Task<UserToken> GetByUserIdAsync(string userId);
 
         Task CreateAsync(UserToken refreshToken);

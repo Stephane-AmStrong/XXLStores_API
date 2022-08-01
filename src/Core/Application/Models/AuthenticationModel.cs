@@ -11,13 +11,12 @@ namespace Application.Models
     {
         public Dictionary<string, string> UserInfo { get; set; }
         public virtual AppUser AppUser { get; set; }
-        public string AccessToken { get; set; }
-        //[JsonIgnore]
+        public AccessToken AccessToken { get; set; }
         public UserToken RefreshToken { get; set; }
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
         public IEnumerable<string> ErrorDetails { get; set; }
-        public DateTime? ExpireDate { get; set; }
+        //public DateTime? ExpireDate { get; set; }
         public bool IsLockedOut { get; set; }
     }
 }

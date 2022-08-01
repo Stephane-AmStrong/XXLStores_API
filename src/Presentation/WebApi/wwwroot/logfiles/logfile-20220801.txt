@@ -1,0 +1,365 @@
+2022-08-01 00:33:51.442 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 00:34:01.062 +01:00 [INF] Seeding Complete
+2022-08-01 00:34:17.797 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 00:34:27.160 +01:00 [INF] Seeding Complete
+2022-08-01 00:34:56.241 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-01 08:23:45.173 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 08:23:54.186 +01:00 [INF] Seeding Complete
+2022-08-01 08:26:12.454 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-01 08:27:18.083 +01:00 [INF] Authentication succeeds
+2022-08-01 08:27:21.705 +01:00 [INF] RefreshToken succeeds
+2022-08-01 08:27:26.036 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-01 08:27:30.162 +01:00 [INF] Authentication succeeds
+2022-08-01 08:27:34.151 +01:00 [INF] RefreshToken succeeds
+2022-08-01 08:28:09.655 +01:00 [INF] RefreshToken attempt with accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpcCI6IjE5Mi4xNjguMS4xMDEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3RlcGhhbmUuYWRqYWtvdGFuQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMDI5MGU5MzEtZjY0ZC00ZWQ4LWE0MjgtNGVjYmM2NTQ3NTA5IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiQW1TdHJvbmciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiU3TDqXBoYW5lIiwianRpIjoiOGI2YzhlMTctMWI2Ny00Yzk5LWJkNGMtOThiOTQ0Mjg2OTJhIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXJBZG1pbiIsImFwcHVzZXIucmVhZCI6IlJlYWQgQXBwVXNlcnMiLCJhcHB1c2VyLndyaXRlIjoiV3JpdGUgQXBwVXNlcnMiLCJhcHB1c2VyLm1hbmFnZSI6Ik1hbmFnZSBBcHBVc2VycyIsImNhdGVnb3J5LnJlYWQiOiJSZWFkIENhdGVnb3JpZXMiLCJjYXRlZ29yeS53cml0ZSI6IldyaXRlIENhdGVnb3JpZXMiLCJjYXRlZ29yeS5tYW5hZ2UiOiJNYW5hZ2UgQ2F0ZWdvcmllcyIsImludmVudG9yeS5yZWFkIjoiUmVhZCBJbnZlbnRvcnkiLCJpbnZlbnRvcnkud3JpdGUiOiJXcml0ZSBJbnZlbnRvcnkiLCJpbnZlbnRvcnkubWFuYWdlIjoiTWFuYWdlIEludmVudG9yeSIsIml0ZW0ucmVhZCI6IlJlYWQgSXRlbXMiLCJpdGVtLndyaXRlIjoiV3JpdGUgSXRlbXMiLCJpdGVtLm1hbmFnZSI6Ik1hbmFnZSBJdGVtcyIsInBheW1lbnQucmVhZCI6IlJlYWQgUGF5bWVudHMiLCJwYXltZW50LndyaXRlIjoiV3JpdGUgUGF5bWVudHMiLCJwYXltZW50Lm1hbmFnZSI6Ik1hbmFnZSBQYXltZW50cyIsInNob3AucmVhZCI6IlJlYWQgU2hvcHMiLCJzaG9wLndyaXRlIjoiV3JpdGUgU2hvcHMiLCJzaG9wLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcyIsInNob3BwaW5nQ2FydC5yZWFkIjoiUmVhZCBTaG9wcGluZ0NhcnRzIiwic2hvcHBpbmdDYXJ0LndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydC5tYW5hZ2UiOiJNYW5hZ2UgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydEl0ZW0ucmVhZCI6IlJlYWQgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcGluZ0NhcnRJdGVtcyIsImV4cCI6MTY1OTM0MjQ0OSwiaXNzIjoiQ29yZUlkZW50aXR5IiwiYXVkIjoiQ29yZUlkZW50aXR5VXNlciJ9.PbAz9fo0LHl3uhpLvv9rmGlKKwSqTKpdPQH0mF7FEQ4
+2022-08-01 08:28:22.231 +01:00 [INF] RefreshToken succeeds
+2022-08-01 08:36:30.555 +01:00 [INF] RefreshToken attempt with accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpcCI6IjE5Mi4xNjguMS4xMDEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3RlcGhhbmUuYWRqYWtvdGFuQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMDI5MGU5MzEtZjY0ZC00ZWQ4LWE0MjgtNGVjYmM2NTQ3NTA5IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiQW1TdHJvbmciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiU3TDqXBoYW5lIiwianRpIjoiYjNiNzM2YTItNjJhOS00Y2RlLWIxYTktNTNkN2NhOGU1YjA4IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXJBZG1pbiIsImFwcHVzZXIucmVhZCI6IlJlYWQgQXBwVXNlcnMiLCJhcHB1c2VyLndyaXRlIjoiV3JpdGUgQXBwVXNlcnMiLCJhcHB1c2VyLm1hbmFnZSI6Ik1hbmFnZSBBcHBVc2VycyIsImNhdGVnb3J5LnJlYWQiOiJSZWFkIENhdGVnb3JpZXMiLCJjYXRlZ29yeS53cml0ZSI6IldyaXRlIENhdGVnb3JpZXMiLCJjYXRlZ29yeS5tYW5hZ2UiOiJNYW5hZ2UgQ2F0ZWdvcmllcyIsImludmVudG9yeS5yZWFkIjoiUmVhZCBJbnZlbnRvcnkiLCJpbnZlbnRvcnkud3JpdGUiOiJXcml0ZSBJbnZlbnRvcnkiLCJpbnZlbnRvcnkubWFuYWdlIjoiTWFuYWdlIEludmVudG9yeSIsIml0ZW0ucmVhZCI6IlJlYWQgSXRlbXMiLCJpdGVtLndyaXRlIjoiV3JpdGUgSXRlbXMiLCJpdGVtLm1hbmFnZSI6Ik1hbmFnZSBJdGVtcyIsInBheW1lbnQucmVhZCI6IlJlYWQgUGF5bWVudHMiLCJwYXltZW50LndyaXRlIjoiV3JpdGUgUGF5bWVudHMiLCJwYXltZW50Lm1hbmFnZSI6Ik1hbmFnZSBQYXltZW50cyIsInNob3AucmVhZCI6IlJlYWQgU2hvcHMiLCJzaG9wLndyaXRlIjoiV3JpdGUgU2hvcHMiLCJzaG9wLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcyIsInNob3BwaW5nQ2FydC5yZWFkIjoiUmVhZCBTaG9wcGluZ0NhcnRzIiwic2hvcHBpbmdDYXJ0LndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydC5tYW5hZ2UiOiJNYW5hZ2UgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydEl0ZW0ucmVhZCI6IlJlYWQgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcGluZ0NhcnRJdGVtcyIsImV4cCI6MTY1OTM0MjQ5NywiaXNzIjoiQ29yZUlkZW50aXR5IiwiYXVkIjoiQ29yZUlkZW50aXR5VXNlciJ9.c1soBAKcLqRDU6OnDVHitflqFjE_IbFaAj9w_A5UCm0
+2022-08-01 08:36:50.123 +01:00 [INF] RefreshToken succeeds
+2022-08-01 08:38:11.381 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 08:38:17.613 +01:00 [INF] Seeding Complete
+2022-08-01 08:38:36.206 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-01 08:40:17.688 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-01 08:40:20.109 +01:00 [INF] Authentication succeeds
+2022-08-01 08:40:23.520 +01:00 [INF] Authentication succeeds
+2022-08-01 08:40:25.940 +01:00 [INF] RefreshToken succeeds
+2022-08-01 08:40:25.995 +01:00 [ERR] 
+
+Application.Exceptions.ApiException: An error occurred during the generation of the Token.
+   at Persistence.Repository.TokenRepository.CommitAsync(UserToken refreshToken) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Infrastructure\Persistence\Repository\TokenRepository.cs:line 92
+   at Application.Features.Account.Commands.Authenticate.AuthenticationRequestCommandHandler.Handle(AuthenticationCommand command, CancellationToken cancellationToken) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Features\Account\Commands\Authenticate\AuthenticationCommand.cs:line 43
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Behaviours\ValidationBehaviour.cs:line 30
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.AccountController.Authenticate(AuthenticationCommand command) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Controllers\AccountController.cs:line 37
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
+2022-08-01 09:59:55.544 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 10:00:15.607 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 10:00:34.873 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 10:00:41.222 +01:00 [INF] Seeding Complete
+2022-08-01 10:03:42.425 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-01 10:04:33.495 +01:00 [INF] Authentication succeeds
+2022-08-01 10:04:36.214 +01:00 [INF] RefreshToken succeeds
+2022-08-01 10:13:12.188 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 10:13:18.366 +01:00 [INF] Seeding Complete
+2022-08-01 10:13:39.864 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-01 10:13:45.103 +01:00 [INF] Authentication succeeds
+2022-08-01 10:13:47.837 +01:00 [INF] RefreshToken succeeds
+2022-08-01 10:14:47.273 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 10:14:53.165 +01:00 [INF] Seeding Complete
+2022-08-01 10:15:12.345 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-01 10:15:19.069 +01:00 [INF] Authentication succeeds
+2022-08-01 10:15:22.981 +01:00 [INF] RefreshToken succeeds
+2022-08-01 10:16:03.248 +01:00 [INF] RefreshToken attempt with accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpcCI6IjE5Mi4xNjguMS4xMDEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3RlcGhhbmUuYWRqYWtvdGFuQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMDI5MGU5MzEtZjY0ZC00ZWQ4LWE0MjgtNGVjYmM2NTQ3NTA5IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiQW1TdHJvbmciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiU3TDqXBoYW5lIiwianRpIjoiYzkzZGEwYWUtNDI4Yy00MTc4LThkNzMtOTZjZGE4NmMyNDI0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXJBZG1pbiIsImFwcHVzZXIucmVhZCI6IlJlYWQgQXBwVXNlcnMiLCJhcHB1c2VyLndyaXRlIjoiV3JpdGUgQXBwVXNlcnMiLCJhcHB1c2VyLm1hbmFnZSI6Ik1hbmFnZSBBcHBVc2VycyIsImNhdGVnb3J5LnJlYWQiOiJSZWFkIENhdGVnb3JpZXMiLCJjYXRlZ29yeS53cml0ZSI6IldyaXRlIENhdGVnb3JpZXMiLCJjYXRlZ29yeS5tYW5hZ2UiOiJNYW5hZ2UgQ2F0ZWdvcmllcyIsImludmVudG9yeS5yZWFkIjoiUmVhZCBJbnZlbnRvcnkiLCJpbnZlbnRvcnkud3JpdGUiOiJXcml0ZSBJbnZlbnRvcnkiLCJpbnZlbnRvcnkubWFuYWdlIjoiTWFuYWdlIEludmVudG9yeSIsIml0ZW0ucmVhZCI6IlJlYWQgSXRlbXMiLCJpdGVtLndyaXRlIjoiV3JpdGUgSXRlbXMiLCJpdGVtLm1hbmFnZSI6Ik1hbmFnZSBJdGVtcyIsInBheW1lbnQucmVhZCI6IlJlYWQgUGF5bWVudHMiLCJwYXltZW50LndyaXRlIjoiV3JpdGUgUGF5bWVudHMiLCJwYXltZW50Lm1hbmFnZSI6Ik1hbmFnZSBQYXltZW50cyIsInNob3AucmVhZCI6IlJlYWQgU2hvcHMiLCJzaG9wLndyaXRlIjoiV3JpdGUgU2hvcHMiLCJzaG9wLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcyIsInNob3BwaW5nQ2FydC5yZWFkIjoiUmVhZCBTaG9wcGluZ0NhcnRzIiwic2hvcHBpbmdDYXJ0LndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydC5tYW5hZ2UiOiJNYW5hZ2UgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydEl0ZW0ucmVhZCI6IlJlYWQgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcGluZ0NhcnRJdGVtcyIsImV4cCI6MTY1OTM0ODkxNiwiaXNzIjoiQ29yZUlkZW50aXR5IiwiYXVkIjoiQ29yZUlkZW50aXR5VXNlciJ9.FZ0F8dvrFmeY1KzR-Ret-1v2GoSv3jU3Rl41NAsiGFU
+2022-08-01 10:16:13.910 +01:00 [INF] RefreshToken succeeds
+2022-08-01 10:17:07.645 +01:00 [INF] RefreshToken attempt with accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpcCI6IjE5Mi4xNjguMS4xMDEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3RlcGhhbmUuYWRqYWtvdGFuQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMDI5MGU5MzEtZjY0ZC00ZWQ4LWE0MjgtNGVjYmM2NTQ3NTA5IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiQW1TdHJvbmciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiU3TDqXBoYW5lIiwianRpIjoiYzkzZGEwYWUtNDI4Yy00MTc4LThkNzMtOTZjZGE4NmMyNDI0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXJBZG1pbiIsImFwcHVzZXIucmVhZCI6IlJlYWQgQXBwVXNlcnMiLCJhcHB1c2VyLndyaXRlIjoiV3JpdGUgQXBwVXNlcnMiLCJhcHB1c2VyLm1hbmFnZSI6Ik1hbmFnZSBBcHBVc2VycyIsImNhdGVnb3J5LnJlYWQiOiJSZWFkIENhdGVnb3JpZXMiLCJjYXRlZ29yeS53cml0ZSI6IldyaXRlIENhdGVnb3JpZXMiLCJjYXRlZ29yeS5tYW5hZ2UiOiJNYW5hZ2UgQ2F0ZWdvcmllcyIsImludmVudG9yeS5yZWFkIjoiUmVhZCBJbnZlbnRvcnkiLCJpbnZlbnRvcnkud3JpdGUiOiJXcml0ZSBJbnZlbnRvcnkiLCJpbnZlbnRvcnkubWFuYWdlIjoiTWFuYWdlIEludmVudG9yeSIsIml0ZW0ucmVhZCI6IlJlYWQgSXRlbXMiLCJpdGVtLndyaXRlIjoiV3JpdGUgSXRlbXMiLCJpdGVtLm1hbmFnZSI6Ik1hbmFnZSBJdGVtcyIsInBheW1lbnQucmVhZCI6IlJlYWQgUGF5bWVudHMiLCJwYXltZW50LndyaXRlIjoiV3JpdGUgUGF5bWVudHMiLCJwYXltZW50Lm1hbmFnZSI6Ik1hbmFnZSBQYXltZW50cyIsInNob3AucmVhZCI6IlJlYWQgU2hvcHMiLCJzaG9wLndyaXRlIjoiV3JpdGUgU2hvcHMiLCJzaG9wLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcyIsInNob3BwaW5nQ2FydC5yZWFkIjoiUmVhZCBTaG9wcGluZ0NhcnRzIiwic2hvcHBpbmdDYXJ0LndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydC5tYW5hZ2UiOiJNYW5hZ2UgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydEl0ZW0ucmVhZCI6IlJlYWQgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcGluZ0NhcnRJdGVtcyIsImV4cCI6MTY1OTM0ODkxNiwiaXNzIjoiQ29yZUlkZW50aXR5IiwiYXVkIjoiQ29yZUlkZW50aXR5VXNlciJ9.FZ0F8dvrFmeY1KzR-Ret-1v2GoSv3jU3Rl41NAsiGFU
+2022-08-01 10:17:10.969 +01:00 [ERR] 
+
+Application.Exceptions.ApiException: Invalid client request.
+   at Persistence.Repository.TokenRepository.RefreshAsync(String accessToken, String refreshToken, String ipAddress) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Infrastructure\Persistence\Repository\TokenRepository.cs:line 51
+   at Application.Features.Account.Commands.RefreshAccessToken.RefreshTokenRequestCommandHandler.Handle(RefreshTokenCommand command, CancellationToken cancellationToken) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Features\Account\Commands\RefreshAccessToken\RefreshTokenCommand.cs:line 39
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Behaviours\ValidationBehaviour.cs:line 30
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.AccountController.Refresh(RefreshTokenCommand command) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Controllers\AccountController.cs:line 130
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
+2022-08-01 10:18:05.312 +01:00 [INF] RefreshToken attempt with accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpcCI6IjE5Mi4xNjguMS4xMDEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3RlcGhhbmUuYWRqYWtvdGFuQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMDI5MGU5MzEtZjY0ZC00ZWQ4LWE0MjgtNGVjYmM2NTQ3NTA5IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiQW1TdHJvbmciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiU3TDqXBoYW5lIiwianRpIjoiNmNlY2UxYzctMmY0Mi00NzVkLTgyYWYtYmFmOWJiYTBjYjEzIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXJBZG1pbiIsImFwcHVzZXIucmVhZCI6IlJlYWQgQXBwVXNlcnMiLCJhcHB1c2VyLndyaXRlIjoiV3JpdGUgQXBwVXNlcnMiLCJhcHB1c2VyLm1hbmFnZSI6Ik1hbmFnZSBBcHBVc2VycyIsImNhdGVnb3J5LnJlYWQiOiJSZWFkIENhdGVnb3JpZXMiLCJjYXRlZ29yeS53cml0ZSI6IldyaXRlIENhdGVnb3JpZXMiLCJjYXRlZ29yeS5tYW5hZ2UiOiJNYW5hZ2UgQ2F0ZWdvcmllcyIsImludmVudG9yeS5yZWFkIjoiUmVhZCBJbnZlbnRvcnkiLCJpbnZlbnRvcnkud3JpdGUiOiJXcml0ZSBJbnZlbnRvcnkiLCJpbnZlbnRvcnkubWFuYWdlIjoiTWFuYWdlIEludmVudG9yeSIsIml0ZW0ucmVhZCI6IlJlYWQgSXRlbXMiLCJpdGVtLndyaXRlIjoiV3JpdGUgSXRlbXMiLCJpdGVtLm1hbmFnZSI6Ik1hbmFnZSBJdGVtcyIsInBheW1lbnQucmVhZCI6IlJlYWQgUGF5bWVudHMiLCJwYXltZW50LndyaXRlIjoiV3JpdGUgUGF5bWVudHMiLCJwYXltZW50Lm1hbmFnZSI6Ik1hbmFnZSBQYXltZW50cyIsInNob3AucmVhZCI6IlJlYWQgU2hvcHMiLCJzaG9wLndyaXRlIjoiV3JpdGUgU2hvcHMiLCJzaG9wLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcyIsInNob3BwaW5nQ2FydC5yZWFkIjoiUmVhZCBTaG9wcGluZ0NhcnRzIiwic2hvcHBpbmdDYXJ0LndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydC5tYW5hZ2UiOiJNYW5hZ2UgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydEl0ZW0ucmVhZCI6IlJlYWQgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcGluZ0NhcnRJdGVtcyIsImV4cCI6MTY1OTM0ODk2NywiaXNzIjoiQ29yZUlkZW50aXR5IiwiYXVkIjoiQ29yZUlkZW50aXR5VXNlciJ9.ZyYBieG41vSyCyGFhhneSoEu-dsD4JMjM2v20f7pVdk
+2022-08-01 10:18:16.363 +01:00 [INF] RefreshToken succeeds
+2022-08-01 10:19:24.676 +01:00 [INF] RefreshToken attempt with accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpcCI6IjE5Mi4xNjguMS4xMDEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3RlcGhhbmUuYWRqYWtvdGFuQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMDI5MGU5MzEtZjY0ZC00ZWQ4LWE0MjgtNGVjYmM2NTQ3NTA5IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiQW1TdHJvbmciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiU3TDqXBoYW5lIiwianRpIjoiOTBkOGZhY2QtMDcxNS00NDNkLWFkNjQtODAyYTYwYTY4NDBjIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXJBZG1pbiIsImFwcHVzZXIucmVhZCI6IlJlYWQgQXBwVXNlcnMiLCJhcHB1c2VyLndyaXRlIjoiV3JpdGUgQXBwVXNlcnMiLCJhcHB1c2VyLm1hbmFnZSI6Ik1hbmFnZSBBcHBVc2VycyIsImNhdGVnb3J5LnJlYWQiOiJSZWFkIENhdGVnb3JpZXMiLCJjYXRlZ29yeS53cml0ZSI6IldyaXRlIENhdGVnb3JpZXMiLCJjYXRlZ29yeS5tYW5hZ2UiOiJNYW5hZ2UgQ2F0ZWdvcmllcyIsImludmVudG9yeS5yZWFkIjoiUmVhZCBJbnZlbnRvcnkiLCJpbnZlbnRvcnkud3JpdGUiOiJXcml0ZSBJbnZlbnRvcnkiLCJpbnZlbnRvcnkubWFuYWdlIjoiTWFuYWdlIEludmVudG9yeSIsIml0ZW0ucmVhZCI6IlJlYWQgSXRlbXMiLCJpdGVtLndyaXRlIjoiV3JpdGUgSXRlbXMiLCJpdGVtLm1hbmFnZSI6Ik1hbmFnZSBJdGVtcyIsInBheW1lbnQucmVhZCI6IlJlYWQgUGF5bWVudHMiLCJwYXltZW50LndyaXRlIjoiV3JpdGUgUGF5bWVudHMiLCJwYXltZW50Lm1hbmFnZSI6Ik1hbmFnZSBQYXltZW50cyIsInNob3AucmVhZCI6IlJlYWQgU2hvcHMiLCJzaG9wLndyaXRlIjoiV3JpdGUgU2hvcHMiLCJzaG9wLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcyIsInNob3BwaW5nQ2FydC5yZWFkIjoiUmVhZCBTaG9wcGluZ0NhcnRzIiwic2hvcHBpbmdDYXJ0LndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydC5tYW5hZ2UiOiJNYW5hZ2UgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydEl0ZW0ucmVhZCI6IlJlYWQgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcGluZ0NhcnRJdGVtcyIsImV4cCI6MTY1OTM0OTA4OSwiaXNzIjoiQ29yZUlkZW50aXR5IiwiYXVkIjoiQ29yZUlkZW50aXR5VXNlciJ9.LqETDeVztFHK3cf3C-zp9fm259ngnvq6AiJXWeT8v2E
+2022-08-01 10:19:34.343 +01:00 [INF] RefreshToken succeeds
+2022-08-01 10:44:40.091 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 10:44:46.114 +01:00 [INF] Seeding Complete
+2022-08-01 10:45:09.652 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-01 10:45:16.657 +01:00 [INF] Authentication succeeds
+2022-08-01 10:45:19.005 +01:00 [INF] RefreshToken succeeds
+2022-08-01 10:49:57.746 +01:00 [INF] RefreshToken attempt with accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpcCI6IjE5Mi4xNjguMS4xMDEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3RlcGhhbmUuYWRqYWtvdGFuQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMDI5MGU5MzEtZjY0ZC00ZWQ4LWE0MjgtNGVjYmM2NTQ3NTA5IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiQW1TdHJvbmciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiU3TDqXBoYW5lIiwianRpIjoiNzUzYjMzMjEtYjM2My00MzczLWE3YzMtNmQ5ZWZhYzIxYzM2IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXJBZG1pbiIsImFwcHVzZXIucmVhZCI6IlJlYWQgQXBwVXNlcnMiLCJhcHB1c2VyLndyaXRlIjoiV3JpdGUgQXBwVXNlcnMiLCJhcHB1c2VyLm1hbmFnZSI6Ik1hbmFnZSBBcHBVc2VycyIsImNhdGVnb3J5LnJlYWQiOiJSZWFkIENhdGVnb3JpZXMiLCJjYXRlZ29yeS53cml0ZSI6IldyaXRlIENhdGVnb3JpZXMiLCJjYXRlZ29yeS5tYW5hZ2UiOiJNYW5hZ2UgQ2F0ZWdvcmllcyIsImludmVudG9yeS5yZWFkIjoiUmVhZCBJbnZlbnRvcnkiLCJpbnZlbnRvcnkud3JpdGUiOiJXcml0ZSBJbnZlbnRvcnkiLCJpbnZlbnRvcnkubWFuYWdlIjoiTWFuYWdlIEludmVudG9yeSIsIml0ZW0ucmVhZCI6IlJlYWQgSXRlbXMiLCJpdGVtLndyaXRlIjoiV3JpdGUgSXRlbXMiLCJpdGVtLm1hbmFnZSI6Ik1hbmFnZSBJdGVtcyIsInBheW1lbnQucmVhZCI6IlJlYWQgUGF5bWVudHMiLCJwYXltZW50LndyaXRlIjoiV3JpdGUgUGF5bWVudHMiLCJwYXltZW50Lm1hbmFnZSI6Ik1hbmFnZSBQYXltZW50cyIsInNob3AucmVhZCI6IlJlYWQgU2hvcHMiLCJzaG9wLndyaXRlIjoiV3JpdGUgU2hvcHMiLCJzaG9wLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcyIsInNob3BwaW5nQ2FydC5yZWFkIjoiUmVhZCBTaG9wcGluZ0NhcnRzIiwic2hvcHBpbmdDYXJ0LndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydC5tYW5hZ2UiOiJNYW5hZ2UgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydEl0ZW0ucmVhZCI6IlJlYWQgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcGluZ0NhcnRJdGVtcyIsImV4cCI6MTY1OTM1MDcxNSwiaXNzIjoiQ29yZUlkZW50aXR5IiwiYXVkIjoiQ29yZUlkZW50aXR5VXNlciJ9.5oIlMspAnvawr1ar2pOQt5JAIQbQWrVDB5ARGp93dKk
+2022-08-01 10:50:09.122 +01:00 [INF] RefreshToken succeeds
+2022-08-01 11:02:07.850 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 11:02:15.032 +01:00 [INF] Seeding Complete
+2022-08-01 11:02:33.351 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-01 11:02:39.137 +01:00 [INF] Authentication succeeds
+2022-08-01 11:02:41.963 +01:00 [INF] RefreshToken succeeds
+2022-08-01 11:03:11.155 +01:00 [INF] RefreshToken attempt with accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpcCI6IjE5Mi4xNjguMS4xMDEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3RlcGhhbmUuYWRqYWtvdGFuQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMDI5MGU5MzEtZjY0ZC00ZWQ4LWE0MjgtNGVjYmM2NTQ3NTA5IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiQW1TdHJvbmciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiU3TDqXBoYW5lIiwianRpIjoiM2E1MTM4MzgtMzExYy00ZTk1LWFhY2ItOWM0NTJiMmNiNmFhIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXJBZG1pbiIsImFwcHVzZXIucmVhZCI6IlJlYWQgQXBwVXNlcnMiLCJhcHB1c2VyLndyaXRlIjoiV3JpdGUgQXBwVXNlcnMiLCJhcHB1c2VyLm1hbmFnZSI6Ik1hbmFnZSBBcHBVc2VycyIsImNhdGVnb3J5LnJlYWQiOiJSZWFkIENhdGVnb3JpZXMiLCJjYXRlZ29yeS53cml0ZSI6IldyaXRlIENhdGVnb3JpZXMiLCJjYXRlZ29yeS5tYW5hZ2UiOiJNYW5hZ2UgQ2F0ZWdvcmllcyIsImludmVudG9yeS5yZWFkIjoiUmVhZCBJbnZlbnRvcnkiLCJpbnZlbnRvcnkud3JpdGUiOiJXcml0ZSBJbnZlbnRvcnkiLCJpbnZlbnRvcnkubWFuYWdlIjoiTWFuYWdlIEludmVudG9yeSIsIml0ZW0ucmVhZCI6IlJlYWQgSXRlbXMiLCJpdGVtLndyaXRlIjoiV3JpdGUgSXRlbXMiLCJpdGVtLm1hbmFnZSI6Ik1hbmFnZSBJdGVtcyIsInBheW1lbnQucmVhZCI6IlJlYWQgUGF5bWVudHMiLCJwYXltZW50LndyaXRlIjoiV3JpdGUgUGF5bWVudHMiLCJwYXltZW50Lm1hbmFnZSI6Ik1hbmFnZSBQYXltZW50cyIsInNob3AucmVhZCI6IlJlYWQgU2hvcHMiLCJzaG9wLndyaXRlIjoiV3JpdGUgU2hvcHMiLCJzaG9wLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcyIsInNob3BwaW5nQ2FydC5yZWFkIjoiUmVhZCBTaG9wcGluZ0NhcnRzIiwic2hvcHBpbmdDYXJ0LndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydC5tYW5hZ2UiOiJNYW5hZ2UgU2hvcHBpbmdDYXJ0cyIsInNob3BwaW5nQ2FydEl0ZW0ucmVhZCI6IlJlYWQgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLndyaXRlIjoiV3JpdGUgU2hvcHBpbmdDYXJ0SXRlbXMiLCJzaG9wcGluZ0NhcnRJdGVtLm1hbmFnZSI6Ik1hbmFnZSBTaG9wcGluZ0NhcnRJdGVtcyIsImV4cCI6MTY1OTM1MTc1NywiaXNzIjoiQ29yZUlkZW50aXR5IiwiYXVkIjoiQ29yZUlkZW50aXR5VXNlciJ9.5FQCbKKFLxlpdSlWOcm17bhQ5ouxyu3vq0Jm2DPZs2E
+2022-08-01 11:03:20.579 +01:00 [INF] RefreshToken succeeds
+2022-08-01 11:10:21.816 +01:00 [INF] Registration attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:10:27.237 +01:00 [INF] Registration succeeds
+2022-08-01 11:10:27.238 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:10:31.048 +01:00 [ERR] 
+
+MailKit.Security.SslHandshakeException: An error occurred while attempting to establish an SSL or TLS connection.
+
+The server's SSL certificate could not be validated for the following reasons:
+• The server certificate has the following errors:
+  • La fonction de révocation n’a pas pu vérifier la révocation du certificat.
+
+ ---> System.Security.Authentication.AuthenticationException: The remote certificate was rejected by the provided RemoteCertificateValidationCallback.
+   at System.Net.Security.SslStream.SendAuthResetSignal(ProtocolToken message, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslStream.CompleteHandshake(SslAuthenticationOptions sslAuthenticationOptions)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](TIOAdapter adapter, Boolean receiveFirst, Byte[] reAuthenticationData, Boolean isApm)
+   at MailKit.Net.Smtp.SmtpClient.ConnectAsync(String host, Int32 port, SecureSocketOptions options, Boolean doAsync, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.ConnectAsync(String host, Int32 port, SecureSocketOptions options, Boolean doAsync, CancellationToken cancellationToken)
+   at Persistence.Service.EmailService.SendAsync(MimeMessage mailMessage) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Infrastructure\Persistence\Service\EmailService.cs:line 70
+   at Persistence.Service.EmailService.SendAsync(MimeMessage mailMessage) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Infrastructure\Persistence\Service\EmailService.cs:line 85
+   at Persistence.Service.EmailService.SendAsync(Message message) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Infrastructure\Persistence\Service\EmailService.cs:line 30
+   at Application.Features.Account.Commands.RegisterUser.RegisterUserCommandHandler.Handle(RegisterUserCommand command, CancellationToken cancellationToken) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Features\Account\Commands\RegisterUser\RegisterUserCommand.cs:line 60
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Behaviours\ValidationBehaviour.cs:line 30
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.AccountController.Register(RegisterUserCommand command) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Controllers\AccountController.cs:line 56
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
+2022-08-01 11:12:09.060 +01:00 [INF] Registration attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:12:13.347 +01:00 [INF] Registration succeeds
+2022-08-01 11:12:13.347 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:12:17.762 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:19:50.871 +01:00 [INF] Registration attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:20:01.710 +01:00 [INF] Registration succeeds
+2022-08-01 11:20:01.711 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:20:06.052 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:26:19.433 +01:00 [INF] Email confirmation attempt with UserId: 9773db4b-f16b-4906-9b37-5116278728e7
+2022-08-01 11:26:22.131 +01:00 [INF] Email confirmation succeeds
+2022-08-01 11:26:44.701 +01:00 [INF] Authentication attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:26:55.523 +01:00 [INF] Authentication succeeds
+2022-08-01 11:27:01.049 +01:00 [INF] RefreshToken succeeds
+2022-08-01 11:28:01.594 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 11:28:07.725 +01:00 [INF] Seeding Complete
+2022-08-01 11:28:22.270 +01:00 [INF] Authentication attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:28:37.543 +01:00 [INF] Authentication succeeds
+2022-08-01 11:28:39.164 +01:00 [INF] RefreshToken succeeds
+2022-08-01 11:29:59.497 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 11:30:05.773 +01:00 [INF] Seeding Complete
+2022-08-01 11:30:39.156 +01:00 [INF] Forgot password attempt with Email: stephane_adjakotan@live.fr
+2022-08-01 11:30:39.467 +01:00 [INF] Forgot password succeeds
+2022-08-01 11:30:39.467 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:30:44.425 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:33:24.007 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 11:33:30.456 +01:00 [INF] Seeding Complete
+2022-08-01 11:35:45.701 +01:00 [INF] Forgot password attempt with Email: stephane_adjakotan@live.fr
+2022-08-01 11:35:46.013 +01:00 [INF] Forgot password succeeds
+2022-08-01 11:35:46.013 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:35:50.859 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:45:59.362 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 11:46:05.562 +01:00 [INF] Seeding Complete
+2022-08-01 11:47:16.749 +01:00 [ERR] 
+
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ResetPasswordCommand -> ResetPasswordRequest
+Application.Features.Account.Commands.ResetPassword.ResetPasswordCommand -> Application.DataTransfertObjects.Account.ResetPasswordRequest
+   at lambda_method188(Closure , Object , ResetPasswordRequest , ResolutionContext )
+   at Application.Features.Account.Commands.ResetPassword.ResetPasswordCommandHandler.Handle(ResetPasswordCommand command, CancellationToken cancellationToken) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Features\Account\Commands\ResetPassword\ResetPasswordCommand.cs:line 38
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Behaviours\ValidationBehaviour.cs:line 30
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.AccountController.ResetPasswordAsync(ResetPasswordCommand command) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Controllers\AccountController.cs:line 112
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
+2022-08-01 11:49:32.686 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 11:49:39.223 +01:00 [INF] Seeding Complete
+2022-08-01 11:50:12.375 +01:00 [INF] Reset Password attempt with email: stephane_adjakotan@live.fr and resetToken: Q2ZESjhNWVQzME9qZmhCUHBPWVdOaUhCRzFIV2wrSk83QzdwYXpRWk5kUi8reFF1Y2ZpbGdwZC9Bb00wd0g5UkxBTng2Wm9NLyszMEplSlZjcmpFV1hncWtucWlvVzhWWU4wZTFJeEtDVzZHbXhKSE10QVFKRDJiZnBGOE13dFF1bzJaUDIwRlhkajdmZmtUQ0MwbzZyV3JoZnliYS8wTnEzWlVNT1lOeDlwTXZ1NGpzd01LK1paY0tWaUhLUUZVNThKTVdkU3ZJRGJDaEl5UjlOVjZvQ3pCYmk5ckE4SHBhUG1YOG05OUZEN2N3NHRE
+2022-08-01 11:50:12.697 +01:00 [WRN] VerifyUserTokenAsync() failed with purpose: ResetPassword for user.
+2022-08-01 11:50:13.043 +01:00 [ERR] 
+
+Application.Exceptions.ApiException: Error occured while reseting the password.
+   at Persistence.Repository.AccountRepository.ResetPassword(ResetPasswordRequest resetPasswordRequest) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Infrastructure\Persistence\Repository\AccountRepository.cs:line 197
+   at Application.Features.Account.Commands.ResetPassword.ResetPasswordCommandHandler.Handle(ResetPasswordCommand command, CancellationToken cancellationToken) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Features\Account\Commands\ResetPassword\ResetPasswordCommand.cs:line 41
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Behaviours\ValidationBehaviour.cs:line 30
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.AccountController.ResetPasswordAsync(ResetPasswordCommand command) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Controllers\AccountController.cs:line 112
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
+2022-08-01 11:51:36.663 +01:00 [INF] Forgot password attempt with Email: stephane_adjakotan@live.fr
+2022-08-01 11:51:36.961 +01:00 [INF] Forgot password succeeds
+2022-08-01 11:51:36.962 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:51:41.506 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 11:53:07.470 +01:00 [INF] Reset Password attempt with email: stephane_adjakotan@live.fr and resetToken: Q2ZESjhNWVQzME9qZmhCUHBPWVdOaUhCRzFFMWFmYlJzZUk3RXQxTnpscUYxazhmZ21XMXR0RzdwdW9ZUG93Z0VERjFVVU54d0RvTUZKSCtoQjlvWnA3N1IrY254UWc2OGdHZG5TZi9pcjljTWd5eGpjK2MyWlkybTFDU2J3VFlJVlNOL2pBOW8ySi9ZY2YrbVl4cG5NdjlKQzFFV0ovYk5XQjdCWkZHd0hDZ3hGTndwTVkzamlNQ0NEakpvU0U2VnU1S0hSQjQzSnVtQ0QybGU2Z2h5SmtBRisyS1E0d2tyMk1tMGtabitIT010VW1a
+2022-08-01 11:53:07.770 +01:00 [WRN] VerifyUserTokenAsync() failed with purpose: ResetPassword for user.
+2022-08-01 11:53:07.973 +01:00 [ERR] 
+
+Application.Exceptions.ApiException: Error occured while reseting the password.
+   at Persistence.Repository.AccountRepository.ResetPassword(ResetPasswordRequest resetPasswordRequest) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Infrastructure\Persistence\Repository\AccountRepository.cs:line 197
+   at Application.Features.Account.Commands.ResetPassword.ResetPasswordCommandHandler.Handle(ResetPasswordCommand command, CancellationToken cancellationToken) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Features\Account\Commands\ResetPassword\ResetPasswordCommand.cs:line 41
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Behaviours\ValidationBehaviour.cs:line 30
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.AccountController.ResetPasswordAsync(ResetPasswordCommand command) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Controllers\AccountController.cs:line 112
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
+2022-08-01 14:27:49.665 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 14:28:06.405 +01:00 [ERR] An error occurred using the connection to database 'db_a7b4c2_aunapitest' on server 'SQL5103.site4now.net'.
+2022-08-01 14:28:06.453 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'Persistence.Contexts.IdentityContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+ ---> System.ComponentModel.Win32Exception (53): Le chemin réseau n’a pas été trouvé.
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, SqlAuthenticationMethod authType)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+ ---> System.ComponentModel.Win32Exception (53): Le chemin réseau n’a pas été trouvé.
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, SqlAuthenticationMethod authType)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+2022-08-01 14:28:06.577 +01:00 [FTL] Host terminated unexpectedly
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+ ---> System.ComponentModel.Win32Exception (53): Le chemin réseau n’a pas été trouvé.
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, SqlAuthenticationMethod authType)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Persistence.Seeds.DefaultRoles.SeedDefaultRolesAsync(WebApplication webApp) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Infrastructure\Persistence\Seeds\DefaultRoles.cs:line 18
+   at Program.<Main>$(String[] args) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Program.cs:line 63
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+2022-08-01 14:32:54.741 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 14:33:03.293 +01:00 [INF] Seeding Complete
+2022-08-01 14:33:59.042 +01:00 [INF] Reset Password attempt with email: stephane_adjakotan@live.fr and resetToken: Q2ZESjhNWVQzME9qZmhCUHBPWVdOaUhCRzFFMWFmYlJzZUk3RXQxTnpscUYxazhmZ21XMXR0RzdwdW9ZUG93Z0VERjFVVU54d0RvTUZKSCtoQjlvWnA3N1IrY254UWc2OGdHZG5TZi9pcjljTWd5eGpjK2MyWlkybTFDU2J3VFlJVlNOL2pBOW8ySi9ZY2YrbVl4cG5NdjlKQzFFV0ovYk5XQjdCWkZHd0hDZ3hGTndwTVkzamlNQ0NEakpvU0U2VnU1S0hSQjQzSnVtQ0QybGU2Z2h5SmtBRisyS1E0d2tyMk1tMGtabitIT010VW1a
+2022-08-01 14:34:08.322 +01:00 [INF] Reset Password succeeds
+2022-08-01 15:07:20.795 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 15:07:26.914 +01:00 [INF] Seeding Complete
+2022-08-01 15:08:14.495 +01:00 [INF] Registration attempt with email: stephane_adjakotan@live.fr
+2022-08-01 15:08:23.146 +01:00 [INF] Registration succeeds
+2022-08-01 15:08:23.146 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 15:08:28.939 +01:00 [INF] Email Sending attempt with email: stephane_adjakotan@live.fr
+2022-08-01 15:26:07.428 +01:00 [INF] Email confirmation attempt with UserId: d2873d0c-3c1c-44d5-93d2-a42fa3c52af2
+2022-08-01 15:26:10.120 +01:00 [INF] Email confirmation succeeds
+2022-08-01 15:38:45.917 +01:00 [INF] Forgot password attempt with Email: stephane_adjakotan@live.fr
+2022-08-01 18:50:31.289 +01:00 [INF] Starting Seeding Default Data
+2022-08-01 18:50:38.529 +01:00 [INF] Seeding Complete

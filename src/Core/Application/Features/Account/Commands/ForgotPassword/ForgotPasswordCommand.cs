@@ -10,17 +10,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.DataTransfertObjects.Account;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Linq;
 
 namespace Application.Features.Account.Commands.ForgotPassword
 {
-    public class ForgotPasswordCommand : IRequest<string>
+    public class ForgotPasswordCommand : IRequest<JObject>
     {
         public string Email { get; set; }
-        [JsonIgnore]
+        [System.Text.Json.Serialization.JsonIgnore]
         public string Origin { get; set; }
     }
 
-    internal class ForgotPasswordCommandHandler : IRequestHandler<ForgotPasswordCommand, string>
+    internal class ForgotPasswordCommandHandler : IRequestHandler<ForgotPasswordCommand, JObject>
     {
         private readonly ILogger<ForgotPasswordCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
@@ -33,7 +35,7 @@ namespace Application.Features.Account.Commands.ForgotPassword
         }
 
 
-        public async Task<string> Handle(ForgotPasswordCommand command, CancellationToken cancellationToken)
+        public async Task<JObject> Handle(ForgotPasswordCommand command, CancellationToken cancellationToken)
         {
             _logger.LogInformation($"Forgot password attempt with Email: {command.Email}");
             var authenticationModel = await _repository.Token.GeneratePasswordResetTokenAsync(command.Email);
@@ -42,12 +44,18 @@ namespace Application.Features.Account.Commands.ForgotPassword
             if (authenticationModel.IsSuccess)
             {
                 _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
-                var message = new Message(new string[] { command.Email }, "Reset Password", $"You reset token is:  {authenticationModel.AccessToken}", null);
+                var message = new Message(new string[] { command.Email }, "Reset Password", $"You reset token is:  {authenticationModel.AccessToken.Value}", null);
                 await _repository.Email.SendAsync(message);
                 _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
             }
 
-            return $"Password reset url has been sent to your email successfully.";
+            var successJson = new JObject
+            {
+                ["StatusCode"] = StatusCodes.Status201Created,
+                ["Message"] = $"Password reset url has been sent to your email successfully."
+            };
+
+            return successJson;
         }
     }
 }

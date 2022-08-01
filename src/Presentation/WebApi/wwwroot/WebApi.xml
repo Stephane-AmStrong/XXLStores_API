@@ -49,7 +49,7 @@
             <response code="200">Returns confirmation success message</response>
             <response code="400">If the command is not valide</response>           
         </member>
-        <member name="M:WebApi.Controllers.v1.AccountController.Refresh(Application.Features.Account.Commands.RefreshAccessToken.RefreshTokenCommand)">
+        <member name="M:WebApi.Controllers.v1.AccountController.Refresh(Application.Features.Account.Commands.RefreshAccessToken.RefreshTokensCommand)">
             <summary>
             Refreshes a Token.
             </summary>

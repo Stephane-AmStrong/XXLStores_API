@@ -28,7 +28,8 @@ namespace Application.Features.Account.Commands.Authenticate
 
             RuleFor(p => p.Email)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull();
+                .NotNull()
+                .EmailAddress();
 
             RuleFor(p => p.Password)
                 .NotEmpty().WithMessage("{PropertyName} is required.")

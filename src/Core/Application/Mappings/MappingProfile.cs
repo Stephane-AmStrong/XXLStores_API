@@ -1,6 +1,8 @@
-﻿using Application.Features.Account.Commands.Authenticate;
+﻿using Application.DataTransfertObjects.Account;
+using Application.Features.Account.Commands.Authenticate;
 using Application.Features.Account.Commands.RefreshAccessToken;
 using Application.Features.Account.Commands.RegisterUser;
+using Application.Features.Account.Commands.ResetPassword;
 using Application.Features.Categories.Commands.Create;
 using Application.Features.Categories.Commands.Update;
 using Application.Features.Categories.Queries.GetById;
@@ -17,7 +19,9 @@ namespace Application.Mappings
         {
             CreateMap<AppUser, RegisterUserCommand>().ReverseMap();
             CreateMap<UserToken, UserTokenViewModel>().ReverseMap();
-            CreateMap<GenerateRefreshTokenModel, RefreshTokenCommand>().ReverseMap();
+            CreateMap<RefreshTokens, RefreshTokensViewModel>().ReverseMap();
+            CreateMap<ResetPasswordRequest, ResetPasswordCommand>().ReverseMap();
+            //CreateMap<GenerateRefreshTokenModel, RefreshTokenCommand>().ReverseMap();
             //RefreshTokenCommand -> GenerateRefreshTokenModel
 
             CreateMap<LoginModel, AuthenticationCommand>().ReverseMap();

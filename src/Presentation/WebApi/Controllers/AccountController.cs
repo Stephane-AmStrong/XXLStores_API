@@ -79,7 +79,7 @@ namespace WebApi.Controllers.v1
 
         // POST api/<controller>
         /// <summary>
-        /// Generate a Reset Token for a forgotten password.
+        /// Send a Reset Token for a forgotten password.
         /// </summary>
         /// <param name="command"></param>
         /// <returns>Generate a Reset Token for a forgotten password</returns>
@@ -98,11 +98,11 @@ namespace WebApi.Controllers.v1
 
         // POST api/<controller>
         /// <summary>
-        /// Confirm user's email.
+        /// Reset user's Password.
         /// </summary>
         /// <param name="command"></param>
-        /// <returns>Confirm a newly created User Account's email</returns>
-        /// <response code="200">Returns confirmation success message</response>
+        /// <returns>Assigns a new password to the user's account</returns>
+        /// <response code="200">Returns New password assignment success message</response>
         /// <response code="400">If the command is not valide</response>           
         [AllowAnonymous, HttpPost("reset-password")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -124,7 +124,7 @@ namespace WebApi.Controllers.v1
         [AllowAnonymous, HttpPost("refresh-token")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Refresh(RefreshTokenCommand command)
+        public async Task<IActionResult> Refresh(RefreshTokensCommand command)
         {
             command.IpAddress = GenerateIPAddress();
             return Ok(await Mediator.Send(command));
@@ -145,7 +145,7 @@ namespace WebApi.Controllers.v1
         {
             var command = new RevokeTokenCommand 
             { 
-                userId = User.FindFirstValue(ClaimTypes.NameIdentifier) 
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) 
             };
             //command.userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             await Mediator.Send(command);

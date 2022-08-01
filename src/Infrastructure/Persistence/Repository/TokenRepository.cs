@@ -16,6 +16,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repository
 {
@@ -39,31 +40,49 @@ namespace Persistence.Repository
             _jwtSettings = jwtSettings.Value;
         }
 
-        public async Task<RefreshTokenResponse> RefreshAsync(GenerateRefreshTokenModel generateRefreshTokenModel, string ipAddress)
+        public async Task<string> EncodeStringAsync(string stringToEncode)
         {
-            var principal = await GetPrincipalFromExpiredTokenAsync(generateRefreshTokenModel.AccessToken);
+            var encodedBytes = await Task.Run(() => Encoding.UTF8.GetBytes(stringToEncode));
+            return await Task.Run(() => WebEncoders.Base64UrlEncode(encodedBytes));
+        }
+
+        public async Task<string> DecodeStringAsync(string stringToDecode)
+        {
+            var decodedByte = await Task.Run(() => WebEncoders.Base64UrlDecode(stringToDecode));
+            return await Task.Run(() => Encoding.UTF8.GetString(decodedByte));
+        }
+
+        public async Task<RefreshTokens> RefreshAsync(string accessToken, string refreshToken, string ipAddress)
+        {
+            var principal = await GetPrincipalFromExpiredTokenAsync(accessToken);
             var username = principal.Identity.Name; //this is mapped to the Name claim by default
 
             var appUser = await _userManager.FindByNameAsync(username);
             var userRefreshToken = await GetByUserIdAsync(appUser.Id);
 
-            if (appUser == null || userRefreshToken == null || userRefreshToken.Value != generateRefreshTokenModel.RefreshToken || userRefreshToken.IsActive == false) throw new ApiException($"Invalid client request.");
+            if (appUser == null || userRefreshToken == null || userRefreshToken.Value != refreshToken || userRefreshToken.IsActive == false) throw new ApiException($"Invalid client request.");
 
             var newAccessToken = await GenerateJWToken(appUser);
             var newRefreshToken = await GenerateRefreshTokenAsync(ipAddress, appUser.Id);
 
             newRefreshToken = await CommitAsync(newRefreshToken);
 
-            return new RefreshTokenResponse
+            return new RefreshTokens
             {
-                AccessToken = new JwtSecurityTokenHandler().WriteToken(newAccessToken),
+                //AccessToken = new JwtSecurityTokenHandler().WriteToken(newAccessToken),
+                AccessToken = new AccessToken
+                {
+                    Value = new JwtSecurityTokenHandler().WriteToken(newAccessToken),
+                    ExpiryTime = newAccessToken.ValidTo
+                },
                 RefreshToken = newRefreshToken
             };
         }
 
         public async Task<UserToken> CommitAsync(UserToken refreshToken)
         {
-            var lastRefreshToken = await GetByUserIdAsync(refreshToken.UserId);
+            var newestTokenId = refreshToken.Id;
+            var lastRefreshToken = await GetByIdAsync(newestTokenId);
 
             if (lastRefreshToken == null)
             {
@@ -71,6 +90,9 @@ namespace Persistence.Repository
             }
             else
             {
+                newestTokenId = Guid.NewGuid();
+                lastRefreshToken.Id = newestTokenId;
+
                 lastRefreshToken.UserId = refreshToken.UserId;
                 lastRefreshToken.Value = refreshToken.Value;
                 lastRefreshToken.ExpiryTime = refreshToken.ExpiryTime;
@@ -80,7 +102,7 @@ namespace Persistence.Repository
 
             await SaveAsync();
 
-            lastRefreshToken = await GetByUserIdAsync(refreshToken.UserId);
+            lastRefreshToken = await GetByIdAsync(newestTokenId);
 
             if (lastRefreshToken != null) return lastRefreshToken;
 
@@ -102,11 +124,16 @@ namespace Persistence.Repository
             }
 
             var resetToken = await _userManager.GeneratePasswordResetTokenAsync(account);
-            resetToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(resetToken));
+            //resetToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(resetToken));
+            resetToken = await EncodeStringAsync(resetToken);
 
             return new AuthenticationModel
             {
-                AccessToken = resetToken,
+                AccessToken = new AccessToken
+                {
+                    Value = resetToken,
+                    //ExpiryTime = 
+                },
                 IsSuccess = true,
                 //Message = "Password reset url has been sent to your email successfully",
             };
@@ -129,9 +156,11 @@ namespace Persistence.Repository
             var randomTokenString = await Task.Run(() => BitConverter.ToString(randomBytes).Replace("-", ""));
             //var randomTokenString = await Task.Run(() => Convert.ToBase64String(randomBytes));
 
+            var userRefreshToken = await GetByUserIdAsync(userId);
+
             return new UserToken
             {
-                //Id = Guid.NewGuid(),
+                Id = userRefreshToken != null ? userRefreshToken.Id : Guid.NewGuid(),
                 UserId = userId,
                 //LoginProvider = randomTokenString,
                 Value = randomTokenString,
@@ -215,11 +244,11 @@ namespace Persistence.Repository
             return principal;
         }
 
-        //public async Task<UserToken> GetByIdAsync(string id)
-        //{
-        //    return await BaseFindByCondition(userToken => userToken.Id.Equals(id))
-        //        .FirstOrDefaultAsync();
-        //}
+        public async Task<UserToken> GetByIdAsync(Guid id)
+        {
+            return await BaseFindByCondition(userToken => userToken.Id == id)
+                .FirstOrDefaultAsync();
+        }
 
         public async Task<UserToken> GetByUserIdAsync(string userId)
         {

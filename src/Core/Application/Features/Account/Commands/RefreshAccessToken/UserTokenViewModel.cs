@@ -9,7 +9,8 @@ namespace Application.Features.Account.Commands.RefreshAccessToken
 {
     public class UserTokenViewModel
     {
-        public string UserId { get; set; }
+        public Guid Id { get; set; }
+        //public string UserId { get; set; }
         public string Value { get; set; }
         public DateTime ExpiryTime { get; set; }
     }

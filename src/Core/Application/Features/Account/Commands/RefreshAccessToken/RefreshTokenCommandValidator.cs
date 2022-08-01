@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Account.Commands.RefreshAccessToken
 {
-    public class RefreshTokenCommandValidator : AbstractValidator<RefreshTokenCommand>
+    public class RefreshTokenCommandValidator : AbstractValidator<RefreshTokensCommand>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;

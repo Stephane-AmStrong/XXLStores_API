@@ -9,10 +9,12 @@ using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
 using Application.Models;
+using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace Application.Features.Account.Commands.RegisterUser
 {
-    public class RegisterUserCommand : IRequest<string>
+    public class RegisterUserCommand : IRequest<JObject>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -30,7 +32,7 @@ namespace Application.Features.Account.Commands.RegisterUser
 
     }
 
-    internal class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, string>
+    internal class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, JObject>
     {
         private readonly ILogger<RegisterUserCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
@@ -45,7 +47,7 @@ namespace Application.Features.Account.Commands.RegisterUser
         }
 
 
-        public async Task<string> Handle(RegisterUserCommand command, CancellationToken cancellationToken)
+        public async Task<JObject> Handle(RegisterUserCommand command, CancellationToken cancellationToken)
         {
             var appUser = _mapper.Map<AppUser>(command);
             _logger.LogInformation($"Registration attempt with email: {command.Email}");
@@ -54,11 +56,20 @@ namespace Application.Features.Account.Commands.RegisterUser
             _logger.LogInformation($"Registration succeeds");
 
             _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
-            var message = new Message(new string[] { command.Email }, "Confirm Registration", $"Please confirm your account by visiting this URL {authenticationModel.AccessToken}", null);
+            var message = new Message(new string[] { command.Email }, "Confirm Registration", $"Please confirm your account by visiting this URL {authenticationModel.AccessToken.Value}", null);
             await _repository.Email.SendAsync(message);
             _logger.LogInformation($"Email Sending attempt with email: {command.Email}");
 
-            return $"{authenticationModel.UserInfo["name"]}, message: User Registered. Please check your email for verification action.";
+            //return $"{authenticationModel.UserInfo["name"]}, message: User Registered. Please check your email for verification action.";
+
+            var successJson = new JObject
+            {
+                ["StatusCode"] = StatusCodes.Status201Created,
+                ["Message"] = $"Thanks {authenticationModel.UserInfo["name"]}! Your registration was successful. Check your email for verification action."
+            };
+
+
+            return successJson;
         }
     }
 }

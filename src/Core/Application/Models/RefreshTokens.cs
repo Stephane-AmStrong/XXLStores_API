@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Application.Models
 {
-    public record RefreshTokenResponse
+    public record RefreshTokens
     {
-        public string AccessToken { get; set; }
+        public AccessToken AccessToken { get; set; }
         public UserToken RefreshToken { get; set; }
     }
 }

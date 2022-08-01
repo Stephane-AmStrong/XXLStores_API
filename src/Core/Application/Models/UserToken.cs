@@ -10,11 +10,13 @@ namespace Application.Models
 {
     public record UserToken
     {
+        public Guid Id { get; set; }
         public string UserId { get; set; }
         public DateTime ExpiryTime { get; set; }
         public string Value { get; set; }
 
         [NotMapped]
+        [System.Text.Json.Serialization.JsonIgnore]
         public bool IsActive => (DateTime.UtcNow <= ExpiryTime);
         //public virtual AppUser AppUser { get; set; }
     }
