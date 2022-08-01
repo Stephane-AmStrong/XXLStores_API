@@ -33,7 +33,7 @@
         </member>
         <member name="M:WebApi.Controllers.v1.AccountController.ForgotPasswordAsync(Application.Features.Account.Commands.ForgotPassword.ForgotPasswordCommand)">
             <summary>
-            Generate a Reset Token for a forgotten password.
+            Send a Reset Token for a forgotten password.
             </summary>
             <param name="command"></param>
             <returns>Generate a Reset Token for a forgotten password</returns>
@@ -42,11 +42,11 @@
         </member>
         <member name="M:WebApi.Controllers.v1.AccountController.ResetPasswordAsync(Application.Features.Account.Commands.ResetPassword.ResetPasswordCommand)">
             <summary>
-            Confirm user's email.
+            Reset user's Password.
             </summary>
             <param name="command"></param>
-            <returns>Confirm a newly created User Account's email</returns>
-            <response code="200">Returns confirmation success message</response>
+            <returns>Assigns a new password to the user's account</returns>
+            <response code="200">Returns New password assignment success message</response>
             <response code="400">If the command is not valide</response>           
         </member>
         <member name="M:WebApi.Controllers.v1.AccountController.Refresh(Application.Features.Account.Commands.RefreshAccessToken.RefreshTokensCommand)">
