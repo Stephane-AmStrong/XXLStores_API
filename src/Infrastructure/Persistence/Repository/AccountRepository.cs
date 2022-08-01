@@ -62,7 +62,7 @@ namespace Persistence.Repository
                 AccessToken = new AccessToken
                 {
                     Value = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
-                    ExpiryTime = jwtSecurityToken.ValidTo
+                    ExpiryDate = jwtSecurityToken.ValidTo
                 },
 
                 RefreshToken = userToken,

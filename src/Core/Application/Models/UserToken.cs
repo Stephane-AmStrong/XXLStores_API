@@ -12,12 +12,12 @@ namespace Application.Models
     {
         public Guid Id { get; set; }
         public string UserId { get; set; }
-        public DateTime ExpiryTime { get; set; }
+        public DateTime ExpiryDate { get; set; }
         public string Value { get; set; }
 
         [NotMapped]
         [System.Text.Json.Serialization.JsonIgnore]
-        public bool IsActive => (DateTime.UtcNow <= ExpiryTime);
+        public bool IsActive => (DateTime.UtcNow <= ExpiryDate);
         //public virtual AppUser AppUser { get; set; }
     }
 }

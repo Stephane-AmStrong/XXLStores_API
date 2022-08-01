@@ -9,6 +9,6 @@ namespace Application.Models
     public record AccessToken
     {
         public string Value { get; set; }
-        public DateTime ExpiryTime { get; set; }
+        public DateTime ExpiryDate { get; set; }
     }
 }

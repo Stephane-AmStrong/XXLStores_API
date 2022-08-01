@@ -73,7 +73,7 @@ namespace Persistence.Repository
                 AccessToken = new AccessToken
                 {
                     Value = new JwtSecurityTokenHandler().WriteToken(newAccessToken),
-                    ExpiryTime = newAccessToken.ValidTo
+                    ExpiryDate = newAccessToken.ValidTo
                 },
                 RefreshToken = newRefreshToken
             };
@@ -95,7 +95,7 @@ namespace Persistence.Repository
 
                 lastRefreshToken.UserId = refreshToken.UserId;
                 lastRefreshToken.Value = refreshToken.Value;
-                lastRefreshToken.ExpiryTime = refreshToken.ExpiryTime;
+                lastRefreshToken.ExpiryDate = refreshToken.ExpiryDate;
 
                 await UpdateAsync(lastRefreshToken);
             }
@@ -132,7 +132,7 @@ namespace Persistence.Repository
                 AccessToken = new AccessToken
                 {
                     Value = resetToken,
-                    //ExpiryTime = 
+                    //ExpiryDate = 
                 },
                 IsSuccess = true,
                 //Message = "Password reset url has been sent to your email successfully",
@@ -164,7 +164,7 @@ namespace Persistence.Repository
                 UserId = userId,
                 //LoginProvider = randomTokenString,
                 Value = randomTokenString,
-                ExpiryTime = DateTime.UtcNow.AddDays(7),
+                ExpiryDate = DateTime.UtcNow.AddDays(7),
             };
         }
 
@@ -252,7 +252,7 @@ namespace Persistence.Repository
 
         public async Task<UserToken> GetByUserIdAsync(string userId)
         {
-            return await Task.Run(() => BaseFindByCondition(x => x.UserId == userId).OrderByDescending(x => x.ExpiryTime).FirstOrDefault());
+            return await Task.Run(() => BaseFindByCondition(x => x.UserId == userId).OrderByDescending(x => x.ExpiryDate).FirstOrDefault());
         }
 
         public async Task CreateAsync(UserToken refreshToken)

@@ -12,6 +12,6 @@ namespace Application.Features.Account.Commands.RefreshAccessToken
         public Guid Id { get; set; }
         //public string UserId { get; set; }
         public string Value { get; set; }
-        public DateTime ExpiryTime { get; set; }
+        public DateTime ExpiryDate { get; set; }
     }
 }
