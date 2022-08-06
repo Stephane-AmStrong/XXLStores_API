@@ -1,0 +1,20 @@
+2022-08-06 23:10:03.762 +01:00 [INF] Starting Seeding Default Data
+2022-08-06 23:10:06.503 +01:00 [INF] Seeding Complete
+2022-08-06 23:13:46.065 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-06 23:13:46.392 +01:00 [INF] Authentication succeeds
+2022-08-06 23:13:46.597 +01:00 [INF] RefreshToken succeeds
+2022-08-06 23:54:31.977 +01:00 [INF] Starting Seeding Default Data
+2022-08-06 23:54:34.227 +01:00 [INF] Seeding Complete
+2022-08-06 23:56:20.790 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-06 23:56:21.112 +01:00 [INF] Authentication succeeds
+2022-08-06 23:56:21.315 +01:00 [INF] RefreshToken succeeds
+2022-08-06 23:57:10.759 +01:00 [INF] Starting Seeding Default Data
+2022-08-06 23:57:13.283 +01:00 [INF] Seeding Complete
+2022-08-06 23:57:28.517 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-06 23:57:28.825 +01:00 [INF] Authentication succeeds
+2022-08-06 23:57:29.028 +01:00 [INF] RefreshToken succeeds
+2022-08-06 23:58:40.093 +01:00 [INF] Starting Seeding Default Data
+2022-08-06 23:58:42.557 +01:00 [INF] Seeding Complete
+2022-08-06 23:58:57.747 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-06 23:58:58.081 +01:00 [INF] Authentication succeeds
+2022-08-06 23:58:58.296 +01:00 [INF] RefreshToken succeeds

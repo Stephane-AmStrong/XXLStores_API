@@ -5,7 +5,8 @@
 		<Nullable>disable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 
-		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+		<!--<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>-->
+		
 		<Authors>Stéphane Adjakotan</Authors>
 		<Company>Beranda</Company>
 		<RepositoryUrl>https://github.com/Stephane-AmStrong/Beranda_API.git</RepositoryUrl>

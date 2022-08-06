@@ -1,0 +1,7 @@
+2022-08-04 00:05:06.245 +01:00 [INF] Starting Seeding Default Data
+2022-08-04 00:05:09.349 +01:00 [INF] Seeding Complete
+2022-08-04 00:08:26.820 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2022-08-04 00:08:26.824 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2022-08-04 00:08:26.851 +01:00 [INF] Returned Paged List of Categories from database.
+2022-08-04 00:18:57.509 +01:00 [INF] Starting Seeding Default Data
+2022-08-04 00:18:59.987 +01:00 [INF] Seeding Complete

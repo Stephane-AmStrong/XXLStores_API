@@ -1,0 +1,31 @@
+2022-08-02 15:29:08.981 +01:00 [INF] Starting Seeding Default Data
+2022-08-02 15:29:11.448 +01:00 [INF] Seeding Complete
+2022-08-02 19:49:15.402 +01:00 [INF] Starting Seeding Default Data
+2022-08-02 19:49:17.570 +01:00 [INF] Seeding Complete
+2022-08-02 19:51:39.322 +01:00 [INF] Starting Seeding Default Data
+2022-08-02 19:51:41.664 +01:00 [INF] Seeding Complete
+2022-08-02 19:52:51.329 +01:00 [INF] Starting Seeding Default Data
+2022-08-02 19:52:53.760 +01:00 [INF] Seeding Complete
+2022-08-02 19:53:08.018 +01:00 [ERR] 
+
+Application.Exceptions.ValidationException: One or more validation failures have occurred.
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Core\Application\Behaviours\ValidationBehaviour.cs:line 28
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.AccountController.Authenticate(AuthenticationCommand command) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Controllers\AccountController.cs:line 37
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\XXLStores_API\src\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29

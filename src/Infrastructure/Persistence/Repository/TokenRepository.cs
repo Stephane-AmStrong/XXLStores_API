@@ -199,7 +199,7 @@ namespace Persistence.Repository
                 issuer: _jwtSettings.Issuer,
                 audience: _jwtSettings.Audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(_jwtSettings.DurationInMinutes),
+                expires: DateTime.UtcNow.AddHours(_jwtSettings.DurationInHours),
                 signingCredentials: signingCredentials);
 
             return jwtSecurityToken;
